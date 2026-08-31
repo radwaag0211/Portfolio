@@ -1,0 +1,281 @@
+/* ===== PROJECT PAGE ===== */
+.project-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-mid);
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.04em;
+  transition: color var(--dur) var(--ease);
+}
+
+.back-link:hover {
+  color: var(--navy);
+}
+
+/* ===== HERO IMAGE ===== */
+.project-hero {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 3rem;
+}
+
+.project-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== META ===== */
+.project-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.project-meta__year {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  letter-spacing: 0.08em;
+}
+
+.project-meta__tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+}
+
+/* ===== TITLE ===== */
+.project-title-large {
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+
+.project-subtitle {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-mid);
+  margin-bottom: 2.5rem;
+}
+
+/* ===== SUMMARY GRID ===== */
+.project-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+  margin-bottom: 3.5rem;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-mid);
+}
+
+.summary-value {
+  font-size: 0.9rem;
+  color: var(--navy);
+  font-style: italic;
+}
+
+/* ===== SECTIONS ===== */
+.project-section {
+  margin-bottom: 3rem;
+}
+
+.project-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.project-section p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+  margin-bottom: 0.9rem;
+}
+
+.project-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== QUOTE ===== */
+.project-quote {
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: #faf8f5;
+  border-radius: 0 4px 4px 0;
+}
+
+.project-quote p {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== GALLERY ===== */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 220px;
+  border-radius: 4px;
+  background: var(--navy-light);
+  overflow: hidden;
+}
+
+.gallery-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-img.light { background: #f0ebe0; }
+.gallery-img.pink  { background: #e8d5f0; }
+.gallery-img.soft  { background: #d5e8d0; }
+
+/* ===== PROCESS STEPS ===== */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.step-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  min-width: 28px;
+  padding-top: 0.15rem;
+}
+
+.step h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+
+.step p {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== PROJECT NAV ===== */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .project-page {
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .project-hero {
+    height: 260px;
+  }
+
+  .project-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .project-nav {
+    flex-direction: column;
+  }
+}
+
+/* ===== FANOUS MUSIC PLAYER — grønn ===== */
+.fanous-player .music-card-back {
+  background: #2A4038;
+}
+
+.fanous-player .music-card {
+  background: #3A5A4A;
+}
+
+.fanous-player .music-boks-circle {
+  background: #7AAB8A;
+}
+
+.fanous-player .music-progress-wrap {
+  background: rgba(0,0,0,0.25);
+}
+
+.fanous-player .music-progress-bar {
+  background: #F2EDE4;
+}
+
+.fanous-player .music-time-row {
+  color: rgba(242,237,228,0.6);
+}
+
+.fanous-player .music-headphones-circle {
+  background: rgba(242,237,228,0.2);
+}
+
+.fanous-player {
+  margin-bottom: 2.5rem;
+}

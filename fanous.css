@@ -1,0 +1,426 @@
+/* ===== FANOUS PAGE ===== */
+
+:root {
+  --f-dark:    #1E2E28;
+  --f-cream:   #F2EDE4;
+  --f-sage:    #7AAB8A;
+  --f-mid:     #3A5A4A;
+  --f-text:    #E2DDD4;
+  --f-card:    #273D32;
+  --f-border:  rgba(122,171,138,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inria Serif', Georgia, serif;
+  background: var(--f-dark);
+  color: var(--f-text);
+}
+
+/* ===== HEADER ===== */
+.fn-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(30, 46, 40, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--f-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.fn-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--f-text);
+  text-decoration: none;
+  position: relative;
+}
+
+.fn-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 2px;
+  background: var(--f-sage);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.fn-logo:hover::after { transform: scaleX(1); }
+
+.fn-nav { display: flex; gap: 2rem; }
+
+.fn-nav a {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--f-text);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.fn-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 1.5px;
+  background: var(--f-text);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.fn-nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ===== DEL 1 — HERO (mørk skog) ===== */
+.fn-hero {
+  background: var(--f-dark);
+  padding: 3rem 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.fn-back {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--f-sage);
+  text-decoration: none;
+  margin-bottom: 3rem;
+  transition: opacity 0.2s ease;
+}
+
+.fn-back:hover { opacity: 0.7; }
+
+.fn-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--f-sage);
+  border: 1px solid var(--f-sage);
+  padding: 0.2rem 0.8rem;
+  border-radius: 2px;
+  margin-bottom: 1.2rem;
+}
+
+.fn-hero-title {
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--f-text);
+  line-height: 0.9;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.fn-hero-sub {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--f-sage);
+  margin-bottom: 3.5rem;
+  opacity: 0.9;
+}
+
+.fn-hero-img {
+  width: 100%;
+  max-width: 860px;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* ===== DEL 2 — INNHOLD (krem) ===== */
+.fn-innhold {
+  background: var(--f-cream);
+  color: var(--f-dark);
+  padding: 4rem 3rem;
+}
+
+/* Summary grid */
+.fn-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  border-top: 1px solid rgba(30,46,40,0.2);
+  border-bottom: 1px solid rgba(30,46,40,0.2);
+  padding: 1.5rem 0;
+  margin-bottom: 3.5rem;
+}
+
+.fn-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fn-summary-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--f-mid);
+}
+
+.fn-summary-value {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--f-dark);
+}
+
+/* Musikk player */
+.fn-music-wrap {
+  margin-bottom: 3.5rem;
+}
+
+.fn-music-label {
+  font-size: 0.8rem;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--f-mid);
+  margin-bottom: 0.75rem;
+}
+
+/* Seksjoner */
+.fn-section {
+  margin-bottom: 3rem;
+}
+
+.fn-section h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--f-dark);
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1.5px solid rgba(30,46,40,0.2);
+}
+
+.fn-section p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--f-dark);
+  margin-bottom: 0.9rem;
+}
+
+.fn-section p:last-child { margin-bottom: 0; }
+
+/* Tre kolonner — min rolle */
+.fn-three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(30,46,40,0.2);
+  margin-top: 1.2rem;
+}
+
+.fn-col-item {
+  padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+.fn-col-item + .fn-col-item {
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(30,46,40,0.2);
+}
+
+.fn-col-item h3 {
+  font-size: 1rem;
+  font-variant: small-caps;
+  font-weight: 700;
+  color: var(--f-dark);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.06em;
+}
+
+.fn-col-item p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--f-mid);
+  margin: 0;
+}
+
+/* Sitat */
+.fn-quote {
+  border-left: 3px solid var(--f-sage);
+  background: rgba(122,171,138,0.12);
+  padding: 1.2rem 1.6rem;
+  border-radius: 0 4px 4px 0;
+  margin: 2rem 0;
+}
+
+.fn-quote p {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--f-dark);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ===== DEL 3 — VISUALS (mørk skog) ===== */
+.fn-visuals {
+  background: var(--f-dark);
+  padding: 4rem 3rem;
+}
+
+.fn-visuals-heading {
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--f-text);
+  margin-bottom: 0.4rem;
+}
+
+.fn-visuals-sub {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--f-sage);
+  margin-bottom: 2.5rem;
+}
+
+/* Skjermbilder */
+.fn-screens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.fn-screens img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fn-screens img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+
+/* Video */
+.fn-video-wrap {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0f1a14;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.fn-video-wrap video {
+  width: 100%;
+  display: block;
+  max-height: 520px;
+  object-fit: contain;
+}
+
+/* Refleksjon i dark */
+.fn-refleksjon {
+  border-top: 1px solid var(--f-border);
+  padding-top: 2.5rem;
+  margin-top: 1rem;
+}
+
+.fn-refleksjon h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--f-sage);
+  margin-bottom: 1rem;
+}
+
+.fn-refleksjon p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--f-text);
+  max-width: 760px;
+  opacity: 0.9;
+}
+
+/* ===== FOOTER ===== */
+.fn-footer {
+  background: var(--f-dark);
+  border-top: 1px solid var(--f-border);
+  padding: 1.8rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--f-sage);
+}
+
+.fn-footer a {
+  color: var(--f-sage);
+  text-decoration: none;
+  font-style: italic;
+}
+
+.fn-footer a:hover { text-decoration: underline; }
+
+/* ===== MUSIKK-SPILLER ===== */
+.fn-music-wrap .music-card-back {
+  background: #2A4038;
+}
+
+.fn-music-wrap .music-card {
+  background: #3A5A4A;
+}
+
+.fn-music-wrap .music-boks-circle {
+  background: #7AAB8A;
+}
+
+.fn-music-wrap .music-progress-wrap {
+  background: rgba(0,0,0,0.25);
+}
+
+.fn-music-wrap .music-progress-bar {
+  background: #F2EDE4;
+}
+
+.fn-music-wrap .music-time-row {
+  color: rgba(242,237,228,0.6);
+}
+
+.fn-music-wrap .music-headphones-circle {
+  background: rgba(242,237,228,0.2);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .fn-header, .fn-hero, .fn-innhold, .fn-visuals, .fn-footer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .fn-hero { padding-bottom: 3rem; }
+
+  .fn-summary { grid-template-columns: repeat(2, 1fr); }
+
+  .fn-three-col { grid-template-columns: 1fr; }
+
+  .fn-col-item + .fn-col-item {
+    border-left: none;
+    border-top: 1px solid rgba(30,46,40,0.2);
+    padding-left: 0;
+  }
+
+  .fn-screens { grid-template-columns: 1fr; }
+
+  .fn-visuals-heading { font-size: 2rem; }
+}

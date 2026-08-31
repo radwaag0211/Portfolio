@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fanous — Radwa Godor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fanous.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="fn-header">
+    <a href="Radwa.html" class="fn-logo">Radwa Godor</a>
+    <nav class="fn-nav">
+      <a href="#">CV</a>
+      <a href="Radwa.html#om-meg-seksjon">Om Meg</a>
+    </nav>
+  </header>
+
+  <!-- ===== DEL 1: HERO ===== -->
+  <section class="fn-hero">
+
+    <h1 class="fn-hero-title">Fanous</h1>
+    <p class="fn-hero-sub">Vil du hjelpe Rex med å bringe lyset tilbake til jungelen?</p>
+
+    <img src="start_skjerm_fanous.png" alt="Fanous startskjerm" class="fn-hero-img" />
+
+  </section>
+
+  <!-- ===== DEL 2: INNHOLD ===== -->
+  <section class="fn-innhold">
+
+    <!-- Summary -->
+    <div class="fn-summary">
+      <div class="fn-summary-item">
+        <span class="fn-summary-label">Rolle</span>
+        <span class="fn-summary-value">Character Design &amp; Visuell Design</span>
+      </div>
+      <div class="fn-summary-item">
+        <span class="fn-summary-label">Team</span>
+        <span class="fn-summary-value">3 utviklere, 2 designere</span>
+      </div>
+      <div class="fn-summary-item">
+        <span class="fn-summary-label">Type</span>
+        <span class="fn-summary-value">Game Jam — en helg</span>
+      </div>
+      <div class="fn-summary-item">
+        <span class="fn-summary-label">Tema</span>
+        <span class="fn-summary-value">Vekst</span>
+      </div>
+    </div>
+
+    <!-- Musikk -->
+    <div class="fn-music-wrap">
+      <p class="fn-music-label">Spill av og kjenn deg i jungelen ✦</p>
+      <div class="music-player-wrap" style="width:100%; max-width:500px;">
+        <div class="music-card-back"></div>
+        <div class="music-card">
+          <div class="music-boks-circle">
+            <img src="lofi_boks.png" alt="Lofi radio" class="music-boks-img" />
+          </div>
+          <div class="music-center-col">
+            <div class="music-progress-wrap" onclick="seekAudio(event)">
+              <div class="music-progress-bar" id="progressBar"></div>
+            </div>
+            <div class="music-time-row">
+              <span id="currentTime">0:00</span>
+              <span id="totalTime">0:00</span>
+            </div>
+          </div>
+          <div class="music-controls">
+            <button class="music-play-btn" id="playBtn" onclick="toggleMusic()">
+              <img src="Play.png" alt="Play" id="playIcon" />
+            </button>
+            <div class="music-headphones-circle" id="headphonesCircle">
+              <img src="headphones.png" alt="Playing" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="lofiAudio" loop>
+      <source src="jungle.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Om prosjektet -->
+    <div class="fn-section">
+      <h2>Om prosjektet</h2>
+      <p>
+        Fanous er et spørsmålsspill som utfordrer din evne til å fokusere og samle nok poeng til å redde jungelen fra det onde monsteret Fanous. Et lite team bestående av tre utviklere og to designere skapte dette spillet i løpet av en helg under en game jam, basert på temaet <em>vekst</em>.
+      </p>
+    </div>
+
+    <!-- Bakgrunn -->
+    <div class="fn-section">
+      <h2>Bakgrunn &amp; Konsept</h2>
+      <p>
+        «Fanous» symboliserer opplysning, optimisme og veiledning i mørket. Ordet oversettes til «lykt» og bærer kulturell betydning som et fyrtårn gjennom usikkerhet. Lys representerer trygghet, fellesskap og muligheten til å navigere fremover til tross for omgivelsenes mørke.
+      </p>
+      <p>
+        Denne symbolikken ble kjernen i spillets narrativ: spilleren hjelper Rex med å bringe lyset tilbake til jungelen ved å besvare spørsmål og samle poeng.
+      </p>
+    </div>
+
+    <!-- Sitat -->
+    <div class="fn-quote">
+      <p>«Siden dette var en game jam med bare én helg til utvikling, var det avgjørende å holde konseptet enkelt og fokusere på noen få tydelige mekanikker for å kommunisere veksttemaet.»</p>
+    </div>
+
+    <!-- Min rolle -->
+    <div class="fn-section">
+      <h2>Min rolle</h2>
+      <p>Jeg bidro med karakterdesign og visuelle elementer — spesifikt jungeldyr som uttrykker følelser som ensomhet og glede.</p>
+      <div class="fn-three-col">
+        <div class="fn-col-item">
+          <h3>Karakterdesign</h3>
+          <p>Tegnet jungeldyr med tydelig personlighet — enkle, lettleste og i tråd med en koselig estetikk.</p>
+        </div>
+        <div class="fn-col-item">
+          <h3>Visuell profil</h3>
+          <p>Definerte spillets visuelle uttrykk: fargepalett, bakgrunner og UI-elementer som startskjerm og infoskjerm.</p>
+        </div>
+        <div class="fn-col-item">
+          <h3>Game Jam</h3>
+          <p>Jobbet tett med utviklerne under tidspress for å levere et gjennomført spill på én helg.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== DEL 3: VISUALS ===== -->
+  <section class="fn-visuals">
+
+    <h2 class="fn-visuals-heading">Visuals</h2>
+    <p class="fn-visuals-sub">Skjermbilder og gameplay fra spillet</p>
+
+    <div class="fn-screens">
+      <img src="game_play.png" alt="Fanous gameplay" />
+      <img src="boss_battle.png" alt="Fanous boss battle" />
+    </div>
+
+    <div class="fn-video-wrap">
+      <video controls preload="metadata">
+        <source src="Fanous_gameplay.mov" type="video/mp4" />
+        Nettleseren din støtter ikke videoavspilling.
+      </video>
+    </div>
+
+    <!-- Refleksjon -->
+    <div class="fn-refleksjon">
+      <h2>Refleksjon</h2>
+      <p>
+        Å jobbe under stramme tidsrammer lærte meg å prioritere det essensielle og ta raske designbeslutninger. Prosjektet viste at enkle, gjennomtenkte løsninger kan skape sterke brukeropplevelser — selv uten uker med iterasjon.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="fn-footer">
+    <a href="Radwa.html">← Tilbake til prosjekter</a>
+    <p>Radwa Godor &copy; 2026</p>
+    <a href="sunsaver.html">Neste: SunSaver →</a>
+  </footer>
+
+  <script>
+    const audio = document.getElementById('lofiAudio');
+    const playIcon = document.getElementById('playIcon');
+    const headphones = document.getElementById('headphonesCircle');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalTimeEl = document.getElementById('totalTime');
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.src = 'Pause.png';
+        headphones.classList.add('visible');
+      } else {
+        audio.pause();
+        playIcon.src = 'Play.png';
+        headphones.classList.remove('visible');
+      }
+    }
+
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      totalTimeEl.textContent = formatTime(audio.duration);
+    });
+
+    function seekAudio(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+    }
+  </script>
+
+</body>
+</html>

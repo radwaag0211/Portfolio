@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <!-- Anti-FOUC for the curtain page-transition: runs before body paints, so if we
+       arrived via a curtain-nav link (see shared.js), the curtain is held fully closed
+       from the very first frame instead of flashing this page unclothed first. -->
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('curtainNav') === '1') {
+          document.documentElement.classList.add('curtain-entering');
+          sessionStorage.removeItem('curtainNav');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prosjekter — Radwa Godor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="prosjekter.css" />
+</head>
+<body>
+
+  <!-- Curtain used for the nav-link page transitions (see shared.js's initNavTransitions
+       / initEntryReveal). Placed first so it's the first thing painted, ahead of any
+       page content beneath it. -->
+  <div class="page-transition-curtain" aria-hidden="true"></div>
+
+  <!-- HEADER (shared markup — plain/static here, per STEP 5: no scroll-driven reveal or
+       centering on subpages, that's a Radwa.html-only (hero) phenomenon. -->
+  <header>
+    <a href="Radwa.html" class="logo curtain-link">[Radwa Godor]<small>return: home</small></a>
+    <nav class="nav-links">
+      <a href="prosjekter.html" class="curtain-link nav-active">[class: prosjekter]<small>path: desktop_dash</small></a>
+      <a href="om-meg.html" class="curtain-link">[asset id: om meg]<small>username:radwaag</small></a>
+      <a href="cv.html" class="curtain-link">[super: CV]<small>section: experience_101</small></a>
+    </nav>
+  </header>
+
+  <!-- PROJECTS -->
+  <section class="projects">
+    <h2 class="projects-heading">[class: prosjekter]</h2>
+    <div class="projects-grid">
+
+      <!-- No detail page yet — non-interactive card, see .project-card--static in prosjekter.css -->
+      <div class="project-card project-card--static">
+        <div class="project-img-wrap">
+          <img src="/korok-timer.png" alt="Korok Timer" class="project-img" style="object-fit: cover; width: 100%; height: 100%;" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">Korok Timer</span>
+          <span class="project-year">2026</span>
+        </div>
+        <p class="project-desc">
+          Korok Timer er en Pomodoro-app for skrivebordet som gjør fokusøkten din om til å trekke sverdet fra steinen: samle tre hjerter mens økten går, og vinn mestersverdet til slutt. Enkel, rolig og litt lekent, inspirert av Korok-skogen fra The Legend of Zelda.
+        </p>
+      </div>
+
+      <a href="fanous.html" class="project-card">
+        <div class="project-img-wrap">
+          <img src="/fanous.media/fanous_preview.png" alt="Fanous" class="project-img" style="object-fit: cover; width: 100%; height: 100%;" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">Fanous</span>
+          <span class="project-year">2026</span>
+        </div>
+        <p class="project-desc">
+          Et spørsmålsspill som utfordrer din evne til å fokusere og samle nok poeng til å redde jungelen fra det onde monsteret Fanous. Vil du hjelpe Rex med å bringe lyset tilbake til Jungelen?
+        </p>
+      </a>
+
+      <a href="sunsaver.html" class="project-card">
+        <div class="project-img-wrap">
+          <img src="/sunsaver.media/sunsaver_preview.png" alt="SunSaver" class="project-img" style="object-fit: cover; width: 100%; height: 100%;" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">SunSaver - Podium Met-pris<br><small>(Meteorologisk Institutt)</small></span>
+          <span class="project-year">2025</span>
+        </div>
+        <p class="project-desc">
+          SunSaver er en Android-applikasjon utviklet i tverrfaglig teamarbeid som en del av emnet IN2000. Målet var å gi brukere innsikt i lønnsomheten ved å installere solcellepaneler på egen eiendom.
+        </p>
+      </a>
+
+      <!-- No detail page yet — non-interactive card, see .project-card--static in prosjekter.css -->
+      <div class="project-card project-card--static">
+        <div class="project-img-wrap">
+          <img src="/defi_duck_showcase.png" alt="Defi Duck" class="project-img" style="object-fit: cover; width: 100%; height: 100%;" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">Defi Duck</span>
+          <span class="project-year">2024</span>
+        </div>
+        <p class="project-desc">
+          Defi Duck er en maskotdesign laget for DEFI, med fire ulike personas: Generic, Kakao, MasterChef og Paint &amp; Sip.
+        </p>
+      </div>
+
+      <a href="catgym.html" class="project-card">
+        <div class="project-img-wrap">
+          <img src="/catgym.media/catgym_preview.png" alt="CatGym" class="project-img" style="object-fit: cover; width: 100%; height: 100%;" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">CatGym</span>
+          <span class="project-year">2024</span>
+        </div>
+        <p class="project-desc">
+          Et spennende prosjekt der en gruppe katteentusiaster utforsket potensialet til Arduino, og hvordan vi kan bruke og forme verktøyet for livlige katteeiere som ønsker å skape et sterkere bånd med sin pus.
+        </p>
+      </a>
+
+      <a href="friendverse.html" class="project-card">
+        <div class="project-img-wrap">
+          <img src="/friendverse.media/friendverse_preview.png" alt="FriendVerse" class="project-img" style="object-fit: cover; width: 100%; height: 100%;" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">FriendVerse</span>
+          <span class="project-year">2023</span>
+        </div>
+        <p class="project-desc">
+          FriendVerse er en app som gjør det mulig for venner på nettet å kommunisere med hverandre, uavhengig av språk.
+        </p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-watermark">Radwa Godor</span>
+  </footer>
+
+  <script src="shared.js"></script>
+
+</body>
+</html>

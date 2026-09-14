@@ -1,0 +1,215 @@
+/* ===== HERO / HJEM PAGE (Radwa.html only) =====
+   Everything here only applies on the page that has a `.hero` element — the
+   `body:has(.hero)` scoping means none of this leaks onto prosjekter.html or om-meg.html,
+   which just get the plain shared header from style.css. */
+
+/* ===== HEADER OVERRIDE (STEPS 2 & 3) =====
+   Layered on top of style.css's shared, static header rule. */
+body:has(.hero) header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  /* No logo on this page (see Radwa.html) — center the nav across the full width instead
+     of leaving it pinned to one side. */
+  justify-content: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  opacity: 0;
+  pointer-events: none;
+  /* --center-t (0–1) is written every hero scroll frame by hero.js's initHero() — see
+     STEP 3 there — and read here as a transform, not a class toggle, so the slide-to-center
+     stays a genuinely continuous, scrubbable motion (and compositor-only, no layout thrash).
+     --header-scale is also set from there but stays a constant once revealed (1.5) rather
+     than easing down — see STEP 2/3's comment in hero.js for why. */
+  --center-t: 0;
+  --header-scale: 1;
+  transform: translateY(calc(var(--center-t) * (50vh - 50%)));
+  transition: opacity 0.5s var(--ease), background-color 0.4s var(--ease),
+    border-color 0.4s var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+body:has(.hero) header.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* STEP 2: nav links fade/slide in together with the logo (both driven by .is-visible), with
+   a small stagger between them so the reveal still reads as three distinct items arriving
+   "beside" the logo rather than one flat block. No color accent here on purpose — the gold
+   highlight some other pages use is deliberately absent during this reveal. */
+body:has(.hero) .nav-links a {
+  opacity: 0;
+  transform: translateX(14px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+body:has(.hero) header.is-visible .nav-links a {
+  opacity: 0.85;
+  transform: translateX(0);
+}
+
+body:has(.hero) header.is-visible .nav-links a:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+body:has(.hero) header.is-visible .nav-links a:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+/* STEPS 2 & 3: font-size grows on first reveal (so the header is unmissable) then eases
+   back down to the shared header's normal size as it slides to vertical-center. Same
+   --header-scale custom property drives both the logo and nav text so they scale together. */
+body:has(.hero) .logo,
+body:has(.hero) .nav-links a {
+  font-size: calc(1em * var(--header-scale, 1));
+}
+
+/* ===== HERO ===== */
+/* Pinned scroll-jack container: its height is the scroll "room" the animation gets.
+   .hero sticks to the top and stays pinned until scroll passes this element's height
+   minus one viewport (see the progress calc in hero.js). */
+.hero-pin {
+  position: relative;
+  height: 250vh;
+}
+
+.hero {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+  padding: 4rem 3rem;
+  background: var(--paper);
+  text-align: center;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero__bg-image,
+.hero__bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__bg-video {
+  opacity: 0;
+}
+
+.hero__bg-image,
+.hero__bg-video,
+.hero__ascii,
+.hero__content {
+  will-change: opacity;
+}
+
+.hero__ascii {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='624'%20height='225'%3E%3Ctext%20font-family='monospace'%20font-size='13'%20fill='%234f3232'%20xml:space='preserve'%3E%3Ctspan%20x='0'%20y='12'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24L%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='27'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24qLLLLLLQ%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='42'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24LtLLLLLLLLx%24%24%24%24%24%24%24%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='57'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24LLrQLLLLLjLQLL%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24QLL/LLLLLLLQ%24%24%24%24%24%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='72'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24LLLLLLLLLLttLLLLLLLLLLLLLLL%24%24%24%24%24%24%24%24%24%24%24QjLLLLLLLLQ%24%24%24%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='87'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24QLL/LLLLLLLtLtLLLLLLLLLLLtLLtLLLfLL%24%24%24%24%24%24%24%24%24QLLtLLLLLLQ%24%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='102'%3E%24%24%24%24%24%24%24%24%24%24%24%24%24%24QLLLLLLLttLLLLLQLLLLLLLLQLLLLLLLLLLLLLLLLQ%24%24%24%24%24%24%24QLLLLLLLLQ%24%24%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='117'%3E%24%24%24%24%24%24%24%24%24%24%24QLLLLLtLL/LrL%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24LLLLLLLLLLLLQ%24%24%24%24%24%24%24QLLLLLLLjx%24%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='132'%3E%24%24%24%24%24%24%24%24%24QLLLLLLLLfQ%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24QjLLLLLLLLLQ%24%24%24%24%24%24QLLLLLLLLQ%24%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='147'%3E%24%24%24%24%24%24%24QLLLLLL/LQ%24%24%24%24%24%24%24%24%24%24%24%24%24LLLQLjQrL%24%24%24%24%24%24%24%24%24%24%24%24QjLLLLLLtLQ%24%24%24%24%24%24qLLLtLLLQ%24%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='162'%3E%24%24%24%24%24xjLLLLL/LQ%24%24%24%24%24%24%24%24%24LrLLLLLLtLLLLLLLLLjLQ%24%24%24%24%24%24%24%24QLLLLtLLLQ%24%24%24%24%24%24qLLLtLLLQ%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='177'%3E%24%24%24%24xLLLLLLLQ%24%24%24%24%24%24%24%24QLLLLLLLLLLLLLLLLLLLLLLLLLQ%24%24%24%24%24%24%24QLLLLLLLQ%24%24%24%24%24%24QfLtLLLL%24%24%3C/tspan%3E%3Ctspan%20x='0'%20y='192'%3E%24%24%24LLLLLLLLx%24%24%24%24%24%24%24QLLLLLLtLLLLQLLLLQLjL/LLLLLtLLx%24%24%24%24%24%24QLLLLLLLQ%24%24%24%24%24%24LLLLLLLq%24%3C/tspan%3E%3Ctspan%20x='0'%20y='207'%3E%24%24/LLLLLLLQ%24%24%24%24%24%24QLLLLLtLLQ%24%24%24%24%24%24%24%24%24%24%24%24%24%24LLLLLLLLLL%24%24%24%24%24%24QLLLLLLLQ%24%24%24%24%24qLLLLLLL%24%3C/tspan%3E%3Ctspan%20x='0'%20y='222'%3E%24qLLLLLLLQ%24%24%24%24%24QLLLLtLLLQ%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24%24xLLLLLLLr%24%24%24%24%24%24qLLLLLLL%24%24%24%24%24%24LLLtL/Lq%3C/tspan%3E%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 624px 225px;
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__tag,
+.hero__title {
+  position: relative;
+  margin: 0;
+}
+
+.hero__tag {
+  font-family: 'Inter', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-family: 'Inter', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  line-height: 1;
+}
+
+.hero__tag-shadow,
+.hero__title-shadow {
+  position: absolute;
+  inset: 0;
+  color: var(--ink-soft);
+  transform: translate(4px, 5px);
+  z-index: 0;
+}
+
+.hero__tag-front,
+.hero__title-front {
+  position: relative;
+  display: block;
+  color: var(--ink);
+  z-index: 1;
+}
+
+/* Hidden until the hero-pin fade-in is complete (see .is-visible toggle in hero.js),
+   then bounces at the bottom-center of the screen as a "keep scrolling" cue. Clicking it
+   (or throwing one more scroll/swipe past the dead zone) curtain-transitions to Om meg —
+   see shared.js's initNavTransitions, which treats it like any other nav link. */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 2.5rem;
+  z-index: 2;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  color: var(--ink);
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.hero__scroll.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  animation: bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .hero-pin {
+    height: 180vh;
+  }
+
+  .hero {
+    padding: 5rem 1.5rem;
+  }
+
+  .hero__ascii {
+    font-size: 0.6rem;
+  }
+}

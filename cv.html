@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <!-- Anti-FOUC for the curtain page-transition: runs before body paints, so if we
+       arrived via a curtain-nav link (see shared.js), the curtain is held fully closed
+       from the very first frame instead of flashing this page unclothed first. -->
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('curtainNav') === '1') {
+          document.documentElement.classList.add('curtain-entering');
+          sessionStorage.removeItem('curtainNav');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Radwa Godor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="cv.css" />
+</head>
+<body>
+
+  <!-- Curtain used for the nav-link page transitions (see shared.js's initNavTransitions
+       / initEntryReveal). Placed first so it's the first thing painted, ahead of any
+       page content beneath it. -->
+  <div class="page-transition-curtain" aria-hidden="true"></div>
+
+  <!-- HEADER (shared markup — identical to om-meg.html's. -->
+  <header>
+    <a href="Radwa.html" class="logo curtain-link">[Radwa Godor]<small>return: home</small></a>
+    <nav class="nav-links">
+      <a href="prosjekter.html" class="curtain-link">[class: prosjekter]<small>path: desktop_dash</small></a>
+      <a href="om-meg.html" class="curtain-link">[asset id: om meg]<small>username:radwaag</small></a>
+      <a href="cv.html" class="curtain-link nav-active">[super: CV]<small>section: experience_101</small></a>
+    </nav>
+  </header>
+
+  <h2 class="cv-page-heading">[super: CV]</h2>
+
+  <!-- PROFILE -->
+  <section class="cv-profile">
+    <div class="cv-profile-left">
+      <div class="cv-photo">
+        <img src="/info.img/om_meg.png" alt="Radwa Godor" />
+      </div>
+      <div class="cv-fact">
+        <div class="cv-fact-label">Personlighetstype</div>
+        <div class="cv-fact-value">ESFJ</div>
+      </div>
+      <div class="cv-fact">
+        <div class="cv-fact-label">Sted</div>
+        <div class="cv-fact-value">Oslo, Norge</div>
+      </div>
+    </div>
+
+    <div class="cv-profile-right">
+      <h1 class="cv-name">Radwa Godor</h1>
+      <p class="cv-title">BSc. Informatikk: Design, Bruk, Interaction - Universitetet i Oslo</p>
+
+      <!-- ACCORDION: Erfaring / Verv / Utdanning -->
+      <div class="cv-accordion-group">
+        <details class="cv-accordion" open>
+          <summary>Erfaring <span class="cv-accordion-icon">+</span></summary>
+          <div class="cv-accordion-body">
+            <div class="cv-entry">
+              <div class="cv-entry-title">Delegat i FNs CSW68 &amp; CSW69</div>
+              <div class="cv-entry-meta">KFUK-KFUM Global &nbsp;·&nbsp; Mars 2024 &amp; Mars 2025, New York</div>
+              <p class="cv-entry-desc">
+                Delegat i FNs kvinnekommisjon Mars 2024 og Mars 2025.
+              </p>
+            </div>
+            <div class="cv-entry">
+              <div class="cv-entry-title">Koordinator</div>
+              <div class="cv-entry-meta">KIGO (Kultur i Gamle Oslo) &nbsp;·&nbsp; Juni 2022, Oslo – pågående</div>
+              <p class="cv-entry-desc">
+                Administrativt arbeid, planlegging, koordinering og arrangering.
+              </p>
+            </div>
+            <div class="cv-entry">
+              <div class="cv-entry-title">Support Associate</div>
+              <div class="cv-entry-meta">Wolt AS &nbsp;·&nbsp; September 2024 – Desember 2025, Oslo</div>
+              <p class="cv-entry-desc">
+                Kundestøtte og hjelper både kunder og samarbeidspartnere. Jeg jobber tett med teamet mitt for å overvåke driftsytelse og iverksette tiltak for å forebygge og løse problemer.
+              </p>
+            </div>
+            <div class="cv-entry">
+              <div class="cv-entry-title">Leder i prosjekt Jentesatsning</div>
+              <div class="cv-entry-meta">Bydel Gamle Oslo, Forandringshuset, Tøyen akademiet &nbsp;·&nbsp; September 2023 – Desember 2023, Oslo</div>
+              <p class="cv-entry-desc">
+                Ledet et prosjekt med fokus på å inkludere og engasjere kvinner i ulike aktiviteter. Ansvarlig for å arrangere aktiviteter og tilby støtte til deltakerne.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="cv-accordion">
+          <summary>Verv <span class="cv-accordion-icon">+</span></summary>
+          <div class="cv-accordion-body">
+            <div class="cv-entry">
+              <div class="cv-entry-title">Frivillig - IFI Jentedagen</div>
+              <div class="cv-entry-meta">Høsten 2025</div>
+              <p class="cv-entry-desc">
+                Bidro som frivillig under Jentedagen, et arrangement som fremmer kvinner i teknologi og inspirerer flere jenter til å velge STEM-fag. Som frivillig tok jeg imot deltakere med åpenhet og entusiasme, skape en inkluderende atmosfære og støtte arrangementets mål om mangfold og likestilling i teknologi.
+              </p>
+            </div>
+            <div class="cv-entry">
+              <div class="cv-entry-title">DEFI Styremedlem - PR-ansvarlig</div>
+              <div class="cv-entry-meta">Høsten 2024</div>
+              <p class="cv-entry-desc">
+                Jeg var ansvarlig for foreningens PR-arbeid. Det innebar å håndtere kommunikasjon, bygge opp foreningens profil, synliggjøre aktiviteter og arrangementer for å engasjere studenter ved UiO - Institutt for informatikk.
+              </p>
+            </div>
+            <div class="cv-entry">
+              <div class="cv-entry-title">Delegat, FNs kvinnekommisjon (CSW)</div>
+              <div class="cv-entry-meta">New York &nbsp;·&nbsp; 2024–2025</div>
+              <p class="cv-entry-desc">
+                Arbeidet med temaer som likestilling, representasjon og unges stemmer i globale
+                beslutningsprosesser.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="cv-accordion">
+          <summary>Utdanning <span class="cv-accordion-icon">+</span></summary>
+          <div class="cv-accordion-body">
+            <div class="cv-entry">
+              <div class="cv-entry-title">Bachelor Informatikk – Design, bruk og interaksjon – fullført</div>
+              <div class="cv-entry-meta">Universitetet i Oslo &nbsp;·&nbsp; 2023–2026 &nbsp;·&nbsp; Oslo</div>
+            </div>
+            <div class="cv-entry">
+              <div class="cv-entry-title">Studiespesialiserende – fullført</div>
+              <div class="cv-entry-meta">Hellerud Videregående skole &nbsp;·&nbsp; 2021–2023 &nbsp;·&nbsp; Oslo</div>
+              <div class="cv-entry-meta">Fyrstikkalleen Videregående skole &nbsp;·&nbsp; 2020–2021 &nbsp;·&nbsp; Oslo</div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- TOOLS: dev + design environment, grouped into cards -->
+      <div class="cv-tools">
+        <p class="cv-tools-label">Verktøy &amp; Kodespråk</p>
+        <div class="cv-skills-grid">
+          <div class="cv-skill-card">
+            <h3>Kodespråk</h3>
+            <ul class="cv-tags">
+              <li>HTML/CSS</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Kotlin</li>
+              <li>Java</li>
+              <li>Arduino(C++)</li>
+              <li>Python</li>
+            </ul>
+          </div>
+
+          <div class="cv-skill-card">
+            <h3>Verktøy</h3>
+            <ul class="cv-tags">
+              <li>Figma</li>
+              <li>Figma Make</li>
+              <li>Visual Studio Code</li>
+              <li>Android Studio</li>
+              <li>Git</li>
+              <li>GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="cv-section">
+    <h2>Kontakt</h2>
+    <div class="cv-contact-list">
+      <a href="mailto:radwa0211@outlook.com" class="cv-contact-item">radwa0211@outlook.com</a>
+      <a href="tel:+4746526332" class="cv-contact-item">+47 465 26 332</a>
+      <div class="cv-contact-socials">
+        <a href="https://no.linkedin.com/in/radwa-godor-717544315" class="cv-contact-item" target="_blank">LinkedIn</a>
+        <a href="https://github.com/radwaag0211" class="cv-contact-item" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-watermark">Radwa Godor</span>
+  </footer>
+
+  <script src="shared.js"></script>
+
+</body>
+</html>

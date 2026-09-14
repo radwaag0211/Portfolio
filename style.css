@@ -1,6 +1,16 @@
+/* ===== SHARED / GLOBAL =====
+   Used by every page (Radwa.html, prosjekter.html, om-meg.html, and the project detail
+   pages). Page-specific styling lives in that page's own stylesheet instead:
+     - hero.css        → Radwa.html only (hero visuals + the scroll-driven header reveal)
+     - prosjekter.css  → prosjekter.html only (the projects grid)
+     - om-meg.css      → om-meg.html only (bio/hobbies/empowerment/education/contact)
+     - project.css     → the individual project detail pages (fanous.html etc.)
+   Only genuinely shared/reusable pieces live here: CSS variables, reset, the base
+   (static, normal-size) header + curtain page-transition, buttons, footer. */
+
 /* ===== CSS VARIABLES ===== */
 :root {
-  --cream: #ffffff;
+  --cream: #362e2e;
   --navy: #1a2744;
   --navy-light: #2d3f6a;
   --gold: #b5956a;
@@ -9,6 +19,15 @@
   --border: #d9d2c0;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --dur: 0.3s;
+  /* Single source of truth for the curtain page-transition's timing — shared.js reads
+     this via getComputedStyle instead of hardcoding its own copy. */
+  --curtain-duration: 520ms;
+
+  /* new nav/hero aesthetic (from Figma "updated portfolio") */
+  --paper: #fbfae5;
+  --ink: #4f3232;
+  --ink-soft: #beb4b4;
+  --ink-arrow: #e5dede;
 }
 
 /* ===== BASE ===== */
@@ -28,212 +47,99 @@ body {
   color: var(--navy);
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (shared, static/normal state) =====
+   This is the header every page gets by default: sticky to the top, normal size, no
+   motion. Radwa.html layers STEP 2/3's scroll-driven reveal + centering + font-size
+   growth on top of this via hero.css's `body:has(.hero) header` overrides — everywhere
+   else, this plain rule is the whole story (STEP 5: subpages get "vanlig, fast plassering"). */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 3rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(251, 250, 229, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: box-shadow var(--dur) var(--ease);
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--navy);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
   text-decoration: none;
-  position: relative;
+  opacity: 0.9;
+  transition: opacity var(--dur) var(--ease), color 0.4s ease;
 }
 
-.logo::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s var(--ease);
+.logo small {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
 }
 
-.logo:hover::after {
-  transform: scaleX(1);
+.logo:hover {
+  opacity: 1;
 }
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 2.25rem;
 }
 
 .nav-links a {
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  font-style: italic;
-  color: var(--navy);
-  letter-spacing: 0.05em;
   position: relative;
-  padding-bottom: 3px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  font-family: 'Inter', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  opacity: 0.85;
+  transition: opacity var(--dur) var(--ease), color 0.4s ease;
 }
 
+/* Underline that a page marks permanently "on" for its own nav item via .nav-active
+   (e.g. om-meg.html marks "[asset id: om meg]") — otherwise only shows on hover. */
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: -4px;
   width: 100%;
-  height: 1.5px;
-  background: var(--navy);
+  height: 1px;
+  background: currentColor;
   transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.25s var(--ease);
-}
-
-.nav-links a:hover::after {
-  transform: scaleX(1);
   transform-origin: left;
+  transition: transform var(--dur) var(--ease);
 }
 
-/* ===== HERO ===== */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 3rem 4rem;
-  background: var(--cream);
-  min-height: 60vh;
-  gap: 3rem;
+.nav-links a:hover::after,
+.nav-active::after {
+  transform: scaleX(1);
 }
 
-.hero__category {
-  grid-column: 1;
-  grid-row: 1;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-mid);
-  align-self: end;
+.nav-links a small {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
 }
 
-.hero__year {
-  grid-column: 2;
-  grid-row: 1;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  color: var(--text-mid);
-  text-align: right;
-  align-self: end;
+.nav-links a:hover {
+  opacity: 1;
 }
 
-.hero__title {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.line--back, .line--front {
-  display: block;
-  font-size: clamp(4rem, 12vw, 9rem);
-  font-weight: 900;
-  line-height: 0.9;
-  color: #1a2744;
-}
-
-.hero__photo {
-  width: clamp(280px, 40vw, 550px);
-  height: clamp(350px, 55vw, 680px);
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-}
-
-.hero__name {
-  grid-column: 1 / -1;
-  grid-row: 3;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  color: var(--text-mid);
-  text-transform: uppercase;
-}
-
-/* ===== KEYFRAMES ===== */
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes wobble {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  25%       { transform: rotate(10deg) scale(1.06); }
-  75%       { transform: rotate(-10deg) scale(0.94); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-28px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== ABOUT ===== */
-.about {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 4rem 3rem;
-  background: var(--cream);
-  gap: 3rem;
-  animation: fadeInUp 0.9s var(--ease) 0.2s both;
-}
-
-.about-left {
-  flex: 2;
-  max-width: 620px;
-  position: relative;
-}
-
-.about-left h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--navy);
-  margin-bottom: 1rem;
-}
-
-.about-left p {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-mid);
-  margin-bottom: 1.5rem;
-}
-
-.about-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 3rem;
-}
-
+/* ===== BUTTONS ===== */
 .btn {
   display: inline-block;
   padding: 0.5rem 1.4rem;
@@ -267,159 +173,13 @@ header {
   box-shadow: 0 8px 24px rgba(26, 39, 68, 0.22);
 }
 
-.star-small {
-  width: 100px;
-  opacity: 0.85;
-  animation: wobble 5s ease-in-out infinite;
+/* ===== SHARED KEYFRAMES ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.star-small svg {
-  width: 100%;
-  height: auto;
-}
-
-.about-right {
-  flex: 1;
-  max-width: 320px;
-  align-self: flex-start;
-  margin-top: -3rem;
-}
-
-.profile-photo {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 4px;
-  background: var(--border);
-  display: block;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-
-.profile-photo:hover {
-  transform: scale(1.025) translateY(-4px);
-  box-shadow: 0 16px 48px rgba(26, 39, 68, 0.2);
-}
-
-/* ===== PROJECTS ===== */
-.projects {
-  background: #ffffff;
-  padding: 4rem 3rem;
-}
-
-.projects-heading {
-  font-size: 1.8rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--navy);
-  margin-bottom: 2.5rem;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  max-width: 100%;
-}
-
-.project-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  transition: transform var(--dur) var(--ease);
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Wrap for overflow-hidden + scale effect */
-.project-img-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  aspect-ratio: 4 / 3;
-}
-
-.project-img {
-  width: 100%;
-  height: 100%;
-  background: var(--navy-light);
-  transition: transform 0.45s var(--ease);
-}
-
-.project-card:hover .project-img {
-  transform: scale(1.07);
-}
-
-.project-img.light {
-  background: #f0ebe0;
-}
-
-.project-img.pink-bg {
-  background: #e8d5f0;
-}
-
-/* Dark overlay on image hover */
-.project-img-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 39, 68, 0.45);
-  opacity: 0;
-  transition: opacity var(--dur) var(--ease);
-}
-
-.project-card:hover .project-img-wrap::after {
-  opacity: 1;
-}
-
-.project-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.project-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.4;
-  transition: color var(--dur) var(--ease);
-}
-
-.project-card:hover .project-title {
-  color: var(--navy);
-}
-
-.project-title small {
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: #5a6a7a;
-}
-
-.project-year {
-  font-size: 0.8rem;
-  color: #5a6a7a;
-  white-space: nowrap;
-  margin-top: 2px;
-}
-
-.project-desc {
-  font-size: 0.8rem;
-  color: var(--text-mid);
-  line-height: 1.6;
-  transition: color var(--dur) var(--ease);
-}
-
-.project-card:hover .project-desc {
-  color: var(--navy);
-}
-
-/* ===== MUSIC PLAYER ===== */
+/* ===== MUSIC PLAYER (used by fanous.html) ===== */
 .music-player-outer {
   flex-shrink: 0;
   align-self: center;
@@ -564,45 +324,78 @@ header {
 
 /* ===== FOOTER ===== */
 footer {
-  background: var(--navy);
-  color: var(--text-muted);
+  background: #ebe2d7;
+  color: #4F3232;
   text-align: center;
   padding: 1.5rem;
   font-size: 0.8rem;
-  border-top: 1px solid var(--navy-light);
+  border-top: 1px #DBD9BE;
+}
+
+/* ===== NAV CLICK PAGE TRANSITION (CURTAIN) =====
+   Shared across every page: a single sheet in the hero's gold accent (--gold, #b5956a)
+   sweeps up to fully cover the screen, the page change happens underneath at that exact
+   midpoint (leaving), then on the destination page the curtain starts already covering
+   and sweeps the rest of the way off (entering) — so the one continuous motion is just
+   split across the two page loads instead of visibly resetting. Driven by shared.js's
+   initNavTransitions() / initEntryReveal(). Both phases read --curtain-duration above,
+   so there's only one place to change the timing. */
+.page-transition-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--gold);
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.page-transition-curtain.is-active {
+  animation: curtain-sweep var(--curtain-duration) ease-in-out;
+  pointer-events: auto;
+}
+
+/* Entering half (destination page): starts covering, sweeps up and off. Duration is half
+   of the full curtain-duration since it's only the second half of the original motion. */
+.page-transition-curtain.is-entering {
+  animation: curtain-reveal calc(var(--curtain-duration) / 2) ease-in-out;
+  pointer-events: auto;
+}
+
+@keyframes curtain-sweep {
+  0% { transform: translateY(100%); }
+  50% { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
+
+@keyframes curtain-reveal {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Anti-FOUC: set synchronously on <html> by an inline, render-blocking script in <head>
+   (before body ever paints) when sessionStorage shows we arrived via a curtain nav. Holds
+   the curtain fully closed until shared.js takes over and starts the reveal animation, so
+   there's never a frame where the destination page is visible unclothed. */
+html.curtain-entering .page-transition-curtain {
+  transform: translateY(0%);
+}
+
+/* Blocks clicks/taps on the page underneath for the full duration of either phase, not
+   just once the curtain visually covers the viewport. */
+body.curtain-blocking {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-curtain.is-active,
+  .page-transition-curtain.is-entering {
+    animation-duration: 1ms;
+  }
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
   header {
     padding: 1rem 1.5rem;
-  }
-
-  .hero {
-    flex-direction: column;
-    padding: 3rem 1.5rem;
-  }
-
-  .hero__photo {
-    width: 100%;
-    height: 300px;
-  }
-
-  .about {
-    flex-direction: column;
-    padding: 3rem 1.5rem;
-  }
-
-  .about-left,
-  .about-right {
-    max-width: 100%;
-  }
-
-  .projects {
-    padding: 3rem 1.5rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
   }
 }

@@ -1,145 +1,466 @@
-/* ===== OM MEG PAGE ===== */
-/* Palette matched to figma.site/about-me: cream intro + black sections */
-.om-meg-hero,
-.hobbies-section,
-.empowerment-section,
-.education,
-.contact-section {
-  --om-black: #000000;
-  --om-cream: #fbf9e3;
-  --om-cream-soft: #fdf8db;
-  --om-green: #71bc20;
+/* ===== OM MEG PAGE =====
+   Full redesign matching the "om_meg_updated" reference: a light, editorial, monospace-
+   accented look — distinct from the paper/ink/gold palette used on Hjem/Prosjekter, by
+   design (this page's own self-contained palette, same pattern as fanous.css/cv.css etc).
+   Body copy stays on Inter (site-wide default); Inria Serif (already loaded elsewhere on
+   the site, not a new addition) is used sparingly for the few large display/quote
+   moments, matching the reference. Labels reuse Roboto Mono instead of introducing a new
+   monospace family. */
+
+:root {
+  --om-bg: #fdfdfc;
+  --om-ink: #14161a;
+  --om-body-text: #2a2e35;
+  --om-muted: #8a8f97;
+  --om-border: #e4e3df;
+  --om-chip-bg: #f0efe9;
+  --om-ticker-bg: #f7f6f2;
+  --om-straw: #d1402f;
 }
 
-/* Header, scoped to this page to flow into the cream hero below */
-body header {
-  background: rgba(251, 249, 227, 0.92);
-  border-bottom: 1px solid rgba(4, 32, 69, 0.1);
+body:has(.om-main) {
+  background: var(--om-bg);
+  color: var(--om-ink);
+  font-family: 'Inter', Helvetica, sans-serif;
 }
 
-/* Page hero */
-.om-meg-hero {
-  background:
-    radial-gradient(ellipse at top left, rgba(113, 188, 32, 0.06), transparent 60%),
-    var(--om-cream);
-  padding: 4rem 3rem;
-  animation: fadeInUp 0.8s var(--ease) both;
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--om-ink);
+  z-index: 9998;
 }
 
-.om-meg-hero h1 {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 900;
-  font-style: italic;
+/* ===== TICKER ===== */
+.ticker {
+  overflow: hidden;
+  border-bottom: 1px solid var(--om-border);
+  padding: 10px 0;
+  background: var(--om-ticker-bg);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: drift 34s linear infinite;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--navy);
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.02em;
-  text-align: left;
+  color: var(--om-muted);
 }
 
-/* Bio grid: photo left, text right */
-.bio-grid {
+.ticker-track span {
+  padding-right: 64px;
+  white-space: nowrap;
+}
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ===== MAIN / LAYOUT ===== */
+.om-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.om-section {
+  border-top: 1px solid var(--om-border);
+  padding: 4rem 0 5rem;
+}
+
+.om-section-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 4.5rem;
+  /* Baseline (not "start") alignment — the label and the first line of the content next
+     to it share the same text baseline, instead of just lining up their box tops. */
+  align-items: baseline;
 }
 
-.bio-photo img {
+/* Shared by all four section labels (Interesse/05 øyeblikk/Engasjement/Kontakt) so their
+   type, spacing, and position are identical rather than tuned per-section. The small
+   vertical padding is breathing room around the label text itself, not a layout hack. */
+.section-label {
+  margin: 0;
+  padding: 0.15rem 0;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--om-muted);
+}
+
+/* "05 øyeblikk" reuses the exact .om-section-grid columns/gap/baseline so it lines up with
+   Interesse/Engasjement/Kontakt's labels, even though it has no second-column content. Its
+   own top margin echoes the .om-section padding scale (4rem) for a consistent vertical step. */
+.strip-grid {
+  margin: 4rem 0 1.25rem;
+}
+
+.om-section-body {
+  max-width: 52ch;
+}
+
+.om-section-body p {
+  margin: 0 0 1.6rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--om-body-text);
+}
+
+/* ===== INTRO ===== */
+/* Matches prosjekter.css's .projects-heading exactly (same font-size/weight/color) so the
+   two pages read as one design system — see .om-main's padding-top for the "gap down from
+   nav" half of that pattern, and this rule's own margin-bottom for the "gap down to content"
+   half, mirroring .projects-heading's relationship to .projects-grid. */
+.om-page-heading {
+  margin: 0 0 2.5rem;
+  padding-top: 4rem;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4F3232;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 4.5rem;
+  align-items: start;
+  padding: 0 0 5rem;
+}
+
+.intro-photo-wrap {
+  perspective: 900px;
+}
+
+.intro-photo {
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--om-border);
+  overflow: hidden;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro-photo img {
   width: 100%;
-  height: 580px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
   display: block;
 }
 
-.bio-photo img:hover {
-  transform: scale(1.025) translateY(-4px);
-  box-shadow: 0 16px 48px rgba(26, 39, 68, 0.18);
+.intro-text {
+  padding-top: 0.25rem;
 }
 
-.bio-text {
+/* .role-line is now the h1 itself (see om-meg.html) — "jeg er en [rolle]" replaces the
+   old plain "Om meg" heading. */
+h1.role-line {
+  margin: 0 0 3.5rem;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--om-ink);
+}
+
+.role-word {
+  border-bottom: 1px solid var(--om-ink);
+  padding-bottom: 1px;
+}
+
+.intro-paras {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.2rem;
-  text-align: center;
+  gap: 2.25rem;
+  max-width: 46ch;
 }
 
-.bio-text p {
-  font-size: 1.2rem;
-  line-height: 1.9;
-  color: var(--navy);
-}
-
-.bio-text em {
-  font-style: italic;
-  color: var(--navy);
-}
-
-/* ===== HOBBIES ===== */
-.hobbies-section {
-  background: var(--om-black);
-  padding: 4rem 3rem;
-  border-top: 1px solid rgba(251, 249, 227, 0.12);
-}
-
-.hobbies-section h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--om-cream);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.hobbies-section p {
+.intro-paras p {
+  margin: 0;
   font-size: 1.15rem;
-  line-height: 1.9;
-  color: rgba(251, 249, 227, 0.85);
-  max-width: 720px;
-  margin: 0 auto 2.5rem;
-  text-align: center;
+  line-height: 1.7;
+  color: var(--om-body-text);
 }
 
-.hobby-photos {
+.intro-paras em {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-style: italic;
+}
+
+.intro-paras code {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.85rem;
+  background: var(--om-chip-bg);
+  padding: 2px 6px;
+}
+
+/* ===== LATTE WIDGET ===== */
+.latte {
   display: flex;
-  gap: 1.75rem;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 2.25rem;
+  align-items: flex-start;
+}
+
+.latte-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.latte-brew-btn {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.85rem;
+  background: var(--om-ink);
+  color: var(--om-bg);
+  border: none;
+  padding: 0.8rem 1.25rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease;
+}
+
+.latte-brew-btn:hover {
+  transform: translateY(-2px);
+}
+
+.latte-brew-btn:active {
+  transform: translateY(0);
+}
+
+.latte-brew-btn:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.latte-status {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.85rem;
+  color: var(--om-muted);
+}
+
+.latte-status.is-active {
+  color: var(--om-ink);
+}
+
+.latte-rig {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.1rem;
+}
+
+.latte-cup-wrap {
+  position: relative;
+  width: 110px;
+  height: 159px;
+}
+
+.latte-straw {
+  position: absolute;
+  left: 60px;
+  top: 0;
+  width: 6px;
+  height: 67px;
+  background: var(--om-straw);
+  border-radius: 3px;
+  transform: rotate(13deg);
+  transform-origin: bottom center;
+}
+
+.latte-cup {
+  position: absolute;
+  left: 9px;
+  top: 62px;
+  width: 92px;
+  height: 97px;
+  background: var(--om-ink);
+  clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+}
+
+.latte-cup-inner {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  background: var(--om-bg);
+  clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+  overflow: hidden;
+}
+
+.latte-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0%;
+  background: linear-gradient(180deg, #a9784c 0%, #c79c6d 38%, #e6d5bd 74%, #f3ebdd 100%);
+  transition: height 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.latte-ice {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  top: 7px;
+  height: 25px;
+  display: flex;
+  gap: 3px;
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.latte-ice.is-visible {
+  opacity: 1;
+}
+
+.latte-ice span {
+  flex: 1;
+  background: rgba(253, 253, 252, 0.62);
+  border: 1px solid rgba(20, 22, 26, 0.35);
+  border-radius: 2px;
+}
+
+.latte-ice span:nth-child(1) { transform: rotate(-8deg); }
+.latte-ice span:nth-child(2) { transform: rotate(6deg); }
+.latte-ice span:nth-child(3) { transform: rotate(-4deg); }
+
+.latte-cup-line {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 9px;
+  height: 2px;
+  background: rgba(20, 22, 26, 0.55);
+}
+
+.latte-reward {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85);
+  transition: opacity 420ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.latte.is-full .latte-reward {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.latte.is-full .latte-cup-wrap > .latte-straw,
+.latte.is-full .latte-cup-wrap > .latte-cup {
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.latte-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.latte-count {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.78rem;
+  color: var(--om-muted);
+  letter-spacing: 0.06em;
+}
+
+.latte-drink-btn {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.85rem;
+  background: none;
+  color: var(--om-ink);
+  border: 1px solid var(--om-ink);
+  padding: 0.55rem 0.9rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  transition: opacity 260ms ease, transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.latte-drink-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.latte-drink-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== TAGS ===== */
+.tags {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--om-border);
+  padding: 0.5rem 0.85rem;
+  cursor: default;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tags span:hover {
+  background: var(--om-ink);
+  color: var(--om-bg);
+  transform: translateY(-2px);
+}
+
+/* ===== PHOTO STRIP ===== */
+.photo-strip {
+  display: flex;
+  gap: 1.25rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1.1rem;
   cursor: grab;
   user-select: none;
 }
 
-.hobby-photos::-webkit-scrollbar {
-  height: 4px;
+.photo-strip:active {
+  cursor: grabbing;
 }
 
-.hobby-photos::-webkit-scrollbar-track {
-  background: rgba(251, 249, 227, 0.12);
-  border-radius: 2px;
-}
-
-.hobby-photos::-webkit-scrollbar-thumb {
-  background: var(--om-cream);
-  border-radius: 2px;
-}
-
-.hobby-photo {
+.photo-strip figure {
   flex: 0 0 420px;
-  height: 320px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: rgba(251, 249, 227, 0.08);
-  border: 1px solid rgba(251, 249, 227, 0.15);
+  margin: 0;
   scroll-snap-align: start;
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-  cursor: pointer;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.hobby-photo img {
+.photo-strip figure:hover {
+  transform: translateY(-8px) rotate(-1.2deg);
+}
+
+.photo-strip-img {
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--om-border);
+  overflow: hidden;
+}
+
+.photo-strip-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -147,154 +468,84 @@ body header {
   pointer-events: none;
 }
 
-.hobby-photo:hover {
-  transform: scale(1.02) translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+/* ===== ENGASJEMENT ===== */
+.quote-line {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.45;
+  color: var(--om-ink);
 }
 
-/* ===== EMPOWERMENT ===== */
-.empowerment-section {
-  background: var(--om-black);
-  padding: 4rem 3rem;
-  border-top: 1px solid rgba(251, 249, 227, 0.12);
-}
-
-.empowerment-section p {
-  font-size: 1.15rem;
-  line-height: 1.9;
-  color: rgba(251, 249, 227, 0.85);
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* ===== EDUCATION ===== */
-.education {
-  background: var(--om-black);
-  padding: 4rem 3rem;
-  border-top: 1px solid rgba(251, 249, 227, 0.12);
-}
-
-.education h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--om-cream);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.edu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-  max-width: 560px;
-  margin: 0 auto;
-}
-
-.edu-entry {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.2rem 1.2rem 1.2rem 1.4rem;
-  border-left: 4px solid var(--gold);
-  border-radius: 2px;
-  background: rgba(181, 149, 106, 0.14);
-  transform: translateX(4px);
-  cursor: default;
-}
-
-.edu-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--om-cream);
-}
-
-.edu-meta {
-  font-size: 0.85rem;
-  color: rgba(251, 249, 227, 0.6);
-}
-
-/* ===== CONTACT ===== */
-.contact-section {
-  background: var(--om-black);
-  padding: 4rem 3rem;
-  border-top: 1px solid rgba(251, 249, 227, 0.12);
-}
-
-.contact-section h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--om-cream);
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.contact-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  align-items: center;
-}
-
-.contact-item {
-  font-size: 0.95rem;
-  color: var(--om-cream-soft);
-  text-decoration: none;
-  transition: color var(--dur) var(--ease);
-}
-
-.contact-item:hover {
-  color: var(--om-green);
-}
-
-.contact-socials {
-  display: flex;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1.5rem;
+  border-top: 1px solid var(--om-border);
+  padding-top: 1.5rem;
   margin-top: 0.5rem;
 }
 
-/* Nav active state */
-.nav-active::after {
-  transform: scaleX(1) !important;
-  transform-origin: left !important;
+.stat-value {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 2.1rem;
+  line-height: 1;
 }
 
-/* Footer, scoped to this page to match the black/cream vibe */
-body footer {
-  background: #000000;
-  color: #fbf9e3;
-  border-top: 1px solid rgba(251, 249, 227, 0.12);
+.stat-label {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.78rem;
+  color: var(--om-muted);
+  padding-top: 0.4rem;
 }
 
+/* ===== KONTAKT ===== */
+.kontakt-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.05rem;
+}
+
+.kontakt-list a {
+  border-bottom: 1px solid var(--om-border);
+  padding: 0.9rem 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--om-ink);
+  transition: padding-left 200ms cubic-bezier(0.22, 1, 0.36, 1), color 160ms ease;
+}
+
+.kontakt-list a:hover {
+  padding-left: 0.6rem;
+  color: var(--om-muted);
+}
+
+.kontakt-list a span {
+  color: var(--om-muted);
+}
+
+/* ===== FOOTER ===== */
 /* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  .om-meg-hero {
-    padding: 2rem 1.5rem 3rem;
+@media (max-width: 800px) {
+  .om-main {
+    padding: 0 1.5rem;
   }
 
-  .bio-grid {
+  .intro,
+  .om-section-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .bio-photo img {
-    height: 320px;
+  .intro {
+    padding: 3rem 0;
   }
 
-  .hobbies-section,
-  .empowerment-section,
-  .education,
-  .contact-section {
-    padding: 3rem 1.5rem;
+  .intro-photo-wrap {
+    max-width: 260px;
   }
 
-  .hobby-photos {
-    grid-template-columns: 1fr;
-  }
-
-  .hobby-photo {
-    height: 180px;
+  .om-section {
+    padding: 3rem 0 3.5rem;
   }
 }

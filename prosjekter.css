@@ -1,0 +1,153 @@
+/* ===== PROSJEKTER PAGE (prosjekter.html only) =====
+   Every bit of text on this page switches to Inter (matching the newer design language),
+   set once on body so it covers the projects grid AND the footer — no cross-fade trick
+   needed since this is its own page load now rather than a same-document anchor jump. */
+
+body {
+  font-family: 'Inter', Georgia, sans-serif;
+}
+
+.projects {
+  background: #ffffff;
+  padding: 4rem 3rem;
+}
+
+.projects-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4F3232;
+  margin-bottom: 2.5rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 100%;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur) var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* For cards with no detail page to link to yet — same look, but no click affordance. */
+.project-card--static {
+  cursor: default;
+}
+
+.project-card--static:hover {
+  transform: none;
+}
+
+.project-card--static:hover .project-img {
+  transform: none;
+}
+
+.project-card--static:hover .project-img-wrap::after {
+  opacity: 0;
+}
+
+/* Wrap for overflow-hidden + scale effect */
+.project-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4 / 3;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  background: var(--navy-light);
+  transition: transform 0.45s var(--ease);
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.07);
+}
+
+.project-img.light {
+  background: #faf9f7;
+}
+
+.project-img.pink-bg {
+  background: #e8d5f0;
+}
+
+/* Dark overlay on image hover */
+.project-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 39, 68, 0.45);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.project-card:hover .project-img-wrap::after {
+  opacity: 1;
+}
+
+.project-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.project-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4F3232;
+  line-height: 1.4;
+  transition: color var(--dur) var(--ease);
+}
+
+.project-card:hover .project-title {
+  color: #4F3232;
+}
+
+.project-title small {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #db921c;
+}
+
+.project-year {
+  font-size: 0.8rem;
+  color: #7a6d5a;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.project-desc {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  transition: color var(--dur) var(--ease);
+}
+
+.project-card:hover .project-desc {
+  color: #4F3232;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .projects {
+    padding: 3rem 1.5rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

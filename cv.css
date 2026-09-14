@@ -1,0 +1,318 @@
+/* ===== CV PAGE ===== */
+/* Values pulled directly from the "cv_screen" frame in the "updated portfolio" Figma file
+   (node 90:242): base paper tone, ink text color, pill fill/border/text, and the gray
+   breadcrumb-bar border. Kept as its own prefixed set (matching the per-page convention
+   used by fanous.css etc.) so this page stays self-contained. */
+:root {
+  --cv-paper: #fffbfb;       /* frame fill: (1, 0.984, 0.984) */
+  --cv-ink: #4f3232;          /* header/body text: (0.312, 0.198, 0.198) */
+  --cv-ink-soft: #beb4b4;
+  --cv-gold: #b5956a;
+  --cv-bar-border: #9e9e9e;   /* breadcrumb bar stroke: (0.621, 0.621, 0.621) */
+  --cv-tag-bg: #ffecee;       /* pill fill: (1, 0.922, 0.925) */
+  --cv-tag-border: #dcc5c5;   /* pill stroke: (0.864, 0.774, 0.774) */
+  --cv-divider: rgba(0, 0, 0, 0.45);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', Georgia, sans-serif;
+  color: var(--cv-ink);
+  /* Approximates the frame's custom shader wash (a 20%-opacity linear-burn blend of a dusty
+     rose and a blue-gray over the near-white base) with a plain CSS gradient — the exact
+     procedural effect isn't reproducible outside Figma, but this reads the same at a glance. */
+  background:
+    radial-gradient(ellipse 900px 700px at 8% 15%, rgba(178, 77, 153, 0.10), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 95% 75%, rgba(102, 127, 178, 0.10), transparent 60%),
+    var(--cv-paper);
+  background-attachment: fixed;
+}
+
+
+/* Matches om-meg.css's .om-page-heading and prosjekter.css's .projects-heading exactly
+   (same font-size/weight/color, same padding-top/margin-bottom relationship to the content
+   below) — plain heading, no bar/background/border, consistent with the other two pages. */
+.cv-page-heading {
+  max-width: 1280px;
+  margin: 0 auto 2.5rem;
+  padding: 4rem 4rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4F3232;
+}
+
+/* ===== PROFILE (two-column) ===== */
+.cv-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 4rem 3rem;
+}
+
+.cv-profile-left {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cv-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.cv-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-fact-label {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--cv-ink);
+  opacity: 0.8;
+  margin-bottom: 0.15rem;
+}
+
+.cv-fact-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cv-profile-right {
+  flex: 1;
+  min-width: 0;
+  max-width: 628px;
+}
+
+.cv-name {
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+
+.cv-title {
+  font-size: 1.15rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+}
+
+/* ===== ACCORDION ===== */
+.cv-accordion-group {
+  margin-bottom: 2.5rem;
+}
+
+.cv-accordion {
+  border-bottom: 1px solid var(--cv-divider);
+}
+
+.cv-accordion summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.cv-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.cv-accordion-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.cv-accordion[open] .cv-accordion-icon {
+  transform: rotate(45deg);
+}
+
+.cv-accordion-body {
+  padding: 0 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cv-entry-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.cv-entry-meta {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 0.8rem;
+  color: var(--cv-ink-soft);
+}
+
+.cv-entry-desc {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+.cv-entry-placeholder {
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+/* ===== TOOLS / TAGS ===== */
+.cv-tools {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.cv-tools-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cv-divider);
+  margin-bottom: 1.5rem;
+}
+
+.cv-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.cv-skill-card {
+  border: 1.5px solid var(--cv-gold);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 16px rgba(79, 50, 50, 0.08);
+}
+
+.cv-skill-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.cv-tags li {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  background: var(--cv-tag-bg);
+  border: 1.5px solid var(--cv-gold);
+  color: var(--cv-ink);
+}
+
+/* ===== CONTACT ===== */
+.cv-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 4rem;
+  border-top: 1px solid var(--cv-bar-border);
+}
+
+.cv-section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.cv-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cv-contact-item {
+  font-size: 1rem;
+  color: var(--cv-ink);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.cv-contact-item:hover {
+  opacity: 1;
+  color: var(--cv-gold);
+}
+
+.cv-contact-socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* ===== BACK LINK ===== */
+.cv-back {
+  display: block;
+  text-align: center;
+  max-width: 1280px;
+  margin: 1rem auto 0;
+  padding: 0 4rem;
+  font-size: 0.9rem;
+  color: var(--cv-ink);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.cv-back:hover {
+  opacity: 1;
+  color: var(--cv-gold);
+}
+
+/* ===== FOOTER ===== */
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .cv-page-heading,
+  .cv-profile,
+  .cv-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .cv-profile {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .cv-profile-left {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cv-photo {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+}

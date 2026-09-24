@@ -1,7 +1,7 @@
 /* ===== SHARED / GLOBAL =====
-   Used by every page (Radwa.html, prosjekter.html, om-meg.html, and the project detail
+   Used by every page (index.html, prosjekter.html, om-meg.html, and the project detail
    pages). Page-specific styling lives in that page's own stylesheet instead:
-     - hero.css        → Radwa.html only (hero visuals + the scroll-driven header reveal)
+     - hero.css        → index.html only (hero visuals + the scroll-driven header reveal)
      - prosjekter.css  → prosjekter.html only (the projects grid)
      - om-meg.css      → om-meg.html only (bio/hobbies/empowerment/education/contact)
      - project.css     → the individual project detail pages (fanous.html etc.)
@@ -49,7 +49,7 @@ body {
 
 /* ===== HEADER (shared, static/normal state) =====
    This is the header every page gets by default: sticky to the top, normal size, no
-   motion. Radwa.html layers STEP 2/3's scroll-driven reveal + centering + font-size
+   motion. index.html layers STEP 2/3's scroll-driven reveal + centering + font-size
    growth on top of this via hero.css's `body:has(.hero) header` overrides — everywhere
    else, this plain rule is the whole story (STEP 5: subpages get "vanlig, fast plassering"). */
 header {

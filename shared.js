@@ -1,13 +1,13 @@
 /* ============================================================
    SHARED — NAV CLICK -> PAGE TRANSITION (curtain)
-   Reused by every page (Radwa.html, prosjekter.html, om-meg.html, cv.html). See
+   Reused by every page (index.html, prosjekter.html, om-meg.html, cv.html). See
    .page-transition-curtain / @keyframes curtain-sweep / curtain-reveal in style.css.
    One consistent transition for all real page-to-page navigation: a gold sheet sweeps up
    to fully cover the screen, the navigation happens underneath at that exact midpoint
    (initNavTransitions, "leaving"), then on the destination page the sheet starts already
    covering and finishes sweeping off (initEntryReveal, "entering") — so the motion reads
    as one continuous sweep split across two page loads instead of a hard cut. Elements opt
-   in via the .curtain-link class (the header's nav links, plus Radwa.html's hero scroll
+   in via the .curtain-link class (the header's nav links, plus index.html's hero scroll
    arrow).
 
    The "did we arrive via a curtain nav?" signal is sessionStorage's CURTAIN_NAV_KEY, set

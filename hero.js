@@ -1,5 +1,5 @@
 /* ============================================================
-   HERO / HJEM PAGE (Radwa.html only)
+   HERO / HJEM PAGE (index.html only)
 
    STEP 1 — HERO
    Pinned scroll-jack: .hero-pin is tall (see hero.css), .hero sticks to the top inside

@@ -1,4 +1,4 @@
-/* ===== HERO / HJEM PAGE (Radwa.html only) =====
+/* ===== HERO / HJEM PAGE (index.html only) =====
    Everything here only applies on the page that has a `.hero` element — the
    `body:has(.hero)` scoping means none of this leaks onto prosjekter.html or om-meg.html,
    which just get the plain shared header from style.css. */
@@ -10,7 +10,7 @@ body:has(.hero) header {
   left: 0;
   right: 0;
   top: 0;
-  /* No logo on this page (see Radwa.html) — center the nav across the full width instead
+  /* No logo on this page (see index.html) — center the nav across the full width instead
      of leaving it pinned to one side. */
   justify-content: center;
   background: transparent;

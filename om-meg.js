@@ -54,7 +54,7 @@ function initPhotoTilt() {
 /* The "brygg en islatte" cup: 5 clicks fill it (with a status note per click and ice
    appearing near the top once it's mostly full), then a "drikk den opp" button appears
    and resets everything. At 5/5 the built cup also fades out in favor of the real
-   islatte.png illustration as a small reward. */
+   islatte.webp illustration as a small reward. */
 function initLatteWidget() {
   const root = document.querySelector('.latte');
   if (!root) return;

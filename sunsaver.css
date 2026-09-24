@@ -1,441 +1,435 @@
-/* ===== SUNSAVER PAGE — matches Figma site aesthetic ===== */
+/* ===========================================================
+   SunSaver case study — content styling, adapted from the handoff design
+   (~/Desktop/handoff/sunsaver.css). Loaded alongside style.css, which still owns
+   the shared header/curtain/footer — this file only styles what lives inside
+   <main class="ss-case">.
+
+   Custom properties are prefixed --ss- because style.css's own :root already
+   defines --paper/--ink/--ink-soft/--ease with DIFFERENT values for the header's
+   own aesthetic; reusing those names here would silently overwrite them
+   everywhere, including inside the header. Same reasoning om-meg.css already
+   follows with its --om- prefix.
+
+   Font: Inter (Google Fonts, loaded in <head>)
+   =========================================================== */
 
 :root {
-  --yellow:   #F0EAE0;
-  --rust:     #2D4A72;
-  --dark-red: #2D4A72;
-  --gold:     #F0BC42;
-  --card-bg:  #D8E6F2;
+  --ss-paper:    #F2EFDD;  /* sidebakgrunn */
+  --ss-panel:    #FAF7E9;  /* lysere seksjoner */
+  --ss-ink:      #2E2A22;  /* overskrifter */
+  --ss-ink-soft: #4A4437;  /* brødtekst */
+  --ss-muted:    #6A5F46;  /* små labels, meta */
+  --ss-caption:  #544C3B;  /* bildetekst */
+  --ss-block:    #D6CFC1;  /* bildeplassholder */
+  --ss-accent:   #543F16;  /* fremdriftslinje */
+  --ss-gold:     #D6A324;  /* "Saver" i hero-tittelen */
+  --ss-rule:     rgba(46, 42, 34, 0.12);
+  --ss-rule-strong: rgba(46, 42, 34, 0.15);
+
+  --ss-pad-x:    clamp(20px, 6vw, 88px);
+  --ss-pad-y:    clamp(40px, 6vw, 80px);
+  --ss-measure:  1120px;
+  --ss-ease:     cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inria Serif', Georgia, serif;
-  background: var(--yellow);
-  color: var(--dark-red);
+/* Page background only — typography/color is scoped to .ss-case below so the
+   shared header/footer (outside <main>) are unaffected. Matches the
+   body:has(.X) convention om-meg.css/hero.css already use for page-specific
+   backgrounds. */
+body:has(.ss-case) {
+  background: var(--ss-paper);
 }
 
-/* ===== HEADER ===== */
-.ss-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 3rem;
-  background: rgba(187, 224, 243, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(45, 74, 114, 0.15);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.ss-case {
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  color: var(--ss-ink);
+  -webkit-font-smoothing: antialiased;
 }
 
-.ss-logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: 0.04em;
+.ss-case a { color: var(--ss-ink); }
+.ss-case a:hover { color: var(--ss-muted); }
+
+.ss-case p { text-wrap: pretty; }
+
+/* ===== Lesefremdrift ===== */
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: rgba(46, 42, 34, 0.08);
+  z-index: 200;
+}
+
+.progress__bar {
+  height: 100%;
+  width: 0%;
+  background: var(--ss-accent);
+}
+
+/* ===== Tilbakelenke ===== */
+.ss-back {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--dark-red);
+  color: var(--ss-muted);
   text-decoration: none;
-  position: relative;
+  padding: 20px var(--ss-pad-x) 0;
 }
 
-.ss-logo::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--rust);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-}
+.ss-back:hover { color: var(--ss-ink); }
 
-.ss-logo:hover::after {
-  transform: scaleX(1);
-}
+/* ===== Seksjoner ===== */
+.ss-case .section { padding: var(--ss-pad-y) var(--ss-pad-x); }
+.ss-case .section--panel { background: var(--ss-panel); }
+.ss-case .section--ruled { border-top: 1px solid var(--ss-rule); }
 
-.ss-nav {
-  display: flex;
-  gap: 2rem;
-}
-
-.ss-nav a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  font-style: italic;
-  color: var(--dark-red);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  position: relative;
-  padding-bottom: 3px;
-}
-
-.ss-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  background: var(--dark-red);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.25s ease;
-}
-
-.ss-nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* ===== HERO ===== */
-.ss-hero {
-  background: #BBE0F3;
-  min-height: 100vh;
+.ss-case .section__head {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 3rem 5rem;
-  text-align: center;
+  gap: 6px;
 }
 
-.ss-hero-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 700;
-  color: #2D4A72;
-  text-align: center;
-  margin-bottom: 3rem;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
+.ss-case .section__title {
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
 }
 
-.ss-hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  font-style: italic;
-  color: #2D4A72;
-  text-align: center;
-  margin-top: 1.5rem;
-  opacity: 0.75;
+.ss-case .section__sub {
+  font-size: 13px;
+  color: var(--ss-muted);
 }
 
-.ss-hero-mockup {
+/* ===== Layout-primitiver ===== */
+.ss-case .stack {
+  max-width: var(--ss-measure);
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
 }
 
-.ss-mockup-img {
-  max-width: 900px;
-  width: 95%;
-  height: auto;
-  display: block;
-}
+.ss-case .stack--wide { gap: clamp(36px, 5vw, 64px); }
 
-.ss-hero-grid {
-  display: none;
-}
-
-.ss-hero-desc {
-  display: none;
-}
-
-.ss-hero-desc p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--dark-red);
-}
-
-/* ===== SHARED SECTION TITLE ===== */
-.ss-section-title {
-  font-size: 1.8rem;
-  font-variant: small-caps;
-  font-weight: 700;
-  color: var(--dark-red);
-  letter-spacing: 0.06em;
-  margin-bottom: 0.6rem;
-}
-
-/* ===== MIN ROLLE ===== */
-.ss-rolle {
-  background: var(--yellow);
-  padding: 3rem 3rem 4rem;
-}
-
-.ss-rolle-intro {
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: var(--dark-red);
-  margin-bottom: 3rem;
-  max-width: 720px;
-}
-
-.ss-three-col {
+.ss-case .grid12 {
+  max-width: var(--ss-measure);
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.ss-col-item {
-  padding: 1.5rem;
-  border: 1px solid var(--dark-red);
-  border-radius: 18px;
-}
-
-.ss-col-item h3 {
-  font-size: 1.1rem;
-  font-variant: small-caps;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--dark-red);
-  margin-bottom: 0.5rem;
-}
-
-.ss-col-item p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--dark-red);
-}
-
-/* ===== APP SHOWCASE ===== */
-.ss-showcase {
-  background: var(--yellow);
-  padding: 3rem 3rem 5rem;
-}
-
-.ss-showcase-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 3rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 28px;
   align-items: start;
 }
 
-.ss-showcase-phone-wrap {
-  display: flex;
-  justify-content: center;
-  padding-top: 1rem;
-}
-
-.ss-phone-large {
-  width: 170px;
-  height: 340px;
-  background: #fff;
-  border-radius: 22px;
-  border: 3px solid #1a1a1a;
-  position: relative;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-}
-
-.ss-phone-large::before {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 7px;
-  background: #1a1a1a;
-  border-radius: 4px;
-}
-
-.ss-showcase-card {
-  background: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: 4px;
-}
-
-.ss-showcase-card h2 {
-  font-size: 2rem;
-  font-variant: small-caps;
-  font-weight: 600;
-  color: var(--dark-red);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
-
-.ss-showcase-card p {
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: var(--dark-red);
-  margin-bottom: 0.6rem;
-}
-
-.ss-showcase-card ol {
-  padding-left: 1.2rem;
-  margin: 0.75rem 0 1rem;
-}
-
-.ss-showcase-card li {
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: var(--dark-red);
-  margin-bottom: 0.6rem;
-}
-
-/* ===== VERKTØY ===== */
-.ss-verktoey {
-  background: #BBE0F3;
-  padding: 4rem 3rem 3rem;
-}
-
-.ss-verktoey-inner {
+.ss-case .split {
+  max-width: var(--ss-measure);
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 5rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
 }
 
-.ss-verktoey-heading {
-  font-size: 2.8rem;
-  font-variant: small-caps;
-  font-weight: 700;
-  color: #2D4A72;
-  line-height: 1.05;
-  letter-spacing: 0.04em;
-}
-
-.ss-tool-list {
+.ss-case .split__aside {
+  grid-column: span 4;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 6px;
 }
 
-.ss-tool-item {
-  padding: 1.1rem 1.4rem;
-  border: 1px solid #2D4A72;
-  border-radius: 18px;
-}
-
-.ss-tool-header {
+.ss-case .split__body {
+  grid-column: 6 / span 7;
+  min-width: 0;
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 0.25rem;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.ss-tool-icon {
-  color: #2D4A72;
-  font-size: 0.7rem;
-  line-height: 1;
+.ss-case .cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(24px, 4vw, 52px);
 }
 
-.ss-tool-name {
-  font-size: 1.2rem;
-  font-variant: small-caps;
+.ss-case .cols--two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.ss-case .col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ss-case .col p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ss-ink-soft);
+}
+
+.ss-case .col__title { font-size: 15px; font-weight: 700; }
+
+.ss-case .col__title--lg {
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.3;
+}
+
+/* ===== Typografiske roller ===== */
+.ss-case .kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-muted);
+}
+
+.ss-case .eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-muted);
+}
+
+.ss-case .label {
+  font-size: 11px;
   font-weight: 700;
-  color: #2D4A72;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.ss-tool-item p {
-  font-size: 1.05rem;
-  color: #2D4A72;
-  padding-left: 1.4rem;
-  line-height: 1.6;
-  opacity: 0.85;
+.ss-case .lead {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 40ch;
+  color: var(--ss-ink-soft);
 }
 
-/* ===== GALLERY ===== */
-.ss-gallery {
+.ss-case .pull {
+  font-size: clamp(17px, 2vw, 23px);
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 44ch;
+}
+
+/* ===== 1. Intro (full-bleed hero: kicker + stor tittel + telefonmockups) ===== */
+.ss-hero-section {
+  min-height: 92vh;
+  padding: clamp(36px, 5vw, 72px) var(--ss-pad-x) 0;
+  background-color: var(--ss-panel);
+  border-bottom: 1px solid var(--ss-rule);
+  overflow: hidden;
   display: flex;
-  gap: 0.75rem;
-  overflow-x: auto;
-  padding-bottom: 0.75rem;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(45,74,114,0.3) transparent;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 40px);
 }
 
-.ss-photo {
-  flex: 0 0 calc(20% - 0.6rem);
-  min-width: 180px;
-  height: 260px;
-  background: rgba(0,0,0,0.22);
-  border-radius: 10px;
+.ss-hero-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ss-hero-title {
+  font-size: clamp(3.5rem, 13vw, 10rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ss-hero-title__a { color: var(--ss-ink); }
+.ss-hero-title__b { color: var(--ss-gold); }
+
+.ss-phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.ss-phone {
+  width: clamp(150px, 17vw, 220px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(46, 42, 34, 0.15));
+}
+
+.ss-phone--side {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 6%;
+}
+
+.ss-phone--main {
+  width: clamp(175px, 20vw, 250px);
+  z-index: 2;
+  margin: 0 -4%;
+}
+
+/* ===== Bildeplassholdere =====
+   Bytt ut med <img> eller <video> — behold .block for ramme/format. */
+.ss-case .block {
+  background: var(--ss-block);
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+  transition: transform 0.5s var(--ss-ease);
   overflow: hidden;
 }
 
-.ss-photo img {
+.ss-case .block img,
+.ss-case .block video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.ss-gallery-note {
-  font-size: 0.78rem;
-  color: rgba(45,74,114,0.6);
-  font-style: italic;
-  margin-top: 0.75rem;
+.ss-case .block__caption {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ss-caption);
 }
 
-/* ===== REFLEKSJON ===== */
-.ss-refleksjon {
-  background: var(--yellow);
-  padding: 4rem 3rem;
+.ss-case .block--1x1  { aspect-ratio: 1 / 1;   padding: 16px; }
+.ss-case .block--4x3  { aspect-ratio: 4 / 3;   padding: 16px; }
+.ss-case .block--4x5  { aspect-ratio: 4 / 5; }
+.ss-case .block--16x9 { aspect-ratio: 16 / 9;  padding: 20px; width: 100%; }
+
+/* ===== 3. Designprosess ===== */
+.ss-case .case {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
 }
 
-.ss-refleksjon p {
-  font-size: 1.2rem;
-  line-height: 1.85;
-  color: var(--dark-red);
-  max-width: 860px;
-  margin-top: 0.6rem;
-}
-
-/* ===== FOOTER ===== */
-.ss-footer {
-  background: var(--yellow);
-  padding: 2rem 3rem;
+.ss-case .case__aside {
+  grid-column: span 4;
+  min-width: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(45, 74, 114, 0.2);
-  font-size: 0.85rem;
-  color: var(--dark-red);
+  flex-direction: column;
+  gap: 12px;
 }
 
-.ss-footer a {
-  color: var(--dark-red);
-  text-decoration: none;
-  font-style: italic;
+.ss-case .case__aside .block { margin-top: 8px; }
+
+.ss-case .case__title {
+  font-size: clamp(17px, 1.9vw, 22px);
+  font-weight: 700;
+  line-height: 1.25;
 }
 
-.ss-footer a:hover { text-decoration: underline; }
+.ss-case .case__body {
+  grid-column: 6 / span 7;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .ss-header,
-  .ss-hero,
-  .ss-rolle,
-  .ss-showcase,
-  .ss-verktoey,
-  .ss-refleksjon,
-  .ss-footer {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+.ss-case .step {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ss-case .step p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ss-ink-soft);
+  max-width: 54ch;
+}
+
+/* ===== 5. Resultat ===== */
+.ss-case .stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ss-rule-strong);
+}
+
+.ss-case .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ss-case .stat__value {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.ss-case .stat__label {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ss-caption);
+}
+
+/* ===== 7. Læring ===== */
+.ss-case .notes {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ss-case .notes p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ss-ink-soft);
+  max-width: 54ch;
+}
+
+/* ===== Animasjon =====
+   .is-hidden settes av sunsaver.js — uten JS vises alt normalt. */
+.ss-case [data-reveal].is-hidden {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.ss-case [data-reveal] {
+  transition: opacity 0.7s var(--ss-ease), transform 0.7s var(--ss-ease);
+}
+
+.ss-case [data-lift]:hover { transform: translateY(-6px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ss-case [data-reveal],
+  .ss-case [data-reveal].is-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+  }
+  .ss-case [data-lift]:hover { transform: none; }
+}
+
+/* ===== Responsiv ===== */
+@media (max-width: 900px) {
+  .ss-case .hero__head,
+  .ss-case .hero__media,
+  .ss-case .hero__fact--1,
+  .ss-case .hero__fact--2,
+  .ss-case .hero__fact--3,
+  .ss-case .case__aside,
+  .ss-case .case__body,
+  .ss-case .split__aside,
+  .ss-case .split__body {
+    grid-column: 1 / -1;
   }
 
-  .ss-hero-grid,
-  .ss-showcase-grid,
-  .ss-verktoey-inner {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  .ss-case .hero__fact { margin-top: 0; }
 
-  .ss-three-col {
-    grid-template-columns: 1fr;
-  }
+  .ss-case .grid12,
+  .ss-case .case,
+  .ss-case .split { gap: 24px; }
 
-  .ss-verktoey-heading { font-size: 2rem; }
-
-  .ss-photo {
-    min-width: 150px;
-    height: 200px;
-  }
+  .ss-case .split__aside { margin-bottom: 4px; }
 }

@@ -1,4 +1,14 @@
-/* ===== PROJECT PAGE ===== */
+/* ===== PROJECT PAGE =====
+   style.css's body default (--cream, a dark chocolate brown) is meant for the
+   home/hero-style pages, not body copy — every other page-specific stylesheet
+   (prosjekter.css, om-meg.css) overrides it to a light background for readability.
+   project.css never did, so var(--navy) text sat on that dark body with almost no
+   contrast. Scoped via :has like om-meg.css does, so it only affects pages using
+   this template. */
+body:has(.project-page) {
+  background: var(--paper);
+}
+
 .project-page {
   max-width: 900px;
   margin: 0 auto;

@@ -30,6 +30,14 @@
   --ink-arrow: #e5dede;
 }
 
+/* Reset: lets the width/height attributes on <img> reserve space (no layout shift)
+   without stretching images whose CSS only sets a width. Class rules that set a height
+   still win, since they're more specific. */
+img {
+  height: auto;
+}
+
+
 /* ===== BASE ===== */
 *, *::before, *::after {
   box-sizing: border-box;

@@ -10,13 +10,68 @@ body {
 .projects {
   background: #ffffff;
   padding: 4rem 3rem;
+  /* Keep the white area at least a screen tall, so a category with only one or two
+     projects doesn't leave the page's dark body color showing below the footer. */
+  min-height: 100vh;
 }
 
 .projects-heading {
   font-size: 1.8rem;
   font-weight: 700;
   color: #4F3232;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== CATEGORY FILTER (tabs) =====
+   Plain text tabs with an underline on the active one — one click to switch, and every
+   category stays visible so visitors see there's more than UX. Behavior: prosjekter.js. */
+.project-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  border-bottom: 1px solid #e7e4df;
   margin-bottom: 2.5rem;
+}
+
+.project-filter button {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; /* sit the active underline on top of the row's divider */
+  padding: 0.6rem 0;
+  font: inherit;
+  font-size: 0.9rem;
+  color: #8a7f79;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.project-filter button:hover {
+  color: #4F3232;
+}
+
+.project-filter button[aria-selected="true"] {
+  color: #4F3232;
+  font-weight: 600;
+  border-bottom-color: #4F3232;
+}
+
+.project-filter button:focus-visible {
+  outline: 2px solid #4F3232;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.project-filter__count {
+  margin-left: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #b3aaa4;
+}
+
+.project-card[hidden] {
+  display: none;
 }
 
 .projects-grid {
@@ -53,28 +108,41 @@ body {
   transform: none;
 }
 
-.project-card--static:hover .project-img-wrap::after {
-  opacity: 0;
-}
-
-/* Wrap for overflow-hidden + scale effect */
+/* Neutral frame: every preview sits inset on the same light gray, so the images' own
+   (very different) background colors read as framed pictures rather than a patchwork. */
 .project-img-wrap {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 6px;
   aspect-ratio: 4 / 3;
+  background: #f4f3f1;
+  padding: 1.5rem;
 }
 
 .project-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: var(--navy-light);
+  border-radius: 3px;
   transition: transform 0.45s var(--ease);
 }
 
 .project-card:hover .project-img {
-  transform: scale(1.07);
+  transform: scale(1.03);
+}
+
+/* Stand-in for projects without a preview image yet (e.g. Busken). */
+.project-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #d6d1ca;
+  border-radius: 3px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  color: #a39891;
 }
 
 .project-img.light {
@@ -85,19 +153,6 @@ body {
   background: #e8d5f0;
 }
 
-/* Dark overlay on image hover */
-.project-img-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 39, 68, 0.45);
-  opacity: 0;
-  transition: opacity var(--dur) var(--ease);
-}
-
-.project-card:hover .project-img-wrap::after {
-  opacity: 1;
-}
 
 .project-info {
   display: flex;
@@ -150,5 +205,9 @@ body {
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-img-wrap {
+    padding: 1rem;
   }
 }

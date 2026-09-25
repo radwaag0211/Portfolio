@@ -41,41 +41,24 @@
     </nav>
   </header>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS
+       Cards carry data-category; prosjekter.js shows one category at a time via the tabs
+       below (UX-design by default, or whichever tab the URL hash names, e.g. #grafisk).
+       Cards without a detail page yet use .project-card--static (a <div>, not a link). -->
   <section class="projects">
     <h2 class="projects-heading">[class: prosjekter]</h2>
-    <div class="projects-grid">
 
-      <!-- No detail page yet — non-interactive card, see .project-card--static in prosjekter.css -->
-      <div class="project-card project-card--static">
-        <div class="project-img-wrap">
-          <img src="korok-timer.webp" width="1600" height="1000" alt="Korok Timer" class="project-img" />
-        </div>
-        <div class="project-info">
-          <span class="project-title">Korok Timer</span>
-          <span class="project-year">2026</span>
-        </div>
-        <p class="project-desc">
-          Korok Timer er en Pomodoro-app for skrivebordet som gjør fokusøkten din om til å trekke sverdet fra steinen: samle tre hjerter mens økten går, og vinn mestersverdet til slutt. Enkel, rolig og litt lekent, inspirert av Korok-skogen fra The Legend of Zelda.
-        </p>
-      </div>
+    <div class="project-filter" role="tablist" aria-label="Prosjektkategori">
+      <button type="button" role="tab" id="tab-ux" aria-controls="projects-grid" data-filter="ux">UX-design<span class="project-filter__count">4</span></button>
+      <button type="button" role="tab" id="tab-utvikling" aria-controls="projects-grid" data-filter="utvikling">Utvikling<span class="project-filter__count">2</span></button>
+      <button type="button" role="tab" id="tab-grafisk" aria-controls="projects-grid" data-filter="grafisk">Grafisk design<span class="project-filter__count">1</span></button>
+    </div>
 
-      <a href="fanous.html" class="project-card">
-        <div class="project-img-wrap">
-          <img src="fanous.media/fanous_preview.webp" width="1500" height="1125" alt="Fanous" class="project-img" />
-        </div>
-        <div class="project-info">
-          <span class="project-title">Fanous</span>
-          <span class="project-year">2026</span>
-        </div>
-        <p class="project-desc">
-          Et spørsmålsspill som utfordrer din evne til å fokusere og samle nok poeng til å redde jungelen fra det onde monsteret Fanous. Vil du hjelpe Rex med å bringe lyset tilbake til Jungelen?
-        </p>
-      </a>
+    <div class="projects-grid" id="projects-grid" role="tabpanel" aria-labelledby="tab-ux">
 
-      <a href="sunsaver.html" class="project-card">
+      <a href="sunsaver.html" class="project-card" data-category="ux">
         <div class="project-img-wrap">
-          <img src="sunsaver.media/sunsaver_preview.webp" width="1500" height="1125" loading="lazy" alt="SunSaver" class="project-img" />
+          <img src="sunsaver.media/sunsaver_preview.webp" width="1500" height="1125" alt="SunSaver - Podium Met-pris" class="project-img" />
         </div>
         <div class="project-info">
           <span class="project-title">SunSaver - Podium Met-pris<br><small>(Meteorologisk Institutt)</small></span>
@@ -86,23 +69,9 @@
         </p>
       </a>
 
-      <!-- No detail page yet — non-interactive card, see .project-card--static in prosjekter.css -->
-      <div class="project-card project-card--static">
+      <a href="catgym.html" class="project-card" data-category="ux">
         <div class="project-img-wrap">
-          <img src="defi_duck_showcase.webp" width="1600" height="990" loading="lazy" alt="Defi Duck" class="project-img" />
-        </div>
-        <div class="project-info">
-          <span class="project-title">Defi Duck</span>
-          <span class="project-year">2024</span>
-        </div>
-        <p class="project-desc">
-          Defi Duck er en maskotdesign laget for DEFI, med fire ulike personas: Generic, Kakao, MasterChef og Paint &amp; Sip.
-        </p>
-      </div>
-
-      <a href="catgym.html" class="project-card">
-        <div class="project-img-wrap">
-          <img src="catgym.media/catgym_preview.webp" width="1500" height="1125" loading="lazy" alt="CatGym" class="project-img" />
+          <img src="catgym.media/catgym_preview.webp" width="1500" height="1125" alt="CatGym" class="project-img" />
         </div>
         <div class="project-info">
           <span class="project-title">CatGym</span>
@@ -113,7 +82,7 @@
         </p>
       </a>
 
-      <a href="friendverse.html" class="project-card">
+      <a href="friendverse.html" class="project-card" data-category="ux">
         <div class="project-img-wrap">
           <img src="friendverse.media/friendverse_preview.webp" width="1500" height="1125" loading="lazy" alt="FriendVerse" class="project-img" />
         </div>
@@ -126,6 +95,58 @@
         </p>
       </a>
 
+      <div class="project-card project-card--static" data-category="ux">
+        <div class="project-img-wrap">
+          <div class="project-placeholder" aria-hidden="true">[ under arbeid ]</div>
+        </div>
+        <div class="project-info">
+          <span class="project-title">Busken</span>
+          <span class="project-year">2026</span>
+        </div>
+        <p class="project-desc">
+          Mockup under arbeid. Mer kommer snart.
+        </p>
+      </div>
+
+      <a href="fanous.html" class="project-card" data-category="utvikling">
+        <div class="project-img-wrap">
+          <img src="fanous.media/fanous_preview.webp" width="1500" height="1125" loading="lazy" alt="Fanous" class="project-img" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">Fanous</span>
+          <span class="project-year">2026</span>
+        </div>
+        <p class="project-desc">
+          Et spørsmålsspill som utfordrer din evne til å fokusere og samle nok poeng til å redde jungelen fra det onde monsteret Fanous. Vil du hjelpe Rex med å bringe lyset tilbake til Jungelen?
+        </p>
+      </a>
+
+      <div class="project-card project-card--static" data-category="utvikling">
+        <div class="project-img-wrap">
+          <img src="korok-timer.webp" width="1600" height="1000" loading="lazy" alt="Korok Timer" class="project-img" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">Korok Timer</span>
+          <span class="project-year">2026</span>
+        </div>
+        <p class="project-desc">
+          Korok Timer er en Pomodoro-app for skrivebordet som gjør fokusøkten din om til å trekke sverdet fra steinen: samle tre hjerter mens økten går, og vinn mestersverdet til slutt. Enkel, rolig og litt lekent, inspirert av Korok-skogen fra The Legend of Zelda.
+        </p>
+      </div>
+
+      <div class="project-card project-card--static" data-category="grafisk">
+        <div class="project-img-wrap">
+          <img src="defi_duck_showcase.webp" width="1600" height="990" loading="lazy" alt="Defi Duck" class="project-img" />
+        </div>
+        <div class="project-info">
+          <span class="project-title">Defi Duck</span>
+          <span class="project-year">2024</span>
+        </div>
+        <p class="project-desc">
+          Defi Duck er en maskotdesign laget for DEFI, med fire ulike personas: Generic, Kakao, MasterChef og Paint &amp; Sip.
+        </p>
+      </div>
+
     </div>
   </section>
 
@@ -135,6 +156,7 @@
   </footer>
 
   <script src="shared.js"></script>
+  <script src="prosjekter.js"></script>
 
 </body>
 </html>

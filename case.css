@@ -1,5 +1,6 @@
 /* ===========================================================
-   SunSaver case study — content styling.
+   Case-study pages (SunSaver, CatGym, FriendVerse, Busken) — shared content styling.
+   Formerly sunsaver.css; every case page links this one file so the layout stays identical.
    Layout language borrowed from the "Modern Product Launch" Figma Sites template:
    white page, large section titles, small uppercase labels, columns and numbered
    lists separated by thin rules, big rounded image surfaces and lots of whitespace.
@@ -256,6 +257,32 @@ body:has(.ss-case) {
   margin: 0 -4%;
 }
 
+/* Hero variant with a single image (CatGym, FriendVerse) instead of the phone trio. */
+.ss-hero-media {
+  width: 100%;
+  max-width: var(--ss-measure);
+}
+
+.ss-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--ss-radius);
+}
+
+/* Placeholder hero for a project that has no visuals yet (Busken). */
+.ss-hero-media--empty {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--ss-rule);
+  border-radius: var(--ss-radius);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ss-muted);
+}
+
 /* ===== Bildeplassholdere =====
    Bytt ut med <img> eller <video> — behold .block for ramme/format. */
 .ss-case .block {
@@ -290,6 +317,62 @@ body:has(.ss-case) {
 .ss-case .block--4x5  { aspect-ratio: 4 / 5; }
 .ss-case .block--16x9 { aspect-ratio: 16 / 9; width: 100%; }
 
+/* Real images: the frame follows the picture's own shape (never cropped) — no
+   placeholder border, padding or fixed aspect ratio. */
+.ss-case .block--img {
+  aspect-ratio: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  display: block;
+}
+
+.ss-case .block--img img {
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--ss-radius);
+  border: 1px solid var(--ss-rule);
+}
+
+/* Full-width image row under a case's text (Prototyping: 3-screen + 2-screen shots).
+   Columns sized 787:527 — the two images' own widths — so every phone screen in the
+   row ends up the same size. */
+.ss-case .case__media {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 787fr 527fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .ss-case .case__media { grid-template-columns: 1fr; }
+}
+
+/* On desktop the zigzag rules pin aside/body to row 1, so the image row goes to row 2. */
+@media (min-width: 901px) {
+  .ss-case .case__media { grid-row: 2; }
+}
+
+/* Two images side by side (team photo + timeline); stacks on narrow screens. */
+.ss-case .media-pair {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .ss-case .media-pair { grid-template-columns: 1fr; }
+}
+
+/* Full-width images (timeline, user flow), kept to a comfortable size. */
+.ss-case .block--wide {
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* ===== 4. Designprosess =====
    Each case: label + title + image on the left, the story as one paragraph on the right. */
 .ss-case .case {
@@ -323,6 +406,9 @@ body:has(.ss-case) {
 .ss-case .case__body {
   grid-column: 7 / span 6;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 /* Zigzag: every second case puts its image on the right and the story on the left,
@@ -428,6 +514,15 @@ body:has(.ss-case) {
 }
 
 /* ===== Forrige / neste — pill buttons ===== */
+.ss-case .case-nav {
+  max-width: var(--ss-measure);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .ss-case .btn {
   border-radius: 999px;
   padding: 12px 22px;
@@ -435,7 +530,7 @@ body:has(.ss-case) {
 }
 
 /* ===== Animasjon =====
-   .is-hidden settes av sunsaver.js — uten JS vises alt normalt. */
+   .is-hidden settes av case.js — uten JS vises alt normalt. */
 .ss-case [data-reveal].is-hidden {
   opacity: 0;
   transform: translateY(18px);

@@ -1,4 +1,4 @@
-/* SunSaver case study — scroll-reveal, telleeffekt og lesefremdrift.
+/* Case-study pages (SunSaver, CatGym, FriendVerse, Busken) — scroll-reveal, telleeffekt og lesefremdrift.
    Fra handoff-designet (~/Desktop/handoff/sunsaver.js), uendret. Ingen avhengigheter,
    ingen globale navn som kolliderer med shared.js (alt kjører i én IIFE). Uten JS
    vises hele siden normalt. */

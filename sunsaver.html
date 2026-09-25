@@ -24,7 +24,7 @@
     href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="sunsaver.css" />
+  <link rel="stylesheet" href="case.css" />
 </head>
 
 <body>
@@ -101,6 +101,15 @@
           </div>
         </div>
 
+        <div class="media-pair">
+          <figure class="block block--img" data-reveal>
+            <img src="sunsaver.media/team.webp" width="1066" height="726" loading="lazy" alt="Teamet bak SunSaver: seks studenter med solbriller som former hjerter med hendene" />
+          </figure>
+          <figure class="block block--img" data-reveal>
+            <img src="sunsaver.media/milepaeler.webp" width="1002" height="612" loading="lazy" alt="Tidslinje for prosjektet fra mars til juni: design workshop, innsiktsarbeid, demo av MVP, retrospektiver, brukertesting og levering" />
+          </figure>
+        </div>
+
       </div>
     </section>
 
@@ -116,7 +125,8 @@
           <div class="case__aside" data-reveal>
             <span class="eyebrow">Innsiktsarbeid</span>
             <h3 class="case__title">De manglet kunnskap, ikke tall</h3>
-            <figure class="block block--1x1" data-lift>
+            <figure class="block block--img" data-lift>
+              <img src="sunsaver.media/affinity_diagram.webp" width="1006" height="778" loading="lazy" alt="Affinity diagram med funn sortert i fire grupper: økonomisk oversikt, miljø og verdier, informasjon om solceller, og verktøy og funksjoner i appen" />
             </figure>
           </div>
           <div class="case__body">
@@ -128,11 +138,17 @@
           <div class="case__aside" data-reveal>
             <span class="eyebrow">Prototyping</span>
             <h3 class="case__title">Måned framfor time</h3>
-            <figure class="block block--4x3" data-lift>
-            </figure>
           </div>
           <div class="case__body">
             <p class="prose" data-reveal>Kravet var å vise besparelse time for time. Men i Crazy 8-workshopen så vi at et så finmasket tall ikke hjalp noen med å bestemme seg. Vi viste i stedet produksjon per måned i en interaktiv graf, der man trykker på et punkt for å se kilowattimene. Det ble mer håndfast for brukeren, og ga få endringer i kravspesifikasjonen senere.</p>
+          </div>
+          <div class="case__media" data-reveal>
+            <figure class="block block--img">
+              <img src="sunsaver.media/iterasjoner_1.webp" width="787" height="562" loading="lazy" alt="Tidlige iterasjoner: tom hjemskjerm, skjema for å legge til takflate, og valg av takflate på kartet" />
+            </figure>
+            <figure class="block block--img">
+              <img src="sunsaver.media/iterasjoner_2.webp" width="527" height="548" loading="lazy" alt="Tidlige iterasjoner av oversikten: produksjonsgraf, og sparing med valg mellom dag, måned og år" />
+            </figure>
           </div>
         </article>
 
@@ -140,7 +156,8 @@
           <div class="case__aside" data-reveal>
             <span class="eyebrow">Testing</span>
             <h3 class="case__title">«Når har jeg tjent det inn?»</h3>
-            <figure class="block block--1x1" data-lift>
+            <figure class="block block--img" data-lift>
+              <img src="sunsaver.media/brukertest.webp" width="554" height="680" loading="lazy" alt="Brukertest: en testperson velger takflater på kartet i SunSaver" />
             </figure>
           </div>
           <div class="case__body">
@@ -168,6 +185,10 @@
 
           <p class="prose" data-reveal>Kjerneflyten går fra adresse til svar: du søker opp adressen, velger takflater og paneltype, og ser besparelsen. Hjemskjermen samler besparelse, produksjonsgraf og tilbakebetalingstid. Når du oppretter et anlegg, får du et prisestimat med offentlig støtte, og infoskjermen forklarer hvorfor solceller lønner seg og hvor du starter.</p>
         </div>
+
+        <figure class="block block--img block--wide" data-reveal>
+          <img src="sunsaver.media/brukerflyt.webp" width="942" height="678" loading="lazy" alt="Brukerflyten i fire steg: tom oversikt, velg takflate på kartet, se pris og lagre anlegget, og se sparing, produksjon og tilbakebetalingstid" />
+        </figure>
 
       </div>
     </section>
@@ -238,12 +259,11 @@
       </div>
     </section>
 
-    <section class="section section--ruled">
-      <div class="stack"
-        style="flex-direction:row; flex-wrap:wrap; justify-content:space-between; max-width:var(--ss-measure); margin:0 auto;">
+    <section class="section">
+      <nav class="case-nav" aria-label="Flere prosjekter">
         <a href="fanous.html" class="btn btn-outline curtain-link">← Fanous</a>
         <a href="catgym.html" class="btn btn-outline curtain-link">Neste: CatGym →</a>
-      </div>
+      </nav>
     </section>
 
   </main>
@@ -253,7 +273,7 @@
   </footer>
 
   <script src="shared.js"></script>
-  <script src="sunsaver.js"></script>
+  <script src="case.js"></script>
 
 </body>
 

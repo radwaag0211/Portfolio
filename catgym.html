@@ -1,150 +1,184 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
+  <!-- Anti-FOUC for the curtain page-transition: runs before body paints, so if we
+       arrived via a curtain-nav link (see shared.js), the curtain is held fully closed
+       from the very first frame instead of flashing this page unclothed first. -->
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('curtainNav') === '1') {
+          document.documentElement.classList.add('curtain-entering');
+          sessionStorage.removeItem('curtainNav');
+        }
+      } catch (e) { }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CatGym — Radwa Godor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="project.css" />
+  <link rel="stylesheet" href="case.css" />
 </head>
+
 <body>
 
+  <!-- Curtain used for the nav-link page transitions (see shared.js's initNavTransitions
+       / initEntryReveal). Placed first so it's the first thing painted, ahead of any
+       page content beneath it. -->
+  <div class="page-transition-curtain" aria-hidden="true"></div>
+
+  <div class="progress" aria-hidden="true">
+    <div class="progress__bar" data-progress></div>
+  </div>
+
   <header>
-    <a href="index.html" class="logo">[Radwa Godor]<small>return: home</small></a>
+    <a href="index.html" class="logo curtain-link">[Radwa Godor]<small>return: home</small></a>
     <nav class="nav-links">
-      <a href="prosjekter.html">[class: prosjekter]<small>path: desktop_dash</small></a>
-      <a href="om-meg.html">[asset id: om meg]<small>username:radwaag</small></a>
-      <a href="cv.html">[super: CV]<small>section: experience_101</small></a>
+      <a href="prosjekter.html" class="curtain-link">[class: prosjekter]<small>path: desktop_dash</small></a>
+      <a href="om-meg.html" class="curtain-link">[asset id: om meg]<small>username:radwaag</small></a>
+      <a href="cv.html" class="curtain-link">[super: CV]<small>section: experience_101</small></a>
     </nav>
   </header>
 
-  <main class="project-page">
+  <main class="ss-case">
+    <!-- 1. INTRO — kicker + stor tittel + hovedbilde -->
+    <section class="section ss-hero-section">
 
-    <a href="index.html" class="back-link">← Tilbake til prosjekter</a>
-
-    <div class="project-hero">
-      <img src="catgym.media/catgym_preview.webp" width="1500" height="1125" alt="CatGym prototype" class="project-hero__img" />
-    </div>
-
-    <div class="project-content">
-
-      <div class="project-meta">
-        <span class="project-meta__year">2024</span>
-        <span class="project-meta__tag">Arduino / Fysisk Prototype</span>
+      <div class="ss-hero-top" data-reveal>
+        <span class="kicker">STUDENTPROSJEKT · ARDUINO / FYSISK PROTOTYPE · 2024</span>
+        <h1 class="ss-hero-title"><span class="ss-hero-title__a">Cat</span><span class="ss-hero-title__b">Gym</span></h1>
       </div>
 
-      <h1 class="project-title-large">CatGym</h1>
-      <p class="project-subtitle">Pawtential</p>
-
-      <div class="project-summary-grid">
-        <div class="summary-item">
-          <span class="summary-label">Rolle</span>
-          <span class="summary-value">Interaksjonsdesigner &amp; Prototyper</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">År</span>
-          <span class="summary-value">2024</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Type</span>
-          <span class="summary-value">Fysisk prototype</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Verktøy</span>
-          <span class="summary-value">Arduino, Figma</span>
-        </div>
+      <div class="ss-hero-media" data-reveal>
+        <img src="catgym.media/catgym_preview.webp" width="1500" height="1125" alt="CatGym prototype" />
       </div>
 
-      <!-- OM PROSJEKTET -->
-      <section class="project-section">
-        <h2>Om prosjektet</h2>
-        <p>
-          CatGym — Pawtential er et prosjekt der en gruppe katteentusiaster utforsket potensialet til Arduino, og hvordan vi kan bruke og forme teknologien for livlige katteeiere som ønsker å skape et sterkere bånd med sin pus.
-        </p>
-        <p>
-          Prosjektet kombinerte fysisk prototyping med interaksjonsdesign for å skape en responsiv treningsopplevelse der artefaktet reagerer på kattens bevegelser.
-        </p>
-      </section>
+    </section>
 
-      <!-- MIN ROLLE -->
-      <section class="project-section">
-        <h2>Min rolle</h2>
-        <p>
-          Mitt bidrag var å utvikle og implementere interaksjons- og tekniske løsninger, særlig knyttet til Arduino-komponenter. Jeg omsatte konsepter til fungerende prototyper og raffinerte hvordan artefaktet responderte på kattens bevegelser.
-        </p>
-      </section>
+    <!-- 2. LEAD + INTRO -->
+    <section class="section">
+      <div class="stack">
 
-      <!-- PROSESS -->
-      <section class="project-section">
-        <h2>Designprosess</h2>
-        <div class="process-steps">
-          <div class="step">
-            <span class="step-num">01</span>
-            <div>
-              <h3>Affinitetsdiagram</h3>
-              <p>Samlet inn data om katteatferd og eierbehov. Strukturerte funnene i et affinitetsdiagram for å identifisere mønstre og muligheter.</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-num">02</span>
-            <div>
-              <h3>Konseptutforskning</h3>
-              <p>Testet flere formkonsepter med inspirasjon fra babygym, bygningskraner og fuglehus. Ulike tilnærminger ble utforsket for å finne den mest engasjerende løsningen for katter.</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-num">03</span>
-            <div>
-              <h3>Lavfidelitets-prototype</h3>
-              <p>Bygde enkle fysiske prototyper for å teste funksjonalitet og kattens engasjement raskt, uten å investere for mye i ett konsept.</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-num">04</span>
-            <div>
-              <h3>Iterativ raffinering</h3>
-              <p>Observerte katter i samspill med prototypen og itererte på design og mekanikk. Forenklet løsningen der kompleksitet gikk ut over stabilitet.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        <p class="lead" data-reveal>CatGym — Pawtential er et prosjekt der en gruppe katteentusiaster utforsket potensialet til Arduino, og hvordan vi kan bruke og forme teknologien for livlige katteeiere som ønsker å skape et sterkere bånd med sin pus.</p>
+        <p class="prose" data-reveal>Prosjektet kombinerte fysisk prototyping med interaksjonsdesign for å skape en responsiv treningsopplevelse der artefaktet reagerer på kattens bevegelser.</p>
 
-      <!-- REFLEKSJON -->
-      <div class="project-quote">
-        <p>«Enkle, robuste løsninger gir ofte bedre brukeropplevelse enn mer avanserte, men ustabile funksjoner.»</p>
       </div>
+    </section>
 
-      <!-- GALLERI -->
-      <section class="project-section">
-        <h2>Visuals</h2>
-        <div class="project-gallery">
-          <div class="gallery-img soft"></div>
-          <div class="gallery-img"></div>
-          <div class="gallery-img soft"></div>
-          <div class="gallery-img"></div>
+    <!-- 3. ROLLE / TYPE -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Rolle, type &amp; verktøy</h2>
         </div>
-        <p style="font-size:0.78rem; color:var(--text-mid); margin-top:0.5rem; font-style:italic;">
-          Erstatt placeholder-boksene med bilder av prototypen.
-        </p>
-      </section>
 
-      <!-- LÆRING -->
-      <section class="project-section">
-        <h2>Hva jeg lærte</h2>
-        <p>
-          Prosjektet lærte meg verdien av iterativt design og brukertilpasning — ikke bare for mennesker, men også for dyr. Jeg fikk innsikt i hvordan teknisk kompleksitet påvirker designbeslutninger, og at det å holde løsningen enkel og robust er vel så viktig som å legge til funksjoner.
-        </p>
-      </section>
+        <div class="cols">
+          <div class="col" data-reveal>
+            <span class="label">Min rolle</span>
+            <p>Interaksjonsdesigner &amp; prototyper.<br />Mitt bidrag var å utvikle og implementere interaksjons- og tekniske løsninger, særlig knyttet til Arduino-komponenter. Jeg omsatte konsepter til fungerende prototyper og raffinerte hvordan artefaktet responderte på kattens bevegelser.</p>
+          </div>
+          <div class="col" data-reveal>
+            <span class="label">Type</span>
+            <p>Fysisk prototype.</p>
+          </div>
+          <div class="col" data-reveal>
+            <span class="label">Verktøy</span>
+            <p>Arduino, Figma.</p>
+          </div>
+        </div>
 
-    </div>
+      </div>
+    </section>
 
-    <div class="project-nav">
-      <a href="sunsaver.html" class="btn btn-outline">← SunSaver</a>
-      <a href="friendverse.html" class="btn btn-outline">Neste: FriendVerse →</a>
-    </div>
+    <!-- 4. DESIGNPROSESS -->
+    <section class="section">
+      <div class="stack stack--wide">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Designprosess</h2>
+        </div>
+
+        <article class="case">
+          <div class="case__aside" data-reveal>
+            <span class="eyebrow">Steg 01</span>
+            <h3 class="case__title">Affinitetsdiagram</h3>
+            <figure class="block block--1x1" data-lift>
+            </figure>
+          </div>
+          <div class="case__body">
+            <p class="prose" data-reveal>Samlet inn data om katteatferd og eierbehov. Strukturerte funnene i et affinitetsdiagram for å identifisere mønstre og muligheter.</p>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__aside" data-reveal>
+            <span class="eyebrow">Steg 02</span>
+            <h3 class="case__title">Konseptutforskning</h3>
+            <figure class="block block--4x3" data-lift>
+            </figure>
+          </div>
+          <div class="case__body">
+            <p class="prose" data-reveal>Testet flere formkonsepter med inspirasjon fra babygym, bygningskraner og fuglehus. Ulike tilnærminger ble utforsket for å finne den mest engasjerende løsningen for katter.</p>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__aside" data-reveal>
+            <span class="eyebrow">Steg 03</span>
+            <h3 class="case__title">Lavfidelitets-prototype</h3>
+            <figure class="block block--1x1" data-lift>
+            </figure>
+          </div>
+          <div class="case__body">
+            <p class="prose" data-reveal>Bygde enkle fysiske prototyper for å teste funksjonalitet og kattens engasjement raskt, uten å investere for mye i ett konsept.</p>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__aside" data-reveal>
+            <span class="eyebrow">Steg 04</span>
+            <h3 class="case__title">Iterativ raffinering</h3>
+            <figure class="block block--4x3" data-lift>
+            </figure>
+          </div>
+          <div class="case__body">
+            <p class="prose" data-reveal>Observerte katter i samspill med prototypen og itererte på design og mekanikk. Forenklet løsningen der kompleksitet gikk ut over stabilitet.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- LÆRING -->
+    <section class="section">
+      <div class="split">
+
+        <div class="split__aside" data-reveal>
+          <h2 class="section__title">Læring</h2>
+        </div>
+
+        <div class="split__body">
+          <p class="pull" data-reveal>«Enkle, robuste løsninger gir ofte bedre brukeropplevelse enn mer avanserte, men ustabile funksjoner.»</p>
+          <p class="prose" data-reveal>Prosjektet lærte meg verdien av iterativt design og brukertilpasning — ikke bare for mennesker, men også for dyr. Jeg fikk innsikt i hvordan teknisk kompleksitet påvirker designbeslutninger, og at det å holde løsningen enkel og robust er vel så viktig som å legge til funksjoner.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <nav class="case-nav" aria-label="Flere prosjekter">
+        <a href="sunsaver.html" class="btn btn-outline curtain-link">← SunSaver</a>
+        <a href="friendverse.html" class="btn btn-outline curtain-link">Neste: FriendVerse →</a>
+      </nav>
+    </section>
 
   </main>
 
@@ -152,5 +186,9 @@
     <span class="footer-watermark">Radwa Godor</span>
   </footer>
 
+  <script src="shared.js"></script>
+  <script src="case.js"></script>
+
 </body>
+
 </html>

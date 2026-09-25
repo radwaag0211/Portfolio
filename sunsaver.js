@@ -57,6 +57,24 @@
     counters.forEach(function (el) { co.observe(el); });
   }
 
+  /* --- Demovideo: spill bare av når den er synlig; ved redusert bevegelse står den
+     stille med kontroller i stedet for å autospille. --- */
+  var demo = document.querySelector('.product__video video');
+  if (demo) {
+    if (reduced) {
+      demo.removeAttribute('autoplay');
+      demo.pause();
+      demo.controls = true;
+    } else if (supported) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { demo.play().catch(function () {}); }
+          else { demo.pause(); }
+        });
+      }, { threshold: 0.25 }).observe(demo);
+    }
+  }
+
   /* --- Lesefremdrift i toppen --- */
   var bar = document.querySelector('[data-progress]');
   if (bar) {

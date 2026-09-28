@@ -1,0 +1,369 @@
+/* ===== DEFI DUCK PAGE =====
+   Built from Defi Duck's four primary colours (#FFFCFB, #E4BA8E, #DC859A, #3A3A3A)
+   on a warm peach ground. Inter throughout, one narrow reading column like
+   fanous.css / korok-timer.css. Loaded after style.css. */
+
+:root {
+  --d-bg:      #FBF1E6;                 /* varm fersken, hele siden */
+  --d-bg-2:    #F6E2CC;                 /* litt mørkere flate for prosess/lansering */
+  --d-white:   #FFFCFB;
+  --d-peach:   #E4BA8E;
+  --d-pink:    #DC859A;
+  --d-ink:     #3A3A3A;                 /* overskrifter */
+  --d-text:    #4A4442;                 /* brødtekst (~8:1 på bakgrunnen) */
+  --d-muted:   #7A6D66;                 /* etiketter */
+  --d-pink-ink:#A84A63;                 /* rosa som tekst (kontrast på lys bakgrunn) */
+  --d-rule:    rgba(58, 58, 58, 0.14);
+  --d-measure: 760px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  background: var(--d-bg);
+  color: var(--d-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dd-hero,
+.dd-innhold,
+.dd-process,
+.dd-launch {
+  padding-left: clamp(16px, 6vw, 48px);
+  padding-right: clamp(16px, 6vw, 48px);
+}
+
+/* ===== HERO ===== */
+.dd-hero {
+  padding-top: clamp(4rem, 9vw, 7rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 45% 50% at 20% 20%, rgba(220, 133, 154, 0.18), transparent 70%),
+    radial-gradient(ellipse 45% 50% at 85% 35%, rgba(228, 186, 142, 0.35), transparent 70%);
+}
+
+.dd-eyebrow,
+.dd-summary-label,
+.dd-step-num {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--d-muted);
+}
+
+.dd-eyebrow { margin-bottom: 1.1rem; }
+
+.dd-hero-title {
+  font-size: clamp(3.2rem, 10vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--d-ink);
+  margin-bottom: 1rem;
+}
+
+.dd-hero-sub {
+  max-width: 32rem;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--d-text);
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+/* Klistremerkene: én rad som vugger litt når man holder over */
+.dd-hero-img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  transition: transform 0.4s ease;
+}
+
+.dd-hero-img:hover { transform: rotate(-1deg) scale(1.01); }
+
+/* ===== INNHOLD ===== */
+.dd-innhold {
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.dd-innhold > * {
+  max-width: var(--d-measure);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dd-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  border-top: 1px solid var(--d-rule);
+  border-bottom: 1px solid var(--d-rule);
+  padding: 1.25rem 0;
+  margin-bottom: 3.5rem;
+}
+
+.dd-summary-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.dd-summary-value { font-size: 0.95rem; color: var(--d-ink); }
+
+.dd-section { margin-bottom: 3rem; }
+
+.dd-section h2,
+.dd-cert-text h2,
+.dd-block-heading {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--d-ink);
+  margin-bottom: 0.9rem;
+}
+
+.dd-section p,
+.dd-cert-text p,
+.dd-step-text p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 0.9rem;
+}
+
+.dd-section p:last-child,
+.dd-step-text p:last-child { margin-bottom: 0; }
+
+/* ===== PROSESS ===== */
+.dd-process,
+.dd-launch {
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  background: var(--d-bg-2);
+}
+
+.dd-process-inner,
+.dd-launch-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dd-block-heading { margin-bottom: 2rem; }
+
+.dd-step {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(1.75rem, 5vw, 3.5rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.dd-step:last-child { margin-bottom: 0; }
+
+.dd-step--reverse .dd-step-media { order: 2; }
+
+.dd-step-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 18px 44px rgba(58, 58, 58, 0.14);
+}
+
+/* Skissen er papir: smalere, og litt skjev som om den ligger på bordet */
+.dd-step-media--paper img {
+  max-width: 380px;
+  margin: 0 auto;
+  border-radius: 6px;
+  transform: rotate(-2deg);
+}
+
+.dd-step-num {
+  display: block;
+  color: var(--d-pink-ink);
+  margin-bottom: 0.5rem;
+}
+
+.dd-step-text h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--d-ink);
+  margin-bottom: 0.7rem;
+}
+
+/* Digitale ender: hvit flate med anda sentrert, uten skygge på selve figuren */
+.dd-step-media--duck {
+  display: flex;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 16px;
+  background: var(--d-white);
+  box-shadow: 0 18px 44px rgba(58, 58, 58, 0.1);
+}
+
+.dd-step-media--duck img {
+  width: auto;
+  height: clamp(200px, 26vw, 300px);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* 03 Ferdig and: tre ender på rad, stående på samme linje */
+.dd-final { margin-top: clamp(2.5rem, 5vw, 4rem); }
+
+.dd-final-text {
+  max-width: 34rem;
+  margin-bottom: 1.75rem;
+}
+
+.dd-final-ducks {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(1.75rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem);
+  border-radius: 16px;
+  background: var(--d-white);
+  box-shadow: 0 18px 44px rgba(58, 58, 58, 0.1);
+}
+
+.dd-final-ducks img {
+  display: block;
+  width: auto;
+  max-width: 30%;
+  height: clamp(130px, 22vw, 260px);
+  object-fit: contain;
+}
+
+/* Is-anda er tegnet i helfigur og blir litt høyere, så kroppene får lik størrelse */
+.dd-final-ducks img:first-child { height: clamp(130px, 22vw, 260px); }
+
+/* ===== PRIMÆRFARGER ===== */
+.dd-swatches {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.dd-swatches li { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.dd-swatch {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: var(--c);
+  border: 1px solid var(--d-rule);
+}
+
+.dd-hex {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--d-muted);
+}
+
+/* ===== TILBEHØR ===== */
+.dd-card-img {
+  margin-top: 1.25rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border-radius: 16px;
+  background: var(--d-white);
+  border: 1px solid var(--d-rule);
+}
+
+.dd-card-img img { width: 100%; height: auto; display: block; }
+
+.dd-card-img--grey { background: #E9E6E4; }
+
+/* ===== LANSERING ===== */
+.dd-block-sub {
+  font-size: 1rem;
+  color: var(--d-muted);
+  margin: -1.25rem 0 2rem;
+}
+
+.dd-posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.dd-posts img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 18px 44px rgba(58, 58, 58, 0.14);
+}
+
+.dd-posts img:first-child { transform: rotate(-1.5deg); }
+.dd-posts img:last-child  { transform: rotate(1.5deg); }
+
+/* ===== SERTIFIKAT ===== */
+.dd-innhold--end { padding-top: clamp(3rem, 6vw, 4.5rem); }
+
+.dd-cert {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(1.75rem, 5vw, 3rem);
+  align-items: center;
+}
+
+.dd-cert-img img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 18px 44px rgba(58, 58, 58, 0.16);
+}
+
+/* ===== FORRIGE / NESTE ===== */
+.dd-case-nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3rem) clamp(16px, 6vw, 48px) clamp(4rem, 8vw, 6rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dd-case-nav .btn {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 15px;
+  color: var(--d-ink);
+  border-color: var(--d-ink);
+}
+
+.dd-case-nav .btn:hover {
+  background-color: var(--d-ink);
+  color: var(--d-bg);
+  box-shadow: 0 8px 24px rgba(58, 58, 58, 0.22);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 760px) {
+  .dd-step,
+  .dd-cert { grid-template-columns: 1fr; }
+  .dd-step--reverse .dd-step-media { order: 0; }
+  .dd-cert-text { text-align: center; }
+}
+
+@media (max-width: 700px) {
+  .dd-summary { grid-template-columns: repeat(2, 1fr); }
+  .dd-swatches { grid-template-columns: repeat(2, 1fr); }
+  .dd-posts { grid-template-columns: 1fr; }
+  .dd-posts img:first-child,
+  .dd-posts img:last-child { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-hero-img { transition: none; }
+  .dd-hero-img:hover { transform: none; }
+}

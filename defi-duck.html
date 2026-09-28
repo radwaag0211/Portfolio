@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <!-- Anti-FOUC for the curtain page-transition (see shared.js). -->
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('curtainNav') === '1') {
+          document.documentElement.classList.add('curtain-entering');
+          sessionStorage.removeItem('curtainNav');
+        }
+      } catch (e) { }
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defi Duck — Radwa Godor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="defi-duck.css" />
+</head>
+<body>
+
+  <div class="page-transition-curtain" aria-hidden="true"></div>
+
+  <header>
+    <a href="index.html" class="logo curtain-link">[Radwa Godor]<small>return: home</small></a>
+    <nav class="nav-links">
+      <a href="prosjekter.html" class="curtain-link">[class: prosjekter]<small>path: desktop_dash</small></a>
+      <a href="om-meg.html" class="curtain-link">[asset id: om meg]<small>username:radwaag</small></a>
+      <a href="cv.html" class="curtain-link">[super: CV]<small>section: experience_101</small></a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="dd-hero">
+    <p class="dd-eyebrow">Maskot · DEFI · 2024</p>
+    <h1 class="dd-hero-title">Defi Duck</h1>
+    <p class="dd-hero-sub">Da DEFI ønsket seg en maskot, var det på tide å skape vår lille venn.</p>
+
+    <img src="defi-duck.media/stickers.webp" width="1126" height="212" alt="Sju Defi Duck-klistremerker med ulike uttrykk: glad, med kaffekopp, med beret, forelsket, nøytral, smilende og sint" class="dd-hero-img" />
+  </section>
+
+  <!-- ===== INNHOLD ===== -->
+  <section class="dd-innhold">
+
+    <div class="dd-summary">
+      <div class="dd-summary-item">
+        <span class="dd-summary-label">Rolle</span>
+        <span class="dd-summary-value">PR-ansvarlig, skisser &amp; design</span>
+      </div>
+      <div class="dd-summary-item">
+        <span class="dd-summary-label">Team</span>
+        <span class="dd-summary-value">Internt designteam i DEFI</span>
+      </div>
+      <div class="dd-summary-item">
+        <span class="dd-summary-label">Type</span>
+        <span class="dd-summary-value">Maskot, grafisk design</span>
+      </div>
+      <div class="dd-summary-item">
+        <span class="dd-summary-label">År</span>
+        <span class="dd-summary-value">2024</span>
+      </div>
+    </div>
+
+    <div class="dd-section">
+      <h2>Om prosjektet</h2>
+      <p>
+        DEFI er linjeforeningen for Informatikk: design, bruk og interaksjon på UiO. Da jeg var PR-ansvarlig der i 2024, bestemte vi oss for å realisere en idé: å ha en egen maskot. Resultatet ble Defi Duck.
+      </p>
+      <p>
+        Jeg skisset de første ideene og designet dem videre sammen med resten av det interne designteamet. Etter noen runder med iterasjoner var Defi Duck klar.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ===== PROSESS ===== -->
+  <section class="dd-process">
+    <div class="dd-process-inner">
+
+      <h2 class="dd-block-heading">Prosessen</h2>
+
+      <div class="dd-step">
+        <figure class="dd-step-media dd-step-media--paper">
+          <img src="defi-duck.media/skisse_emotes.webp" width="812" height="968" loading="lazy" alt="Blyantskisse med tittelen Emotes, skisse nummer 3: fem ender med uttrykkene cool mood, sover, swag, woho og cooking" />
+        </figure>
+        <div class="dd-step-text">
+          <span class="dd-step-num">01</span>
+          <h3>Skisser</h3>
+          <p>Det startet med blyant og papir. Jeg tegnet ulike uttrykk og stemninger for anda: cool mood, søvnig, swag, woho og cooking.</p>
+        </div>
+      </div>
+
+      <div class="dd-step dd-step--reverse">
+        <figure class="dd-step-media dd-step-media--duck">
+          <img src="defi-duck.media/iterasjon_2.webp" width="237" height="388" loading="lazy" alt="Andre iterasjon av Defi Duck: digital and med halvlukkede, skeptiske øyne" />
+        </figure>
+        <div class="dd-step-text">
+          <span class="dd-step-num">02</span>
+          <h3>Andre iterasjon</h3>
+          <p>Sammen med designteamet ble skissene til en digital figur. Formen, nebbet og vingene fra skissene er med, og «cool mood»-blikket lever videre.</p>
+        </div>
+      </div>
+
+      <div class="dd-final">
+        <div class="dd-step-text dd-final-text">
+          <span class="dd-step-num">03</span>
+          <h3>Ferdig and</h3>
+          <p>Etter noen runder med iterasjoner var Defi Duck klar, med runde øyne og ulike roller og tilbehør.</p>
+        </div>
+        <div class="dd-final-ducks">
+          <img src="defi-duck.media/ferdig_is.webp" width="978" height="1610" loading="lazy" alt="Ferdig Defi Duck med en smeltende is" />
+          <img src="defi-duck.media/ferdig_paint_sip.webp" width="296" height="416" loading="lazy" alt="Ferdig Defi Duck i Paint &amp; Sip-utgave med beret, palett og glass" />
+          <img src="defi-duck.media/ferdig_dress.webp" width="299" height="403" loading="lazy" alt="Ferdig Defi Duck i lilla dress og slips som blunker og holder et glass" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== DESIGNSYSTEM ===== -->
+  <section class="dd-innhold">
+
+    <div class="dd-section">
+      <h2>Primærfarger</h2>
+      <ul class="dd-swatches">
+        <li><span class="dd-swatch" style="--c:#FFFCFB"></span><span class="dd-hex">#FFFCFB</span></li>
+        <li><span class="dd-swatch" style="--c:#E4BA8E"></span><span class="dd-hex">#E4BA8E</span></li>
+        <li><span class="dd-swatch" style="--c:#DC859A"></span><span class="dd-hex">#DC859A</span></li>
+        <li><span class="dd-swatch" style="--c:#3A3A3A"></span><span class="dd-hex">#3A3A3A</span></li>
+      </ul>
+    </div>
+
+    <div class="dd-section">
+      <h2>Tilbehør</h2>
+      <p>Små gjenstander som gir anda en rolle: kokkelue, is, beret, briller, drink og mer.</p>
+      <figure class="dd-card-img dd-card-img--grey">
+        <img src="defi-duck.media/tilbehor.webp" width="708" height="174" loading="lazy" alt="Tilbehør til Defi Duck: kokkelue, is, beret, rosa briller, solbriller, drinkglass og en liten kopp" />
+      </figure>
+    </div>
+
+  </section>
+
+  <!-- ===== LANSERING ===== -->
+  <section class="dd-launch">
+    <div class="dd-launch-inner">
+      <h2 class="dd-block-heading">Lanseringen</h2>
+      <p class="dd-block-sub">Defi Duck ble presentert med et eget innlegg, og PR-teamet feiret litt.</p>
+
+      <div class="dd-posts">
+        <img src="defi-duck.media/intro_post.webp" width="886" height="886" loading="lazy" alt="Innlegg med teksten «DEFI introduserer Defi-duck» og anda med navnelapp: Heisann, jeg heter Defi-Duck" />
+        <img src="defi-duck.media/pr_team.webp" width="886" height="886" loading="lazy" alt="Meme med teksten «Oss i PR-team fordi vi slay'a Defi-Duck» og en fornøyd strekfigur som peker" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERTIFIKAT ===== -->
+  <section class="dd-innhold dd-innhold--end">
+    <div class="dd-cert">
+      <figure class="dd-cert-img">
+        <img src="defi-duck.media/sertifikat.webp" width="804" height="1270" loading="lazy" alt="Certificate of Appreciation fra DEFI til Radwa Godor, datert 23.10.24" />
+      </figure>
+      <div class="dd-cert-text">
+        <h2>Sertifikat</h2>
+        <p>For arbeidet som PR-ansvarlig fikk jeg et <em>Certificate of Appreciation</em> fra DEFI, datert 23.10.24.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="dd-case-nav" aria-label="Flere prosjekter">
+    <a href="prosjekter.html" class="btn btn-outline curtain-link">← Alle prosjekter</a>
+    <a href="busken.html" class="btn btn-outline curtain-link">Neste: Busken →</a>
+  </nav>
+
+  <script src="shared.js"></script>
+</body>
+</html>

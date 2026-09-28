@@ -7,6 +7,7 @@
      - case.css        → case-study pages (sunsaver, catgym, friendverse, busken)
      - fanous.css      → fanous.html only
      - korok-timer.css → korok-timer.html only
+     - defi-duck.css   → defi-duck.html only
      - cv.css          → cv.html only
    Only genuinely shared/reusable pieces live here: CSS variables, reset, the base
    (static, normal-size) header + curtain page-transition, buttons, footer. */

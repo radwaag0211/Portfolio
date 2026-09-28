@@ -21,10 +21,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&family=Fredoka:wght@600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="case.css" />
+  <link rel="stylesheet" href="friendverse.css" />
 </head>
 
 <body>
@@ -47,67 +48,214 @@
     </nav>
   </header>
 
-  <main class="ss-case">
-    <!-- 1. INTRO — kicker + stor tittel + hovedbilde -->
-    <section class="section ss-hero-section">
+  <main class="ss-case fv">
+    <!-- 1. FORSIDE — fra «FriendVerse – forside»-tegnebrettet -->
+    <section class="fv-hero">
+      <svg class="fv-hero__lines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <g stroke="#8E9AE0" stroke-width="1.5" opacity="0.45" fill="none">
+          <line x1="700" y1="120" x2="1440" y2="40" />
+          <line x1="760" y1="0" x2="1100" y2="900" />
+          <line x1="1440" y1="300" x2="820" y2="760" />
+          <line x1="980" y1="0" x2="1440" y2="620" />
+          <line x1="640" y1="900" x2="1240" y2="80" />
+        </g>
+      </svg>
 
-      <div class="ss-hero-top" data-reveal>
-        <span class="kicker">UX-PROSJEKT · MOBILAPPLIKASJON · 2023</span>
-        <h1 class="ss-hero-title"><span class="ss-hero-title__a">Friend</span><span class="ss-hero-title__b">Verse</span></h1>
+      <div class="fv-hero__inner">
+
+        <div class="fv-hero__text" data-reveal>
+          <span class="fv-hero__kicker">Studentprosjekt · IN1050, UiO · 2023</span>
+          <h1 class="fv-hero__title">Friend<br /><span>Verse</span></h1>
+          <p class="fv-hero__intro">En chat-app som bryter ned språkbarrierer i lagspill, slik at venner forstår hverandre uansett språk.</p>
+          <ul class="fv-tags" aria-label="Metoder">
+            <li class="fv-tag">Brukerintervju</li>
+            <li class="fv-tag">Wireframes</li>
+            <li class="fv-tag">Prototyping i Figma</li>
+          </ul>
+        </div>
+
+        <div class="fv-hero__media" data-reveal>
+          <div class="fv-hero__blob" aria-hidden="true"></div>
+          <img class="fv-phone fv-phone--left" src="friendverse.media/skjerm_velkommen.webp" width="408" height="878" alt="" />
+          <img class="fv-phone fv-phone--right" src="friendverse.media/skjerm_chat.webp" width="406" height="878" alt="" />
+          <img class="fv-phone fv-phone--main" src="friendverse.media/skjerm_hjem.webp" width="408" height="878" alt="FriendVerse hjemskjerm med chatter og sist spilte spill" />
+          <p class="fv-hero__bubble">Inviter venner og lag et dream team!</p>
+        </div>
+
       </div>
-
-      <div class="ss-hero-media" data-reveal>
-        <img src="friendverse.media/friendverse_preview.webp" width="1500" height="1125" alt="FriendVerse-skjermer" />
-      </div>
-
     </section>
 
-    <!-- 2. LEAD + INTRO -->
+    <!-- 2. LEAD -->
     <section class="section">
       <div class="stack">
 
-        <p class="lead" data-reveal>FriendVerse er en app som gjør det mulig for venner på nettet å kommunisere med hverandre, uavhengig av språk.</p>
-        <p class="prose" data-reveal>Målet er å bryte ned språkbarrierer og gjøre global vennskap mer tilgjengelig.</p>
+        <p class="lead" data-reveal>FriendVerse er en chat-app for venner som spiller sammen, der meldinger oversettes til språket hver enkelt velger.</p>
+        <p class="prose" data-reveal>Innsikten viste at spillchatter er vanskelige å bruke, og at misforståelser oppstår når lagkamerater ikke deler språk. FriendVerse samler venner, team og chat på ett sted, med oversettelse bygget inn. Venner legges til med QR-kode eller friendcode.</p>
 
       </div>
     </section>
 
-    <!-- 3. ROLLE / TYPE -->
+    <!-- 3. ROLLE, TYPE, LEVERANSE -->
     <section class="section">
       <div class="stack">
 
         <div class="section__head" data-reveal>
-          <h2 class="section__title">Rolle, type &amp; status</h2>
+          <h2 class="section__title">Rolle, type &amp; leveranse</h2>
         </div>
 
         <div class="cols">
           <div class="col" data-reveal>
             <span class="label">Min rolle</span>
-            <p>UX Designer.</p>
+            <p>Interaksjonsdesigner.<br />Innsikt, behov, wireframes og prototype.</p>
           </div>
           <div class="col" data-reveal>
             <span class="label">Type</span>
-            <p>Mobilapplikasjon.</p>
+            <p>Individuelt studentprosjekt.<br />IN1050, UiO, høsten 2023.</p>
           </div>
           <div class="col" data-reveal>
-            <span class="label">Status</span>
-            <p>Under utvikling.</p>
+            <span class="label">Leveranse</span>
+            <p>Lo-fi wireframes på papir.<br />Hi-fi-prototype i Figma, 7 skjermer.</p>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- LÆRING -->
+    <!-- 4. DESIGNPROSESS -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="fv-process__head">
+          <div class="section__head" data-reveal>
+            <span class="kicker">FriendVerse · Prosess</span>
+            <h2 class="section__title">Designprosessen</h2>
+          </div>
+          <p class="fv-process__intro" data-reveal>En iterativ prosess fra brukerinnsikt til prototype, der hvert steg bygget på det forrige.</p>
+        </div>
+
+        <ol class="fv-steps">
+          <li class="fv-step" data-reveal>
+            <div class="fv-step__media">
+              <img src="friendverse.media/affinity_diagram.webp" width="706" height="560" loading="lazy" alt="Affinitetsdiagram med post-it-lapper om fysiske spill, online spill og forskjellen mellom dem" />
+            </div>
+            <span class="fv-step__num" aria-hidden="true">01</span>
+            <h3 class="fv-step__title">Innsikt</h3>
+            <p>Pilotintervju og semistrukturert hovedintervju med en ung spiller. Rådataene analyserte jeg med åpen koding og affinitetsdiagram.</p>
+          </li>
+          <li class="fv-step" data-reveal>
+            <div class="fv-step__media">
+              <img src="friendverse.media/behov.webp" width="647" height="499" loading="lazy" alt="Tre behov skrevet på post-it-lapper under overskriften Behov" />
+            </div>
+            <span class="fv-step__num" aria-hidden="true">02</span>
+            <h3 class="fv-step__title">Behov</h3>
+            <p>Analysen avdekket tre behov. Jeg prioriterte forståelse, gjorde det konkret med persona og scenario, og formulerte krav som enkelhet og tilgjengelighet.</p>
+          </li>
+          <li class="fv-step" data-reveal>
+            <div class="fv-step__media">
+              <img src="friendverse.media/skisser_2.webp" width="800" height="550" loading="lazy" alt="Skisser av innlogging, hjemskjerm og team" />
+              <img src="friendverse.media/skisser_1.webp" width="906" height="516" loading="lazy" alt="Skisser av ny chat, chat med oversettelse og venneliste" />
+            </div>
+            <span class="fv-step__num" aria-hidden="true">03</span>
+            <h3 class="fv-step__title">Wireframes</h3>
+            <p>Lo-fi wireframes på papir for å utforske flyt og struktur: innlogging, hjem, team, chat og venner.</p>
+          </li>
+          <li class="fv-step" data-reveal>
+            <div class="fv-step__media fv-step__media--screen">
+              <img src="friendverse.media/skjerm_team.webp" width="408" height="878" loading="lazy" alt="Prototypen i Figma: oversikt over team" />
+            </div>
+            <span class="fv-step__num" aria-hidden="true">04</span>
+            <h3 class="fv-step__title">Prototype</h3>
+            <p>Hi-fi-prototype i Figma, med eget visuelt uttrykk, maskot og navigasjon bygget på kjente mønstre.</p>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- 5. FERDIG PRODUKT -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Ferdig produkt</h2>
+        </div>
+
+        <p class="prose" data-reveal>Velkomstskjermen introduserer maskoten og innloggingen. Hjemskjermen gir oversikt over chatter og sist spilte spill. Derfra kan brukeren samle venner i team, chatte med automatisk oversettelse og legge til venner med QR-kode eller friendcode.</p>
+
+        <ul class="fv-screens" data-reveal>
+          <li><img src="friendverse.media/skjerm_velkommen.webp" width="408" height="878" loading="lazy" alt="Velkomstskjerm med innlogging og maskoten" /><span>Velkommen</span></li>
+          <li><img src="friendverse.media/skjerm_hjem.webp" width="408" height="878" loading="lazy" alt="Hjemskjerm med chatter og sist spilte spill" /><span>Hjem</span></li>
+          <li><img src="friendverse.media/skjerm_team.webp" width="408" height="878" loading="lazy" alt="Oversikt over team" /><span>Team</span></li>
+          <li><img src="friendverse.media/skjerm_chat.webp" width="406" height="878" loading="lazy" alt="Chat i Team Blue" /><span>Chat</span></li>
+          <li><img src="friendverse.media/skjerm_venner.webp" width="564" height="1220" loading="lazy" alt="Liste over venner med brukernavn og friendcode" /><span>Venner</span></li>
+          <li><img src="friendverse.media/skjerm_legg_til.webp" width="566" height="1220" loading="lazy" alt="Legg til venn med QR-kode eller friendcode" /><span>Legg til venn</span></li>
+          <li><img src="friendverse.media/skjerm_ny_chat.webp" width="566" height="1220" loading="lazy" alt="Opprett ny chat, med maskoten som inviterer til å lage et team" /><span>Ny chat</span></li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- 6. DESIGNVALG -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Designvalg</h2>
+        </div>
+
+        <div class="cols">
+          <div class="col" data-reveal>
+            <span class="label">Affordance</span>
+            <p>Kjente ikoner for hjem, venner og ny chat gjør funksjonen tydelig uten instruksjoner.</p>
+          </div>
+          <div class="col" data-reveal>
+            <span class="label">Konsistens</span>
+            <p>Navigasjonen ligger alltid nederst, med de samme ikonene på hver skjerm.</p>
+          </div>
+          <div class="col" data-reveal>
+            <span class="label">Synlighet</span>
+            <p>Kontrast og skygge viser hva som er trykkbart, og dempede farger gjør chatten behagelig å lese.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. UTFORDRINGER -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Utfordringer</h2>
+        </div>
+
+        <div class="prose-list">
+          <div class="prose-item" data-reveal>
+            <span class="eyebrow">Intervju</span>
+            <h3 class="col__title col__title--lg">Pilotintervjuet avdekket svake spørsmål</h3>
+            <p class="prose">Det varte bare ti minutter, fordi spørsmålene var vanskelige å svare på. Jeg justerte intervjuguiden med mer åpne spørsmål om spillopplevelser, og fikk rikere data i hovedintervjuet.</p>
+          </div>
+          <div class="prose-item" data-reveal>
+            <span class="eyebrow">Visuelt</span>
+            <h3 class="col__title col__title--lg">Kontrast uten å slite på øynene</h3>
+            <p class="prose">Lyse og mørke farger er krevende å kombinere. Dempede farger ga nok kontrast til å skille elementene, uten å bli slitsomt i lange chatter.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. LÆRING -->
     <section class="section">
       <div class="split">
 
         <div class="split__aside" data-reveal>
-          <h2 class="section__title">Mer kommer</h2>
+          <h2 class="section__title">Læring</h2>
         </div>
 
         <div class="split__body">
-          <p class="pull" data-reveal>Denne case-studien er under utvikling. Mer innhold kommer snart.</p>
+          <p class="pull" data-reveal>Gode designvalg starter med å forstå brukerens behov.</p>
+          <p class="prose" data-reveal>Prosjektet ga meg et grunnlag i interaksjonsdesign, med prinsipper som affordance, konsistens og synlighet. Jeg lærte å planlegge brukerundersøkelser og å jobbe iterativt, fra intervju og analyse til behov, krav, wireframes og prototype, for å avdekke hva brukeren faktisk trenger.</p>
         </div>
 
       </div>

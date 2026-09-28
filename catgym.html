@@ -21,10 +21,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="case.css" />
+  <link rel="stylesheet" href="catgym.css" />
 </head>
 
 <body>
@@ -47,117 +48,223 @@
     </nav>
   </header>
 
-  <main class="ss-case">
-    <!-- 1. INTRO — kicker + stor tittel + hovedbilde -->
-    <section class="section ss-hero-section">
+  <main class="ss-case cg">
+    <!-- 1. FORSIDE — Pawtential-hero (fra «Forside»-tegnebrettet) -->
+    <section class="cg-hero">
+      <div class="cg-hero__inner">
 
-      <div class="ss-hero-top" data-reveal>
-        <span class="kicker">STUDENTPROSJEKT · ARDUINO / FYSISK PROTOTYPE · 2024</span>
-        <h1 class="ss-hero-title"><span class="ss-hero-title__a">Cat</span><span class="ss-hero-title__b">Gym</span></h1>
+        <div class="cg-hero__text" data-reveal>
+          <img class="cg-hero__logo" src="catgym.media/pawtential_logo.webp" width="600" height="253" alt="Pawtential" />
+          <div class="cg-hero__copy">
+            <span class="kicker">Studentprosjekt · Arduino / fysisk prototype · IN1060, UiO</span>
+            <h1 class="cg-hero__title">Cat<br />Gym</h1>
+            <p class="cg-hero__intro">Katter trenger stimulering hver dag, men mange katteeiere har ikke tid eller energi til å leke med katten jevnlig. CatGym bidrar til å løse dette problemet.</p>
+            <div class="cg-hero__links">
+              <a class="btn btn-outline cg-hero__report" href="https://www.uio.no/studier/emner/matnat/ifi/IN1060/v24/prosjektgrupper/pawtential/pawtential_grupperapport.pdf" target="_blank" rel="noopener noreferrer">Les grupperapporten (PDF) <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-outline cg-hero__report" href="https://www.uio.no/studier/emner/matnat/ifi/IN1060/v24/prosjektgrupper/pawtential/" target="_blank" rel="noopener noreferrer">Prosjektsiden på UiO <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <ul class="cg-tags" aria-label="Metoder">
+            <li class="cg-tag">Brukersentrert design</li>
+            <li class="cg-tag">Fysisk prototyping</li>
+            <li class="cg-tag">Brukertesting</li>
+          </ul>
+        </div>
+
+        <div class="cg-hero__media" data-reveal>
+          <div class="cg-hero__blob" aria-hidden="true"></div>
+          <img class="cg-hero__photo" src="catgym.media/katt_leker.webp" width="1043" height="1400" alt="En katt reiser seg på bakbena og leker med lekene som henger fra CatGym" />
+          <figure class="cg-hero__polaroid">
+            <img src="catgym.media/artefakt_ferdig.webp" width="998" height="1306" alt="Det ferdige artefaktet med sisalbase, stolpe i jutetau og hengende leker" />
+            <figcaption>Det ferdige artefaktet</figcaption>
+          </figure>
+        </div>
+
       </div>
-
-      <div class="ss-hero-media" data-reveal>
-        <img src="catgym.media/catgym_preview.webp" width="1500" height="1125" alt="CatGym prototype" />
-      </div>
-
     </section>
 
-    <!-- 2. LEAD + INTRO -->
+    <!-- 2. LEAD -->
     <section class="section">
       <div class="stack">
 
-        <p class="lead" data-reveal>CatGym — Pawtential er et prosjekt der en gruppe katteentusiaster utforsket potensialet til Arduino, og hvordan vi kan bruke og forme teknologien for livlige katteeiere som ønsker å skape et sterkere bånd med sin pus.</p>
-        <p class="prose" data-reveal>Prosjektet kombinerte fysisk prototyping med interaksjonsdesign for å skape en responsiv treningsopplevelse der artefaktet reagerer på kattens bevegelser.</p>
+        <p class="lead" data-reveal>CatGym er et klorestativ som slår seg på når katten tråkker på det.</p>
+        <p class="prose" data-reveal>Med IN1060-temaet «av og på» som ramme designet vi i Pawtential en automatisert artefakt sammen med fire katteeiere, gjennom fire iterasjoner på fire måneder.</p>
 
       </div>
     </section>
 
-    <!-- 3. ROLLE / TYPE -->
+    <!-- 3. ROLLE, TEAM, LEVERANSE -->
     <section class="section">
       <div class="stack">
 
         <div class="section__head" data-reveal>
-          <h2 class="section__title">Rolle, type &amp; verktøy</h2>
+          <h2 class="section__title">Rolle, team &amp; leveranse</h2>
         </div>
 
         <div class="cols">
           <div class="col" data-reveal>
             <span class="label">Min rolle</span>
-            <p>Interaksjonsdesigner &amp; prototyper.<br />Mitt bidrag var å utvikle og implementere interaksjons- og tekniske løsninger, særlig knyttet til Arduino-komponenter. Jeg omsatte konsepter til fungerende prototyper og raffinerte hvordan artefaktet responderte på kattens bevegelser.</p>
+            <p>Interaksjonsdesigner &amp; prototyper.<br />Interaksjonen med Arduino.<br />Fra konsept til fungerende prototype.</p>
           </div>
           <div class="col" data-reveal>
-            <span class="label">Type</span>
-            <p>Fysisk prototype.</p>
+            <span class="label">Team</span>
+            <p>5 studenter i Pawtential.<br />4 katteeiere som meddesignere.</p>
           </div>
           <div class="col" data-reveal>
-            <span class="label">Verktøy</span>
-            <p>Arduino, Figma.</p>
+            <span class="label">Leveranse</span>
+            <p>Fysisk artefakt.<br />Arduino Uno, vektsensor og mikroservo.</p>
           </div>
+        </div>
+
+        <div class="media-pair">
+          <figure class="block block--img" data-reveal>
+            <img src="catgym.media/team_prototyping.webp" width="1254" height="1400" loading="lazy" alt="Gruppen skjærer ut pappdeler til prototypen" />
+          </figure>
+          <figure class="block block--img" data-reveal>
+            <img src="catgym.media/kattene.webp" width="1168" height="742" loading="lazy" alt="Kattene i prosjektet: Iris, Nicolai, Silvester, Mango og Amor" />
+          </figure>
         </div>
 
       </div>
     </section>
 
-    <!-- 4. DESIGNPROSESS -->
+    <!-- 4. DESIGNPROSESS — fra «Designprosessen»-tegnebrettet -->
     <section class="section">
-      <div class="stack stack--wide">
+      <div class="stack">
+
+        <div class="cg-process__head">
+          <div class="section__head" data-reveal>
+            <span class="kicker">CatGym · Prosess</span>
+            <h2 class="section__title">Designprosessen</h2>
+          </div>
+          <p class="cg-process__intro" data-reveal>Fra intervjuer og workshop med katteeiere, via pappmodeller, til et ferdig artefakt kattene faktisk ville leke med.</p>
+        </div>
+
+        <ol class="cg-steps">
+          <li class="cg-step" data-reveal>
+            <div class="cg-step__media">
+              <img src="catgym.media/affinity_diagram.webp" width="1400" height="1042" loading="lazy" alt="Affinitetsdiagram med post-it-lapper under tid, regulering, påminnelse og rutiner" />
+            </div>
+            <span class="cg-step__num" aria-hidden="true">01</span>
+            <h3 class="cg-step__title">Innsikt</h3>
+            <p>Intervjuer med fire katteeiere, kodet og sortert i et affinitetsdiagram. Behovet som gikk igjen var stimulering og utløp for jaktinstinktet.</p>
+          </li>
+          <li class="cg-step" data-reveal>
+            <div class="cg-step__media">
+              <img class="cg-step__img--top" src="catgym.media/workshop.webp" width="1034" height="1178" loading="lazy" alt="Katteeiere og gruppen skisserer idéer rundt et bord" />
+              <img src="catgym.media/workshop_bord.webp" width="1400" height="847" loading="lazy" alt="Skisser, fargeblyanter og post-it-lapper på workshopbordet" />
+            </div>
+            <span class="cg-step__num" aria-hidden="true">02</span>
+            <h3 class="cg-step__title">Workshop</h3>
+            <p>Katteeierne skisserte egne idéer sammen med oss. En automatisk tryllestav, inspirert av babygym, ble til CatGym.</p>
+          </li>
+          <li class="cg-step" data-reveal>
+            <div class="cg-step__media">
+              <img src="catgym.media/prototype_1.webp" width="1129" height="1400" loading="lazy" alt="Prototype med stolpe og arm i jutetau på en stoffkledd base" />
+            </div>
+            <span class="cg-step__num" aria-hidden="true">03</span>
+            <h3 class="cg-step__title">Prototyping</h3>
+            <p>Papp og papprør før treverk. Vi valgte vektsensor fordi den, i motsetning til lys- og ultralydsensor, ikke forveksler katt og menneske.</p>
+          </li>
+          <li class="cg-step" data-reveal>
+            <div class="cg-step__media">
+              <img src="catgym.media/katt_tester.webp" width="1150" height="1400" loading="lazy" alt="En katt utforsker sisalbasen mens lekene svinger fra armen" />
+            </div>
+            <span class="cg-step__num" aria-hidden="true">04</span>
+            <h3 class="cg-step__title">Testing</h3>
+            <p>Testet hjemme hos kattene. Først unngikk de platen, men med sisal på toppen gikk de rett bort til den, uten godbiter.</p>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- 5. FERDIG PRODUKT + MATERIALER -->
+    <section class="section">
+      <div class="stack">
 
         <div class="section__head" data-reveal>
-          <h2 class="section__title">Designprosess</h2>
+          <h2 class="section__title">Ferdig produkt</h2>
         </div>
 
-        <article class="case">
-          <div class="case__aside" data-reveal>
-            <span class="eyebrow">Steg 01</span>
-            <h3 class="case__title">Affinitetsdiagram</h3>
-            <figure class="block block--1x1" data-lift>
-            </figure>
-          </div>
-          <div class="case__body">
-            <p class="prose" data-reveal>Samlet inn data om katteatferd og eierbehov. Strukturerte funnene i et affinitetsdiagram for å identifisere mønstre og muligheter.</p>
-          </div>
-        </article>
+        <p class="prose" data-reveal>Når katten tråkker på platen, registrerer vektsensoren over 200 gram og slår CatGym på. Armen roterer 180 grader, så lekene «flyr» og bjellene ringer. Etter ett minutt slår den seg av, til katten aktiverer den igjen. En av/på-knapp og en reset-knapp gir eieren kontroll.</p>
 
-        <article class="case">
-          <div class="case__aside" data-reveal>
-            <span class="eyebrow">Steg 02</span>
-            <h3 class="case__title">Konseptutforskning</h3>
-            <figure class="block block--4x3" data-lift>
-            </figure>
+        <div class="cg-materials" data-reveal>
+          <figure class="cg-materials__swatch">
+            <img src="catgym.media/sisal.webp" width="1014" height="1174" loading="lazy" alt="Nærbilde av sisalmatten" />
+            <figcaption>Sisal – nærbilde</figcaption>
+          </figure>
+          <div class="cg-materials__body">
+            <div class="cg-materials__text">
+              <div>
+                <span class="kicker">CatGym · Materialer</span>
+                <h3 class="cg-materials__title">Hva vi<br />bygde med</h3>
+              </div>
+              <ol class="cg-materials__list">
+                <li><span class="cg-materials__num" aria-hidden="true">01</span><span><span class="cg-materials__name">Sisalmatte</span><span class="cg-materials__desc">Klorflate på toppen av basen</span></span></li>
+                <li><span class="cg-materials__num" aria-hidden="true">02</span><span><span class="cg-materials__name">Jutetau</span><span class="cg-materials__desc">Tvinnet rundt stolpen og lekearmen</span></span></li>
+                <li><span class="cg-materials__num" aria-hidden="true">03</span><span><span class="cg-materials__name">Fjærleker og heklede stjerner</span><span class="cg-materials__desc">Henger i snor fra hver ende av armen</span></span></li>
+                <li><span class="cg-materials__num" aria-hidden="true">04</span><span><span class="cg-materials__name">Laserkuttet treboks</span><span class="cg-materials__desc">Basen som huser elektronikken</span></span></li>
+              </ol>
+            </div>
+            <img class="cg-materials__photo" src="catgym.media/artefakt_vindu.webp" width="1198" height="1400" loading="lazy" alt="Artefaktet i sollys, med sisal, jutetau og leker" />
           </div>
-          <div class="case__body">
-            <p class="prose" data-reveal>Testet flere formkonsepter med inspirasjon fra babygym, bygningskraner og fuglehus. Ulike tilnærminger ble utforsket for å finne den mest engasjerende løsningen for katter.</p>
-          </div>
-        </article>
-
-        <article class="case">
-          <div class="case__aside" data-reveal>
-            <span class="eyebrow">Steg 03</span>
-            <h3 class="case__title">Lavfidelitets-prototype</h3>
-            <figure class="block block--1x1" data-lift>
-            </figure>
-          </div>
-          <div class="case__body">
-            <p class="prose" data-reveal>Bygde enkle fysiske prototyper for å teste funksjonalitet og kattens engasjement raskt, uten å investere for mye i ett konsept.</p>
-          </div>
-        </article>
-
-        <article class="case">
-          <div class="case__aside" data-reveal>
-            <span class="eyebrow">Steg 04</span>
-            <h3 class="case__title">Iterativ raffinering</h3>
-            <figure class="block block--4x3" data-lift>
-            </figure>
-          </div>
-          <div class="case__body">
-            <p class="prose" data-reveal>Observerte katter i samspill med prototypen og itererte på design og mekanikk. Forenklet løsningen der kompleksitet gikk ut over stabilitet.</p>
-          </div>
-        </article>
+        </div>
 
       </div>
     </section>
 
-    <!-- LÆRING -->
+    <!-- 6. RESULTAT -->
+    <section class="section">
+      <div class="split">
+
+        <div class="split__aside" data-reveal>
+          <h2 class="section__title">Resultat</h2>
+        </div>
+
+        <div class="split__body">
+          <p class="pull" data-reveal>«Det ser ut som de har lekt med den mye nå, men trenger å sove litt for å kunne leke mer.»</p>
+          <p class="prose" data-reveal>I siste test slo den ene katten CatGym på med sin egen vekt, og den andre jaktet på fuglene. Eieren ville beholde CatGym hjemme etter prosjektet.</p>
+          <div class="stats" data-reveal>
+            <div class="stat">
+              <span class="stat__value" data-count="4">4</span>
+              <span class="stat__label">Iterasjoner</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value" data-count="4">4</span>
+              <span class="stat__label">Katteeiere som meddesignere</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. UTFORDRINGER -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Utfordringer</h2>
+        </div>
+
+        <div class="prose-list">
+          <div class="prose-item" data-reveal>
+            <span class="eyebrow">Brukerne</span>
+            <h3 class="col__title col__title--lg">Å designe for noe uforutsigbart</h3>
+            <p class="prose">Katter kan ikke si hva de synes, og humøret varierer fra dag til dag. Vi måtte observere og tolke atferd.</p>
+          </div>
+          <div class="prose-item" data-reveal>
+            <span class="eyebrow">Interaksjon</span>
+            <h3 class="col__title col__title--lg">Få katten til å tråkke på platen</h3>
+            <p class="prose">Kattene unngikk platen først. Sisal ga dem en grunn til å gå på den, uten godbiter.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. LÆRING -->
     <section class="section">
       <div class="split">
 
@@ -167,7 +274,7 @@
 
         <div class="split__body">
           <p class="pull" data-reveal>«Enkle, robuste løsninger gir ofte bedre brukeropplevelse enn mer avanserte, men ustabile funksjoner.»</p>
-          <p class="prose" data-reveal>Prosjektet lærte meg verdien av iterativt design og brukertilpasning — ikke bare for mennesker, men også for dyr. Jeg fikk innsikt i hvordan teknisk kompleksitet påvirker designbeslutninger, og at det å holde løsningen enkel og robust er vel så viktig som å legge til funksjoner.</p>
+          <p class="prose" data-reveal>Prosjektet lærte meg verdien av iterativt design og brukertilpasning. Jeg fikk innsikt i hvordan teknisk kompleksitet påvirker designbeslutninger, og at det å holde løsningen enkel og robust er vel så viktig som å legge til funksjoner.</p>
         </div>
 
       </div>

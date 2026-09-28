@@ -21,10 +21,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&family=Barlow+Condensed:wght@600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="case.css" />
+  <link rel="stylesheet" href="busken.css" />
 </head>
 
 <body>
@@ -47,33 +48,245 @@
     </nav>
   </header>
 
-  <main class="ss-case">
-    <!-- 1. INTRO — kicker + stor tittel + hovedbilde -->
-    <section class="section ss-hero-section">
-
-      <div class="ss-hero-top" data-reveal>
-        <span class="kicker">UX-PROSJEKT · MOCKUP · 2026</span>
-        <h1 class="ss-hero-title"><span class="ss-hero-title__a">Busken</span><span class="ss-hero-title__b"></span></h1>
+  <main class="ss-case bu">
+    <!-- 1. FORSIDE — fra «Busken – forside»-tegnebrettet -->
+    <section class="bu-hero">
+      <div class="bu-hero__inner" data-reveal>
+        <h1 class="bu-hero__logo"><img src="busken.media/logo.webp" width="326" height="321" alt="busken" /></h1>
+        <div class="bu-hero__text">
+          <span class="bu-hero__kicker">Team PHO · BEKK UX Cup · 2026</span>
+          <p class="bu-hero__title">Ryddeaksjoner,<br />gjort enkelt.</p>
+          <p class="bu-hero__intro">En app som gjør det enkelt å finne, melde seg på og arrangere ryddeaksjoner i nærområdet.</p>
+        </div>
       </div>
 
-      <div class="ss-hero-media ss-hero-media--empty" data-reveal aria-hidden="true">
-        <span>[ under arbeid ]</span>
-      </div>
-
+      <ul class="bu-hedge" data-reveal>
+          <li><img src="busken.media/skjerm_sms.webp" width="399" height="822" alt="SMS-invitasjon fra busken" /></li>
+          <li><img src="busken.media/skjerm_hjem.webp" width="478" height="986" alt="Hjemskjermen med kommende ryddeaksjoner" /></li>
+          <li><img src="busken.media/skjerm_utforsk.webp" width="401" height="827" alt="Utforsk ryddeaksjoner i nærheten" /></li>
+          <li><img src="busken.media/skjerm_kart.webp" width="431" height="888" alt="Kart over ryddeaksjoner i Oslo" /></li>
+          <li><img src="busken.media/skjerm_aksjon.webp" width="464" height="956" alt="Resultat fra ryddeaksjonen i Ekebergskogen" /></li>
+          <li><img src="busken.media/skjerm_profil.webp" width="404" height="833" alt="Profil med statistikk og merker" /></li>
+      </ul>
     </section>
 
-    <!-- 2. LEAD + INTRO -->
+    <!-- 2. LEAD -->
     <section class="section">
       <div class="stack">
 
-        <p class="lead" data-reveal>Mockup under arbeid. Mer kommer snart.</p>
+        <p class="lead" data-reveal>Busken samler ryddeaksjoner, påmelding og gjenbruk på ett sted.</p>
+        <p class="prose" data-reveal>Caset kom fra BEKK UX Cup, der team PHO endte på 5. plass. Vi var fornøyde med konseptet, og valgte å jobbe videre med wireframes for hele appen etter konkurransen.</p>
 
       </div>
     </section>
 
-    <!-- Når Busken er klar: kopier seksjonene "Rolle, team & leveranse", "Designprosess"
-         og "Læring" fra sunsaver.html eller catgym.html hit og fyll inn. Stilen kommer fra
-         case.css, så de ser like ut automatisk. -->
+    <!-- 3. ROLLE, TEAM, LEVERANSE -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Rolle, team &amp; leveranse</h2>
+        </div>
+
+        <div class="cols">
+          <div class="col" data-reveal>
+            <span class="label">Min rolle</span>
+            <p>Interaksjonsdesigner.<br />Innsikt, konsept og wireframes.</p>
+          </div>
+          <div class="col" data-reveal>
+            <span class="label">Team</span>
+            <p>Team PHO: 3 designere.<br />Mikka, Jenny og Radwa.</p>
+          </div>
+          <div class="col" data-reveal>
+            <span class="label">Leveranse</span>
+            <p>Konsept i BEKK UX Cup.<br />Wireframes i Figma, 14 skjermer.</p>
+          </div>
+        </div>
+
+        <div class="media-pair bu-pair">
+          <figure class="block block--img" data-reveal>
+            <img src="busken.media/team.webp" width="770" height="920" loading="lazy" alt="Team PHO: Radwa, Jenny og Mikka under BEKK UX Cup" />
+          </figure>
+          <figure class="block block--img" data-reveal>
+            <img src="busken.media/pho_bord.webp" width="672" height="762" loading="lazy" alt="Arbeidsbordet på UX Cup-dagen, med PHO-skiltet, post-it-lapper og busken-caset" />
+          </figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. DESIGNPROSESS -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="bu-process__head">
+          <div class="section__head" data-reveal>
+            <span class="kicker">Busken · Prosess</span>
+            <h2 class="section__title">Designprosessen</h2>
+          </div>
+          <p class="bu-process__intro" data-reveal>Fra én konkurransedag til en gjennomarbeidet wireframe, bygget på to brukerprofiler.</p>
+        </div>
+
+        <ol class="bu-steps">
+          <li class="bu-step" data-reveal>
+            <div class="bu-step__media bu-step__media--logo">
+              <img src="busken.media/logo.webp" width="326" height="321" loading="lazy" alt="Busken-logoen" />
+            </div>
+            <span class="bu-step__num" aria-hidden="true">01</span>
+            <h3 class="bu-step__title">Caset</h3>
+            <p>BEKK UX Cup: hvordan få flere til å bidra i ryddeaksjoner i nærområdet?</p>
+          </li>
+          <li class="bu-step" data-reveal>
+            <div class="bu-step__media">
+              <img src="busken.media/affinity_diagram.webp" width="808" height="874" loading="lazy" alt="Affinitetsdiagram med to brukerprofiler: en pensjonist på 65 og Ahmed, 34 år" />
+            </div>
+            <span class="bu-step__num" aria-hidden="true">02</span>
+            <h3 class="bu-step__title">Innsikt</h3>
+            <p>Et affinitetsdiagram rundt to brukere: en pensjonist på 65 og Ahmed, 34 år, som ikke har norsk som morsmål.</p>
+          </li>
+          <li class="bu-step" data-reveal>
+            <div class="bu-step__media">
+              <img src="busken.media/skisser_dagen.webp" width="1200" height="1790" loading="lazy" alt="Skisser, notater og post-it-lapper på bordet under UX Cup-dagen" />
+            </div>
+            <span class="bu-step__num" aria-hidden="true">03</span>
+            <h3 class="bu-step__title">Konsept</h3>
+            <p>Skisser og notater på papir under konkurransedagen: én app der aksjoner, påmelding og informasjon ligger samlet.</p>
+          </li>
+          <li class="bu-step" data-reveal>
+            <div class="bu-step__media bu-step__media--screen">
+              <img src="busken.media/skjerm_profil.webp" width="404" height="833" loading="lazy" alt="Profilsiden med statistikk og merker" />
+            </div>
+            <span class="bu-step__num" aria-hidden="true">04</span>
+            <h3 class="bu-step__title">Wireframes</h3>
+            <p>Etter konkurransen utvidet vi konseptet til hele appen: kart, gjenbruk, profil og innstillinger.</p>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- 5. DESIGNVALG — fra innsikt til skjerm -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Fra innsikt til design</h2>
+        </div>
+
+        <ul class="bu-choices">
+          <li class="bu-choice" data-reveal>
+            <span class="bu-choice__quote">«Ønsker å bli spurt, enn å melde seg på selv»</span>
+            <h3 class="bu-choice__title">Påmelding med ett SMS-svar</h3>
+            <p>Busken inviterer deg på SMS. Svar «JA», så er du påmeldt, uten å logge inn.</p>
+            <img src="busken.media/skjerm_sms.webp" width="399" height="822" loading="lazy" alt="SMS fra busken med invitasjon til ryddeaksjon" />
+          </li>
+          <li class="bu-choice" data-reveal>
+            <span class="bu-choice__quote">«Tungt løft er flaut å si ifra om»</span>
+            <h3 class="bu-choice__title">Si ifra uten å si ifra</h3>
+            <p>Du oppgir i profilen om du vil løfte tungt, og aksjoner merkes med «OBS! Tungt løft».</p>
+            <img src="busken.media/skjerm_utforsk.webp" width="401" height="827" loading="lazy" alt="Utforsk i nærheten, med en aksjon merket OBS! Tungt løft" />
+          </li>
+          <li class="bu-choice" data-reveal>
+            <span class="bu-choice__quote">«Alt skjer på ett sted» · «Et system med ett fellesspråk»</span>
+            <h3 class="bu-choice__title">Alt samlet, enkelt språk</h3>
+            <p>Hjemskjermen viser neste aksjon, oppmøtested og Lær mer-kort, med korte ord og tydelige ikoner.</p>
+            <img src="busken.media/skjerm_hjem.webp" width="478" height="986" loading="lazy" alt="Hjemskjermen med kommende ryddeaksjon og Lær mer-kort" />
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- 6. FERDIG PRODUKT -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Ferdig produkt</h2>
+        </div>
+
+        <p class="prose" data-reveal>Wireframen dekker hele reisen: finne en aksjon på kartet, melde seg på, se resultatet etterpå og gi bort ting man ikke trenger. Profilen viser egen innsats med merker, og brukeren kan velge fargetema og varslinger selv.</p>
+
+        <ul class="bu-screens" data-reveal>
+          <li><img src="busken.media/skjerm_logginn.webp" width="409" height="843" loading="lazy" alt="Innlogging" /><span>Logg inn</span></li>
+          <li><img src="busken.media/skjerm_hjem.webp" width="478" height="986" loading="lazy" alt="Hjem" /><span>Hjem</span></li>
+          <li><img src="busken.media/skjerm_kart.webp" width="431" height="888" loading="lazy" alt="Kart over ryddeaksjoner i Oslo" /><span>Kart</span></li>
+          <li><img src="busken.media/skjerm_aksjon.webp" width="464" height="956" loading="lazy" alt="Resultat fra ryddeaksjonen i Ekebergskogen" /><span>Aksjon</span></li>
+          <li><img src="busken.media/skjerm_utforsk.webp" width="401" height="827" loading="lazy" alt="Utforsk i nærheten" /><span>Utforsk</span></li>
+          <li><img src="busken.media/skjerm_gjenbruk.webp" width="395" height="815" loading="lazy" alt="Gjenbruk: ting som gis bort" /><span>Gjenbruk</span></li>
+          <li><img src="busken.media/skjerm_gjenstand.webp" width="430" height="887" loading="lazy" alt="En TV-benk som gis bort" /><span>Gi bort</span></li>
+          <li><img src="busken.media/skjerm_profil.webp" width="404" height="833" loading="lazy" alt="Profil med statistikk og merker" /><span>Profil</span></li>
+          <li><img src="busken.media/skjerm_varslinger.webp" width="362" height="747" loading="lazy" alt="Innstillinger for varslinger" /><span>Varslinger</span></li>
+          <li><img src="busken.media/skjerm_fargetema.webp" width="413" height="852" loading="lazy" alt="Valg av fargetema" /><span>Fargetema</span></li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- 7. RESULTAT -->
+    <section class="section">
+      <div class="split">
+
+        <div class="split__aside" data-reveal>
+          <h2 class="section__title">Resultat</h2>
+        </div>
+
+        <div class="split__body">
+          <p class="pull" data-reveal>5. plass i BEKK UX Cup, og et konsept vi ville bygge videre på.</p>
+          <div class="stats" data-reveal>
+            <div class="stat">
+              <span class="stat__value">5.</span>
+              <span class="stat__label">Plass i BEKK UX Cup</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value" data-count="14">14</span>
+              <span class="stat__label">Skjermer i wireframen</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. UTFORDRINGER -->
+    <section class="section">
+      <div class="stack">
+
+        <div class="section__head" data-reveal>
+          <h2 class="section__title">Utfordringer</h2>
+        </div>
+
+        <div class="prose-list">
+          <div class="prose-item" data-reveal>
+            <span class="eyebrow">Brukerne</span>
+            <h3 class="col__title col__title--lg">To svært ulike brukere</h3>
+            <p class="prose">En pensjonist som synes innlogging er vanskelig, og en bruker som ikke har norsk som morsmål. Løsningen måtte fungere for begge uten å bli to apper.</p>
+          </div>
+          <div class="prose-item" data-reveal>
+            <span class="eyebrow">Tid</span>
+            <h3 class="col__title col__title--lg">Et konsept på én dag</h3>
+            <p class="prose">I konkurransen måtte vi prioritere hardt. Mye av bredden i appen kom først da vi jobbet videre etterpå.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. LÆRING -->
+    <section class="section">
+      <div class="split">
+
+        <div class="split__aside" data-reveal>
+          <h2 class="section__title">Læring</h2>
+        </div>
+
+        <div class="split__body">
+          <p class="pull" data-reveal>Små innsikter kan gi de beste designvalgene.</p>
+          <p class="prose" data-reveal>Et enkelt ønske som å «bli spurt» ble til påmelding på SMS. Jeg lærte å koble hver designbeslutning tilbake til et konkret funn, og å jobbe raskt og tett sammen i et lite team under tidspress.</p>
+        </div>
+
+      </div>
+    </section>
 
     <section class="section">
       <nav class="case-nav" aria-label="Flere prosjekter">

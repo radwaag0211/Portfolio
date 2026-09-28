@@ -1,0 +1,216 @@
+/* ===========================================================
+   Busken only — green app theme on top of case.css.
+   Loaded after case.css on busken.html; no other page links it.
+   Re-points the --ss- tokens to the Busken palette (from the Figma
+   wireframes) and styles the Busken-only blocks: hero (.bu-hero),
+   process grid (.bu-steps), design choices (.bu-choices) and the
+   screen gallery (.bu-screens).
+   =========================================================== */
+
+body:has(.bu) { background: #EEF3E3; }
+body:has(.bu) .progress__bar { background: #2F4A37; }
+
+.ss-case.bu {
+  --ss-bg:      #EEF3E3;
+  --ss-surface: #EEF3E3;
+  --ss-ink:     #22362A;
+  --ss-body:    #3F4F43;
+  --ss-muted:   #5C6B5F;
+  --ss-label:   #3E6B45;   /* ~5.5:1 on the light green ground */
+  --ss-gold:    #2F4A37;
+  --ss-rule:    rgba(34, 54, 42, 0.16);
+  --bu-logo:    #C2CCAE;   /* the logo's own background */
+  --bu-app:     #D7E5BB;   /* the app's background */
+  --bu-dark:    #2F4A37;
+  --bu-sun:     #E8C46A;
+  --ss-serif:   'Barlow Condensed', 'Inter', sans-serif;
+}
+
+.bu .section__title { font-weight: 800; letter-spacing: -0.01em; }
+.bu .block--img img { border-color: transparent; }
+
+/* ===== Hero — the "Busken – forside" artboard =====
+   Logo + text on top; six phones in a row like a hedge, growing up from a
+   green hill and cut off by the bottom edge. */
+.bu-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bu-logo);
+  padding: clamp(40px, 5vw, 64px) var(--ss-pad-x) 0;
+}
+
+.bu-hero::after {                       /* the hill */
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: -45%;
+  height: 90%;
+  border-radius: 50% 50% 0 0;
+  background: #A9B894;
+  z-index: 0;
+}
+
+.bu-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+}
+
+.bu-hero__logo { margin: 0; line-height: 0; flex: 0 0 auto; }
+.bu-hero__logo img { width: clamp(180px, 22vw, 320px); height: auto; display: block; margin: -6% 0 -6% -6%; }
+
+.bu-hero__text { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+.bu-hero__kicker {
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ss-ink);
+}
+
+.bu-hero__title {
+  font-family: var(--ss-serif);
+  font-size: clamp(52px, 7vw, 100px);
+  font-weight: 600;
+  line-height: 0.95;
+  color: var(--bu-dark);
+}
+
+.bu-hero__intro {
+  font-size: clamp(18px, 1.9vw, 26px);
+  line-height: 1.4;
+  max-width: 34ch;
+  color: var(--ss-ink);
+}
+
+.bu-hedge {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  max-width: 1360px;
+  height: clamp(240px, 25vw, 360px);
+  margin: clamp(40px, 5vw, 72px) auto 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(10px, 2.2vw, 34px);
+  /* phones overflow this box and are cut off by .bu-hero's own overflow */
+}
+
+.bu-hedge li { min-width: 0; }
+.bu-hedge img { width: 100%; height: auto; display: block; filter: drop-shadow(0 20px 32px rgba(34, 54, 42, 0.32)); }
+
+/* Staggered heights, like the artboard. */
+.bu-hedge li:nth-child(1) { padding-top: 16%; }
+.bu-hedge li:nth-child(2) { padding-top: 6%; }
+.bu-hedge li:nth-child(3) { padding-top: 0; }
+.bu-hedge li:nth-child(4) { padding-top: 4%; }
+.bu-hedge li:nth-child(5) { padding-top: 11%; }
+.bu-hedge li:nth-child(6) { padding-top: 18%; }
+
+@media (max-width: 800px) {
+  .bu-hero__inner { flex-direction: column; align-items: flex-start; }
+  .bu-hedge { grid-template-columns: repeat(3, minmax(0, 1fr)); height: 62vw; }
+  .bu-hedge li:nth-child(1),
+  .bu-hedge li:nth-child(5),
+  .bu-hedge li:nth-child(6) { display: none; }
+}
+
+/* ===== Designprosess — four steps side by side ===== */
+.bu-process__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px 64px;
+  flex-wrap: wrap;
+}
+
+.bu-process__intro { max-width: 34ch; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.45; }
+
+.bu-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.bu-step { display: flex; flex-direction: column; gap: 14px; }
+
+.bu-step__media {
+  height: clamp(320px, 32vw, 460px);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bu-app);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bu-step__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bu-step__media--logo { background: var(--bu-logo); }
+.bu-step__media--logo img { width: 90%; height: auto; object-fit: contain; }
+.bu-pair { grid-template-columns: 1fr 1fr; align-items: start; }
+.bu-step__media--screen { padding: 20px 12px 0; align-items: flex-end; }
+.bu-step__media--screen img { width: auto; max-width: 100%; height: 100%; object-fit: contain; object-position: bottom; }
+
+.bu-step__num { font-family: var(--ss-serif); font-size: 20px; font-weight: 800; color: var(--ss-label); margin-top: 4px; }
+
+.bu-step__title {
+  font-family: var(--ss-serif);
+  font-size: clamp(26px, 2.2vw, 32px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ss-ink);
+}
+
+.bu-step p { font-size: 17px; line-height: 1.55; }
+
+@media (max-width: 1000px) { .bu-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; } }
+@media (max-width: 560px)  { .bu-steps { grid-template-columns: 1fr; } .bu-step__media { height: 400px; } }
+
+/* ===== Designvalg — insight → screen pairs ===== */
+.bu-choices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+
+.bu-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 24px 0;
+  border-radius: var(--ss-radius);
+  background: var(--bu-app);
+  overflow: hidden;
+}
+
+.bu-choice__quote { font-size: 15px; font-weight: 600; color: var(--ss-label); }
+.bu-choice__title { font-family: var(--ss-serif); font-size: 26px; font-weight: 800; line-height: 1.1; color: var(--ss-ink); }
+.bu-choice p { font-size: 16px; line-height: 1.55; }
+.bu-choice img { width: 72%; height: auto; display: block; margin: 8px auto 0; filter: drop-shadow(0 12px 24px rgba(34, 54, 42, 0.2)); }
+
+@media (max-width: 1000px) { .bu-choices { grid-template-columns: 1fr; max-width: 520px; } }
+
+/* ===== Ferdig produkt — screens on the app colour ===== */
+.bu-screens {
+  list-style: none;
+  margin: 0;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--bu-app);
+  border-radius: var(--ss-radius);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 32px clamp(12px, 2vw, 24px);
+}
+
+.bu-screens li { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.bu-screens img { width: 100%; height: auto; display: block; filter: drop-shadow(0 10px 20px rgba(34, 54, 42, 0.18)); }
+.bu-screens span { font-size: 14px; font-weight: 600; color: var(--ss-ink); text-align: center; }
+
+@media (max-width: 1000px) { .bu-screens { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px)  { .bu-screens { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

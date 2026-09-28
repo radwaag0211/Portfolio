@@ -1,0 +1,243 @@
+/* ===========================================================
+   FriendVerse only — purple app theme on top of case.css.
+   Loaded after case.css on friendverse.html; no other page links it.
+   Re-points the --ss- tokens to the FriendVerse palette (from the Figma
+   prototype) and styles the FriendVerse-only blocks: hero (.fv-hero),
+   process grid (.fv-steps) and the screen gallery (.fv-screens).
+   =========================================================== */
+
+body:has(.fv) { background: #F2F1FB; }
+body:has(.fv) .progress__bar { background: #6F5BD0; }
+
+.ss-case.fv {
+  --ss-bg:      #F2F1FB;
+  --ss-surface: #F2F1FB;
+  --ss-ink:     #29243D;
+  --ss-body:    #4A4462;
+  --ss-muted:   #6B6582;
+  --ss-label:   #5B47A8;   /* ~6:1 on the lavender ground */
+  --ss-gold:    #6F5BD0;   /* "Verse" in the title */
+  --ss-rule:    rgba(41, 36, 61, 0.14);
+  --fv-app:     #4B4466;   /* the app's own background */
+  --fv-blob:    #C9D0F6;   /* the periwinkle behind the Figma frames */
+  --fv-shadow:  0 24px 48px rgba(41, 36, 61, 0.22);
+}
+
+.fv .block--img img { border-color: transparent; }
+
+/* ===== Hero — the "FriendVerse – forside" artboard =====
+   A full-width band in the app's own purple; the rest of the page stays lavender. */
+.fv-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--fv-app);
+  padding: clamp(56px, 7vw, 96px) var(--ss-pad-x) clamp(64px, 8vw, 112px);
+}
+
+.fv-hero__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.fv-hero__inner {
+  position: relative;
+  max-width: var(--ss-measure);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: center;
+}
+
+.fv-hero__text { display: flex; flex-direction: column; gap: 28px; position: relative; z-index: 2; }
+
+.fv-hero__kicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C9D0F6;
+}
+
+.fv-hero__title {
+  font-family: 'Fredoka', var(--ss-sans);
+  font-size: clamp(84px, 10.5vw, 152px);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.fv-hero__title span { color: #F2B8BD; }
+
+.fv-hero__intro {
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.45;
+  max-width: 28ch;
+  color: #DCD8F0;
+}
+
+/* Methods: plain text with dots, same pattern as CatGym. */
+.fv-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 0; }
+.fv-tag { font-size: 15px; font-weight: 500; line-height: 1.4; color: #C9D0F6; }
+.fv-tag + .fv-tag::before { content: "·"; margin: 0 10px; color: #F2B8BD; font-weight: 700; }
+
+/* Phones are placed in % of the media box so the fan keeps its shape at any width. */
+.fv-hero__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 700 / 680;
+}
+
+.fv-hero__blob {
+  position: absolute;
+  left: 11%;
+  top: 0;
+  width: 86%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #A5B1EE;
+}
+
+.fv-phone {
+  position: absolute;
+  display: block;
+  height: auto;
+  border-radius: 7% / 3.3%;
+  box-shadow: 0 24px 48px rgba(20, 16, 36, 0.45);
+}
+
+.fv-phone--left  { left: 4%;  top: 20%; width: 34%; transform: rotate(-7deg); z-index: 1; }
+.fv-phone--right { left: 62%; top: 20%; width: 34%; transform: rotate(7deg);  z-index: 1; }
+.fv-phone--main  { left: 29%; top: 5%;  width: 42%; z-index: 2; box-shadow: 0 30px 60px rgba(20, 16, 36, 0.5); }
+
+.fv-hero__bubble {
+  position: absolute;
+  left: 0;
+  bottom: 4%;
+  z-index: 3;
+  max-width: 15em;
+  padding: 12px 18px;
+  background: #E8B4B8;
+  color: #3A2F45;
+  border-radius: 20px 20px 20px 6px;
+  font-family: 'Fredoka', var(--ss-sans);
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 600;
+  line-height: 1.25;
+  box-shadow: 0 12px 24px rgba(20, 16, 36, 0.3);
+}
+
+@media (max-width: 900px) {
+  .fv-hero__inner { grid-template-columns: 1fr; }
+  .fv-hero__media { max-width: 520px; margin: 0 auto; }
+}
+
+/* ===== Designprosess — four steps side by side ===== */
+.fv-process__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px 64px;
+  flex-wrap: wrap;
+}
+
+.fv-process__intro { max-width: 34ch; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.45; }
+
+.fv-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.fv-step { display: flex; flex-direction: column; gap: 14px; }
+
+.fv-step__media {
+  height: clamp(320px, 32vw, 460px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fv-step__media img {
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* Figma screen inside a step: show the whole screen on the app's own colour. */
+.fv-step__media--screen {
+  background: var(--fv-app);
+  border-radius: 20px;
+  padding: 20px;
+  align-items: center;
+}
+
+.fv-step__media--screen img { width: auto; max-width: 100%; object-fit: contain; border-radius: 14px; }
+
+.fv-step__num { font-size: 18px; font-weight: 800; color: var(--ss-label); margin-top: 4px; }
+
+.fv-step__title {
+  font-size: clamp(24px, 2vw, 28px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ss-ink);
+}
+
+.fv-step p { font-size: 17px; line-height: 1.55; }
+
+@media (max-width: 1000px) {
+  .fv-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
+}
+
+@media (max-width: 560px) {
+  .fv-steps { grid-template-columns: 1fr; }
+  .fv-step__media { height: 380px; }
+}
+
+/* ===== Ferdig produkt — all seven Figma screens on light periwinkle ===== */
+.fv-screens {
+  list-style: none;
+  margin: 0;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--fv-blob);   /* light periwinkle, so the dark screens stand out */
+  border-radius: var(--ss-radius);
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.fv-screens li { display: flex; flex-direction: column; gap: 10px; }
+
+.fv-screens img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 204 / 439;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 12px 24px rgba(41, 36, 61, 0.2);
+}
+
+.fv-screens figcaption,
+.fv-screens span {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ss-ink);
+  text-align: center;
+}
+
+@media (max-width: 1000px) { .fv-screens { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 28px; } }
+@media (max-width: 560px)  { .fv-screens { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

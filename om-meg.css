@@ -157,6 +157,9 @@ body:has(.om-main) {
   display: block;
 }
 
+/* FN-bildet er kvadratisk: hold personen i midten av 3:4-utsnittet */
+.intro-photo img.intro-photo-un { object-position: 46% center; }
+
 .intro-text {
   padding-top: 0.25rem;
 }

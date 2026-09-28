@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <!-- Anti-FOUC for the curtain page-transition (see shared.js). -->
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('curtainNav') === '1') {
+          document.documentElement.classList.add('curtain-entering');
+          sessionStorage.removeItem('curtainNav');
+        }
+      } catch (e) { }
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Korok Timer — Radwa Godor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="korok-timer.css" />
+</head>
+<body>
+
+  <div class="page-transition-curtain" aria-hidden="true"></div>
+
+  <header>
+    <a href="index.html" class="logo curtain-link">[Radwa Godor]<small>return: home</small></a>
+    <nav class="nav-links">
+      <a href="prosjekter.html" class="curtain-link">[class: prosjekter]<small>path: desktop_dash</small></a>
+      <a href="om-meg.html" class="curtain-link">[asset id: om meg]<small>username:radwaag</small></a>
+      <a href="cv.html" class="curtain-link">[super: CV]<small>section: experience_101</small></a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="kt-hero">
+    <div class="kt-hero-text">
+      <p class="kt-eyebrow">Pomodoro-timer · 2026</p>
+      <h1 class="kt-hero-title">Korok Timer</h1>
+      <p class="kt-hero-sub">En fokustimer inspirert av Korok-skogen. Trekk mestersverdet, én fokusøkt om gangen.</p>
+
+      <div class="kt-cta">
+        <a href="https://radwaag0211.github.io/Korok-timer/" target="_blank" rel="noopener" class="kt-btn kt-btn-primary">Prøv Korok Timer ↗</a>
+        <a href="https://github.com/radwaag0211/Korok-timer" target="_blank" rel="noopener" class="kt-btn kt-btn-ghost">Se koden på GitHub</a>
+      </div>
+    </div>
+
+    <!-- Levende scene bygget av appens egne pikselgrafikk: sverdet i gløden,
+         fremdriftslinjen med frøet og de tre hjertene. -->
+    <div class="kt-scene" aria-hidden="true">
+      <span class="kt-spore" style="--x:18%; --d:0s"></span>
+      <span class="kt-spore" style="--x:34%; --d:2.4s"></span>
+      <span class="kt-spore" style="--x:62%; --d:1.2s"></span>
+      <span class="kt-spore" style="--x:80%; --d:3.6s"></span>
+      <span class="kt-spore" style="--x:48%; --d:4.8s"></span>
+
+      <div class="kt-sword-scene">
+        <img src="korok-timer.media/icon.png" width="101" height="98" alt="" class="kt-glow" />
+        <img src="korok-timer.media/sword_sprite.png" width="15" height="33" alt="" class="kt-sword" />
+      </div>
+
+      <div class="kt-scene-timer">25:00</div>
+      <div class="kt-scene-msg">until sword achieved</div>
+
+      <div class="kt-scene-progress">
+        <div class="kt-scene-fill"></div>
+        <img src="korok-timer.media/bean.png" width="11" height="10" alt="" class="kt-bean" />
+      </div>
+
+      <div class="kt-hearts">
+        <span class="is-on"></span><span class="is-on"></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INNHOLD ===== -->
+  <section class="kt-innhold">
+
+    <div class="kt-summary">
+      <div class="kt-summary-item">
+        <span class="kt-summary-label">Rolle</span>
+        <span class="kt-summary-value">Design &amp; utvikling</span>
+      </div>
+      <div class="kt-summary-item">
+        <span class="kt-summary-label">Type</span>
+        <span class="kt-summary-value">Soloprosjekt</span>
+      </div>
+      <div class="kt-summary-item">
+        <span class="kt-summary-label">Verktøy</span>
+        <span class="kt-summary-value">Figma, HTML, CSS, JS</span>
+      </div>
+      <div class="kt-summary-item">
+        <span class="kt-summary-label">År</span>
+        <span class="kt-summary-value">2026</span>
+      </div>
+    </div>
+
+    <div class="kt-section">
+      <h2>Om prosjektet</h2>
+      <p>
+        Korok Timer er en Pomodoro-timer laget for å hjelpe deg å holde fokus. I stedet for en vanlig nedtelling blir hver fokusøkt en del av en liten historie: du jobber deg mot å trekke mestersverdet fra steinen.
+      </p>
+      <p>
+        Målet var en timer som føles enkel, rolig og litt lekent, med visuell inspirasjon fra Korok-skogen i The Legend of Zelda.
+      </p>
+    </div>
+
+    <div class="kt-quote">
+      <p>«Fullfør tre fokusøkter for å fylle hjertebeholderne og vinne sverdet.»</p>
+    </div>
+
+    <div class="kt-section">
+      <h2>Konseptet</h2>
+      <p>
+        Sverdet står i en glødende skogssirkel i pikselkunst. Mens tiden går, fylles fremdriftslinjen, og et lite Korok-frø spretter langs kanten. Tre prikker viser hvor mange økter du har fullført, og blir grønne én etter én.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ===== FUNKSJONER ===== -->
+  <section class="kt-features-wrap">
+    <div class="kt-features">
+      <figure class="kt-app-shot">
+        <img src="korok-timer.media/korok_app.webp" width="674" height="1134" loading="lazy" alt="Korok Timer under en fokusøkt, med 24:41 igjen" />
+      </figure>
+
+      <div class="kt-feature-list">
+        <h2>Funksjoner</h2>
+        <ul>
+          <li>
+            <h3>Fokus og pause</h3>
+            <p>Velg fokustid (15, 25, 45 eller 60 min) og pausetid (5, 10 eller 15 min).</p>
+          </li>
+          <li>
+            <h3>Automatisk bytte</h3>
+            <p>Når en fokusøkt er ferdig, går timeren over til pause, og tilbake igjen.</p>
+          </li>
+          <li>
+            <h3>Fremdriftslinje</h3>
+            <p>Fylles opp mens tiden går, med et Korok-frø som spretter langs kanten.</p>
+          </li>
+          <li>
+            <h3>Hjertebeholdere</h3>
+            <p>Tre prikker blir grønne for hver fullførte økt. Alle tre gir deg mestersverdet.</p>
+          </li>
+          <li>
+            <h3>Start, stopp og restart</h3>
+            <p>Innstillingene låses mens timeren går, så du ikke endrer økten ved et uhell.</p>
+          </li>
+          <li>
+            <h3>Redusert bevegelse</h3>
+            <p>Animasjonene skrus av for brukere som foretrekker mindre bevegelse.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEKNOLOGI + VIDERE ===== -->
+  <section class="kt-innhold kt-innhold--end">
+
+    <div class="kt-section">
+      <h2>Teknologi</h2>
+      <div class="kt-tags">
+        <span>HTML</span>
+        <span>CSS (Flexbox, transitions, keyframes)</span>
+        <span>Vanilla JavaScript</span>
+        <span>Inter fra Google Fonts</span>
+        <span>Designet i Figma</span>
+      </div>
+      <p class="kt-note">Ingen rammeverk eller biblioteker. Appen hostes på GitHub Pages.</p>
+    </div>
+
+    <div class="kt-section">
+      <h2>Videre arbeid</h2>
+      <p>Kjernefunksjonene er ferdige. Neste steg kan være:</p>
+      <ul class="kt-next">
+        <li>Lyst og mørkt skogtema</li>
+        <li>Lyd når en økt er ferdig</li>
+        <li>Mer nøyaktig tid når fanen ligger i bakgrunnen</li>
+      </ul>
+    </div>
+
+    <div class="kt-cta kt-cta--end">
+      <a href="https://radwaag0211.github.io/Korok-timer/" target="_blank" rel="noopener" class="kt-btn kt-btn-primary">Start en fokusøkt ↗</a>
+    </div>
+
+  </section>
+
+  <nav class="kt-case-nav" aria-label="Flere prosjekter">
+    <a href="prosjekter.html" class="btn btn-outline curtain-link">← Alle prosjekter</a>
+    <a href="fanous.html" class="btn btn-outline curtain-link">Neste: Fanous →</a>
+  </nav>
+
+  <script src="shared.js"></script>
+</body>
+</html>

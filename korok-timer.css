@@ -1,0 +1,465 @@
+/* ===== KOROK TIMER PAGE =====
+   Light sage ground with the app's forest greens (#1E392B / #83A97B) as ink and
+   accents, Inter throughout, one narrow reading column like fanous.css.
+   Loaded after style.css. */
+
+:root {
+  --k-bg:      #F1F5EC;                  /* lys salvie, hele siden */
+  --k-bg-2:    #E1EBDB;                  /* litt mørkere flate for funksjoner */
+  --k-ink:     #1E392B;                  /* overskrifter, appens mørkegrønne */
+  --k-text:    #3A4B40;                  /* brødtekst (~9:1 på bakgrunnen) */
+  --k-muted:   #5C6F61;                  /* etiketter */
+  --k-sage:    #4E7A47;                  /* sitat, mørkere variant av appens grønne */
+  --k-gold:    #E0B45A;                  /* sverdhåndtaket, knappefyll */
+  --k-gold-ink:#8A5E12;                  /* gull som tekst (kontrast på lys bakgrunn) */
+  --k-sage-card:#83A97B;                 /* appens kort */
+  --k-rule:    rgba(30, 57, 43, 0.14);
+  --k-measure: 760px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  background: var(--k-bg);
+  color: var(--k-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.kt-hero,
+.kt-innhold,
+.kt-features-wrap {
+  padding-left: clamp(16px, 6vw, 48px);
+  padding-right: clamp(16px, 6vw, 48px);
+}
+
+/* ===== HERO: tekst til venstre, levende sverdscene til høyre ===== */
+.kt-hero {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-top: clamp(3.5rem, 8vw, 6.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.kt-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--k-muted);
+  margin-bottom: 1.1rem;
+}
+
+.kt-hero-title {
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--k-ink);
+  margin-bottom: 1.25rem;
+}
+
+.kt-hero-sub {
+  max-width: 28rem;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--k-text);
+  margin-bottom: 2rem;
+}
+
+.kt-hero .kt-cta { justify-content: flex-start; }
+
+/* Scenen: et salviegrønt kort med samme kant som appen */
+.kt-scene {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2rem, 4vw, 3rem) 1.5rem clamp(2rem, 4vw, 2.75rem);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(214, 230, 207, 0.55), transparent 55%),
+    var(--k-sage-card);
+  border: 6px solid #658070;
+  box-shadow: 0 30px 70px rgba(30, 57, 43, 0.22);
+  color: #fff;
+}
+
+.kt-sword-scene {
+  position: relative;
+  width: 240px;
+  height: 285px;
+  margin-bottom: 1.25rem;
+}
+
+.kt-glow,
+.kt-sword,
+.kt-bean { image-rendering: pixelated; display: block; }
+
+.kt-glow {
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: 240px;
+  height: 233px;
+  animation: kt-glow 5s ease-in-out infinite;
+}
+
+/* Sverdet løfter seg litt og synker igjen, som om noen drar i det */
+.kt-sword {
+  position: absolute;
+  left: 50%;
+  top: 48px;
+  width: 107px;
+  height: 235px;
+  margin-left: -53.5px;
+  animation: kt-pull 5s ease-in-out infinite;
+}
+
+.kt-scene-timer {
+  font-size: clamp(2.6rem, 5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.35rem;
+}
+
+.kt-scene-msg {
+  font-size: 0.95rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.kt-scene-progress {
+  position: relative;
+  width: min(260px, 100%);
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(30, 57, 43, 0.3);
+  margin-bottom: 1.6rem;
+}
+
+.kt-scene-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 3px;
+  background: var(--k-ink);
+  animation: kt-fill 12s linear infinite;
+}
+
+.kt-bean {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: auto;
+  transform: translate(-50%, -60%);
+  animation: kt-bean-move 12s linear infinite, kt-bean-bounce 1.6s ease-in-out infinite;
+}
+
+.kt-hearts { display: flex; gap: 14px; }
+
+.kt-hearts span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.kt-hearts .is-on { background: var(--k-ink); }
+
+/* Små lysprikker som svever opp gjennom kortet */
+.kt-spore {
+  position: absolute;
+  bottom: -10px;
+  left: var(--x);
+  width: 5px;
+  height: 5px;
+  background: #F4F8D8;
+  opacity: 0;
+  animation: kt-spore 7s linear var(--d) infinite;
+}
+
+@keyframes kt-glow {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.03); }
+}
+
+@keyframes kt-pull {
+  0%, 60%, 100% { transform: translateY(0); }
+  75%           { transform: translateY(-10px); }
+  85%           { transform: translateY(-6px); }
+}
+
+@keyframes kt-fill { from { width: 0; } to { width: 100%; } }
+
+@keyframes kt-bean-move { from { left: 0; } to { left: 100%; } }
+
+@keyframes kt-bean-bounce {
+  0%, 100% { margin-top: 0; }
+  50%      { margin-top: -4px; }
+}
+
+@keyframes kt-spore {
+  0%   { opacity: 0;   transform: translateY(0); }
+  15%  { opacity: 0.9; }
+  100% { opacity: 0;   transform: translateY(-420px); }
+}
+
+/* ===== KNAPPER (samme form som appens start/restart) ===== */
+.kt-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.kt-btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.kt-btn:hover { transform: translateY(-2px); }
+
+.kt-btn:focus-visible {
+  outline: 2px solid var(--k-ink);
+  outline-offset: 3px;
+}
+
+.kt-btn-primary {
+  background: var(--k-gold);
+  color: var(--k-ink);
+}
+
+.kt-btn-primary:hover { box-shadow: 0 10px 28px rgba(160, 110, 20, 0.28); }
+
+.kt-btn-ghost {
+  color: var(--k-ink);
+  border: 1.5px solid var(--k-ink);
+}
+
+.kt-btn-ghost:hover {
+  background: var(--k-ink);
+  color: var(--k-bg);
+}
+
+/* ===== INNHOLD ===== */
+.kt-innhold {
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.kt-innhold > * {
+  max-width: var(--k-measure);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.kt-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  border-top: 1px solid var(--k-rule);
+  border-bottom: 1px solid var(--k-rule);
+  padding: 1.25rem 0;
+  margin-bottom: 3.5rem;
+}
+
+.kt-summary-item { display: flex; flex-direction: column; gap: 0.3rem; }
+
+.kt-summary-label,
+.kt-feature-list h3 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--k-muted);
+}
+
+.kt-summary-value { font-size: 0.95rem; color: var(--k-ink); }
+
+.kt-section { margin-bottom: 3rem; }
+
+.kt-section h2,
+.kt-feature-list h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--k-ink);
+  margin-bottom: 0.9rem;
+}
+
+.kt-section p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 0.9rem;
+}
+
+.kt-section p:last-child { margin-bottom: 0; }
+
+.kt-quote { margin: 3rem auto; }
+
+.kt-quote p {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--k-sage);
+}
+
+/* ===== FUNKSJONER: skjermbilde + liste ===== */
+.kt-features-wrap {
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  background: var(--k-bg-2);
+}
+
+.kt-features {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.kt-app-shot img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(30, 57, 43, 0.25);
+}
+
+.kt-feature-list ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  border-top: 1px solid var(--k-rule);
+  padding-top: 1.5rem;
+}
+
+.kt-feature-list h3 {
+  color: var(--k-gold-ink);
+  margin-bottom: 0.45rem;
+}
+
+.kt-feature-list p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ===== TEKNOLOGI + VIDERE ===== */
+.kt-innhold--end { padding-top: clamp(3rem, 6vw, 4.5rem); }
+
+.kt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.kt-tags span {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(131, 169, 123, 0.22);
+  color: var(--k-ink);
+  font-size: 0.88rem;
+}
+
+.kt-section .kt-note { font-size: 0.95rem; color: var(--k-muted); }
+
+.kt-next {
+  list-style: none;
+  border-top: 1px solid var(--k-rule);
+}
+
+.kt-next li {
+  padding: 0.8rem 0 0.8rem 1.4rem;
+  border-bottom: 1px solid var(--k-rule);
+  position: relative;
+  font-size: 1rem;
+}
+
+/* Liten Korok-frø-prikk foran hvert punkt */
+.kt-next li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--k-gold);
+}
+
+.kt-cta--end {
+  padding-top: 1rem;
+  justify-content: flex-start;
+}
+
+/* ===== FORRIGE / NESTE ===== */
+.kt-case-nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3rem) clamp(16px, 6vw, 48px) clamp(4rem, 8vw, 6rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kt-case-nav .btn {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 15px;
+  color: var(--k-ink);
+  border-color: var(--k-ink);
+}
+
+.kt-case-nav .btn:hover {
+  background-color: var(--k-ink);
+  color: var(--k-bg);
+  box-shadow: 0 8px 24px rgba(30, 57, 43, 0.22);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .kt-hero { grid-template-columns: 1fr; text-align: center; }
+  .kt-hero-sub { margin-left: auto; margin-right: auto; }
+  .kt-hero .kt-cta { justify-content: center; }
+  .kt-scene { max-width: 420px; width: 100%; margin: 0 auto; }
+}
+
+@media (max-width: 800px) {
+  .kt-features { grid-template-columns: 1fr; }
+  .kt-app-shot img { max-width: 260px; }
+}
+
+@media (max-width: 700px) {
+  .kt-summary { grid-template-columns: repeat(2, 1fr); }
+  .kt-feature-list ul { grid-template-columns: 1fr; }
+  .kt-cta--end { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kt-btn, .kt-btn:hover { transition: none; transform: none; }
+  .kt-glow, .kt-sword, .kt-bean, .kt-spore { animation: none; }
+  .kt-scene-fill { animation: none; width: 62%; }
+  .kt-bean { left: 62%; }
+}

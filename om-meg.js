@@ -25,7 +25,7 @@ function initScrollProgress() {
 function initRoleCycle() {
   const word = document.querySelector('.role-word');
   if (!word) return;
-  const roles = ['UX designer', 'utvikler', 'prototyper', 'youth advocate'];
+  const roles = ['UX designer', 'youth advocate'];
   let i = 0;
   setInterval(() => {
     i = (i + 1) % roles.length;

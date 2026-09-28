@@ -30,8 +30,7 @@ body:has(.bu) .progress__bar { background: #2F4A37; }
 .bu .block--img img { border-color: transparent; }
 
 /* ===== Hero — the "Busken – forside" artboard =====
-   Logo + text on top; six phones in a row like a hedge, growing up from a
-   green hill and cut off by the bottom edge. */
+   Logo + text on top; six whole phones in a row like a hedge, standing on a green hill. */
 .bu-hero {
   position: relative;
   overflow: hidden;
@@ -94,13 +93,14 @@ body:has(.bu) .progress__bar { background: #2F4A37; }
   z-index: 1;
   list-style: none;
   max-width: 1360px;
-  height: clamp(240px, 25vw, 360px);
   margin: clamp(40px, 5vw, 72px) auto 0;
-  padding: 0;
+  padding-bottom: clamp(40px, 5vw, 72px);   /* whole phones visible, standing on the hill */
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: clamp(10px, 2.2vw, 34px);
-  /* phones overflow this box and are cut off by .bu-hero's own overflow */
 }
 
 .bu-hedge li { min-width: 0; }
@@ -116,7 +116,7 @@ body:has(.bu) .progress__bar { background: #2F4A37; }
 
 @media (max-width: 800px) {
   .bu-hero__inner { flex-direction: column; align-items: flex-start; }
-  .bu-hedge { grid-template-columns: repeat(3, minmax(0, 1fr)); height: 62vw; }
+  .bu-hedge { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bu-hedge li:nth-child(1),
   .bu-hedge li:nth-child(5),
   .bu-hedge li:nth-child(6) { display: none; }
